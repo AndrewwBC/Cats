@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Services from './api';
+import './styles/global.css';
+import Header from './components/GeneralComponents/Header';
+import HomePage from './components/HomePage';
+import Footer from './components/GeneralComponents/Footer';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
+import Login from './components/Login';
+import Register from './components/Register';
 
-function App() {
+const App = () => {
+  // function handleSubmit(e: any) {
+  //   e.preventDefault();
+  //   Services.RegisterUser(505, 'a');
+  //   Services.ListUsers();
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
-}
+};
 
 export default App;
