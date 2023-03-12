@@ -5,14 +5,26 @@ interface InputInfo {
   name: string;
   placeholder: string;
   type: string;
+  onChange: any;
 }
 
-const Input = ({ name, label, placeholder, type }: InputInfo): JSX.Element => {
+const Input = ({
+  name,
+  label,
+  placeholder,
+  type,
+  onChange,
+}: InputInfo): JSX.Element => {
   return (
     <>
       <Label>
         {label}
-        <StyledInput type={type} name={name} placeholder={placeholder} />
+        <StyledInput
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          onChange={onChange}
+        />
       </Label>
     </>
   );

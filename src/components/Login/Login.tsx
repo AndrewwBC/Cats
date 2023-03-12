@@ -1,11 +1,21 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Services from '../../api';
 import { Button } from '../FormComponents/Button/style';
 import Form from '../FormComponents/Form';
 import Input from '../FormComponents/Input';
 import { LowTitle } from '../GeneralComponents/Titles';
-import { Container, Content, OneInputInline, TwoInputsInline } from './styles';
+import { Container, Content } from './styles';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    Services.UserLogin(email, password);
+  }
+
   return (
     <Container>
       <Content>
@@ -17,6 +27,7 @@ const Login = () => {
             type="text"
             name="nome"
             placeholder="Insira seu nome..."
+            onChange={({ target }: any) => setEmail(target.value)}
           />
 
           <Input
@@ -24,8 +35,9 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Insira sua senha..."
+            onChange={({ target }: any) => setPassword(target.value)}
           />
-          <Button>Entrar</Button>
+          <Button onClick={(e) => handleSubmit(e)}>Entrar</Button>
 
           <h3 style={{ color: '#202020' }}>
             Ainda não é cadastrado? Registre-se!

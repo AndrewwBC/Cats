@@ -1,4 +1,3 @@
-import Services from './api';
 import './styles/global.css';
 import Header from './components/GeneralComponents/Header';
 import HomePage from './components/HomePage';
@@ -9,12 +8,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 
 const App = () => {
-  // function handleSubmit(e: any) {
-  //   e.preventDefault();
-  //   Services.RegisterUser(505, 'a');
-  //   Services.ListUsers();
-  // }
-
   return (
     <>
       <BrowserRouter>

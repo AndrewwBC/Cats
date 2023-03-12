@@ -2,23 +2,41 @@ import Axios from 'axios';
 
 // Create, Read, Update, Delete
 
+interface Register {
+  username: string;
+  name: string;
+  lastname: string;
+  email: string;
+  password: string;
+}
+
 const Services = {
-  RegisterUser: async (param1: number, param2: string) => {
+  RegisterUser: async ({
+    username,
+    name,
+    lastname,
+    email,
+    password,
+  }: Register) => {
     try {
       Axios.post('http://localhost:3001/register', {
-        codigo: param1,
-        nome: param2,
+        username: username,
+        name: name,
+        lastname: lastname,
+        email: email,
+        password: password,
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
     } finally {
     }
   },
-  ListUsers: async () => {
+
+  UserLogin: async (email: string, password: string) => {
     try {
-      Axios.get('http://localhost:3001/list').then((response) =>
-        console.log(response),
-      );
+      Axios.get('http://localhost:3001/login', {
+        params: { email: email, password: password },
+      }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
     }
