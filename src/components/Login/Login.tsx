@@ -20,13 +20,21 @@ const Login = () => {
     <Container>
       <Content>
         <Form>
-          <LowTitle style={{ marginBottom: '24px' }}>Login</LowTitle>
+          <LowTitle
+            style={{
+              marginBottom: '24px',
+              placeSelf: 'center',
+              color: '#FF7F00',
+            }}
+          >
+            CatGram
+          </LowTitle>
 
           <Input
             label="E-mail"
             type="text"
             name="nome"
-            placeholder="Insira seu nome..."
+            placeholder="Insira seu email"
             onChange={({ target }: any) => setEmail(target.value)}
           />
 
@@ -34,16 +42,17 @@ const Login = () => {
             label="Senha"
             type="password"
             name="password"
-            placeholder="Insira sua senha..."
+            placeholder="Insira sua senha"
             onChange={({ target }: any) => setPassword(target.value)}
+            forget={true}
           />
           <Button onClick={(e) => handleSubmit(e)}>Entrar</Button>
 
-          <h3 style={{ color: '#202020' }}>
+          <h3 style={{ color: '#202020', placeSelf: 'center' }}>
             Ainda não é cadastrado? Registre-se!
           </h3>
 
-          <NavLink to="/register">
+          <NavLink style={{ placeSelf: 'center' }} to="/register">
             <Button>Cadastrar</Button>
           </NavLink>
         </Form>

@@ -1,10 +1,12 @@
-import { Label, StyledInput } from './styles';
+import { NavLink } from 'react-router-dom';
+import { ForgotPassword, Label, StyledInput } from './styles';
 
 interface InputInfo {
   label: string;
   name: string;
   placeholder: string;
   type: string;
+  forget?: any;
   onChange: any;
 }
 
@@ -14,6 +16,7 @@ const Input = ({
   placeholder,
   type,
   onChange,
+  forget,
 }: InputInfo): JSX.Element => {
   return (
     <>
@@ -26,6 +29,11 @@ const Input = ({
           onChange={onChange}
         />
       </Label>
+      {forget && (
+        <ForgotPassword>
+          <NavLink to="/forgotpassword">Esqueceu a senha?</NavLink>
+        </ForgotPassword>
+      )}
     </>
   );
 };

@@ -53,4 +53,16 @@ const Services = {
   DeleteUser: async () => {},
 };
 
+export const UserRequirements = {
+  ResetPassword: async (resetData: string) => {
+    try {
+      Axios.get('http://localhost:3001/forgotpassword', {
+        params: { resetInput: resetData },
+      }).then((response) => console.log(response));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
+
 export default Services;

@@ -29,7 +29,7 @@ const Register = () => {
           </LowTitle>
 
           <Input
-            label="username"
+            label="Nome de usuário"
             type="text"
             name="username"
             placeholder="Escolha um nome de usuário."

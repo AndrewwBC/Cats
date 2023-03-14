@@ -6,8 +6,11 @@ export const Button = styled.button`
   color: #202020;
   font-size: 18px;
   padding: 6px 24px;
+  cursor: pointer;
   border-radius: 4px;
+  letter-spacing: 0.2px;
   font-family: 'Poppins';
+
   &:hover {
     background-color: #ff7f00;
   }
