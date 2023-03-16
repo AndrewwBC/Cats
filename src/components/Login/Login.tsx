@@ -22,7 +22,7 @@ const Login = () => {
         <Form>
           <LowTitle
             style={{
-              marginBottom: '24px',
+              marginBottom: '1.5rem',
               placeSelf: 'center',
               color: '#FF7F00',
             }}

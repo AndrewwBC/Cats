@@ -28,10 +28,10 @@ const HomePage = () => {
 
           <Intro>
             <NormalTitle>Olá!</NormalTitle>
-            <Paragraph style={{ marginBottom: '8px' }} itemProp="20px">
+            <Paragraph style={{ marginBottom: '.5rem' }} itemProp="1.3rem">
               Bem vindo ao CatGram.
             </Paragraph>
-            <Paragraph style={{ marginBottom: '8px' }} itemProp="20px">
+            <Paragraph style={{ marginBottom: '.5rem' }} itemProp="1.3rem">
               A melhor rede social para o seu felino!
             </Paragraph>
           </Intro>

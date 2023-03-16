@@ -26,12 +26,12 @@ export const StyledInput = styled.input`
   border: 2px solid transparent;
   border-radius: 4px;
   background-color: #e9e9e9;
+  transition: 0.3s;
   &:active {
     border: none;
   }
   &:hover {
     background-color: #fff;
-    transition: 0.3s;
   }
   &:focus {
     border: 2px solid #ff6702;

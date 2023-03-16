@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router';
 import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
+import NewPassword from './components/NewPassword';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/Forgotpassword" element={<ForgotPassword />} />
+          <Route path="/newpassword" element={<NewPassword />} />
         </Routes>
         <Footer />
       </BrowserRouter>

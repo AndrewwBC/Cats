@@ -18,6 +18,9 @@ export const FormBody = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 25px;
+  background: #f9f9f9;
+  box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
 `;
 
 export const TwoInputsInline = styled.div`

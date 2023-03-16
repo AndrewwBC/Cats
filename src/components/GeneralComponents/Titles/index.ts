@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NormalTitle = styled.h1`
-  font-size: 32px;
+  font-size: 2rem;
   font-family: 'Poppins';
   font-weight: bold;
   color: #202020;
@@ -9,7 +9,7 @@ export const NormalTitle = styled.h1`
 `;
 
 export const LowTitle = styled.h2`
-  font-size: 32px;
+  font-size: 1.6;
   font-family: 'Poppins';
   font-weight: bold;
   color: #202020;
