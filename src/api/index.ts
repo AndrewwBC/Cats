@@ -7,6 +7,7 @@ interface Register {
   name: string;
   lastname: string;
   email: string;
+  file: string | any;
   password: string;
 }
 
@@ -17,6 +18,7 @@ const Services = {
     lastname,
     email,
     password,
+    file,
   }: Register) => {
     try {
       Axios.post('http://localhost:3001/register', {
@@ -25,6 +27,7 @@ const Services = {
         lastname: lastname,
         email: email,
         password: password,
+        file: file,
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
@@ -61,6 +64,17 @@ export const UserRequirements = {
       }).then((response) => console.log(response));
     } catch (error) {
       console.log(error);
+    }
+  },
+  PostFeedPhoto: async (photoData: any) => {
+    try {
+      await Axios.post('http://localhost:3001/upload', photoData, {
+        headers: { 'Content-Type': 'undefined' },
+      }).then((response) => console.log(response));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      return photoData;
     }
   },
 };

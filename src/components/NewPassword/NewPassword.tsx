@@ -14,6 +14,8 @@ const NewPassword = () => {
   useEffect(() => {
     if (newPassword)
       newPassword === confirmPassword ? setSamePass(true) : setSamePass(false);
+
+      
   }, [confirmPassword, newPassword]);
 
   return (

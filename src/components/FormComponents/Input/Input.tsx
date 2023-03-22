@@ -7,6 +7,7 @@ interface InputInfo {
   placeholder: string;
   type: string;
   forget?: any;
+  accept?: string;
   onChange: any;
 }
 
@@ -15,6 +16,7 @@ const Input = ({
   label,
   placeholder,
   type,
+  accept,
   onChange,
   forget,
 }: InputInfo): JSX.Element => {
@@ -27,6 +29,7 @@ const Input = ({
           name={name}
           placeholder={placeholder}
           onChange={onChange}
+          accept={accept}
         />
       </Label>
       {forget && (

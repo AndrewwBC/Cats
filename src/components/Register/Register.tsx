@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import Services from '../../api';
+import Services, { UserRequirements } from '../../api';
 import { Button } from '../FormComponents/Button/style';
 import Form from '../FormComponents/Form';
 import Input from '../FormComponents/Input';
@@ -14,10 +14,23 @@ const Register = () => {
   const [lastname, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [file, setFile] = useState();
+  const [images, setImages] = useState();
+
+  console.log(file);
+
+  const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    Services.RegisterUser({ username, name, lastname, email, password });
+    //Services.RegisterUser({ username, name, lastname, email, password, file });
+  }
+
+  function fileSelected(event: any) {
+    const file = event.target.files[0];
+    formData.append('image', file);
+    setFile(file);
+    UserRequirements.PostFeedPhoto(formData);
   }
 
   return (
@@ -68,6 +81,15 @@ const Register = () => {
             name="password"
             placeholder="Insira sua senha"
             onChange={({ target }: any) => setPassword(target.value)}
+          />
+
+          <Input
+            label="Senha"
+            type="file"
+            name="file"
+            accept="image/*"
+            placeholder="Foto"
+            onChange={fileSelected}
           />
           <Button onClick={(e) => handleSubmit(e)}>Cadastrar</Button>
 
