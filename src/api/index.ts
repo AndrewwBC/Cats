@@ -68,13 +68,31 @@ export const UserRequirements = {
   },
   PostFeedPhoto: async (photoData: any) => {
     try {
-      await Axios.post('http://localhost:3001/upload', photoData, {
+      await Axios.post(`http://localhost:3001/upload`, photoData, {
         headers: { 'Content-Type': 'undefined' },
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
-    } finally {
-      return photoData;
+    }
+  },
+  TakePhoto: async (key: string) => {
+    try {
+      await Axios.get(`http://localhost:3001/images/${key}`, {
+        params: { key: key },
+      }).then((response) => console.log(response));
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getURL: async (id: number, setURL: any) => {
+    try {
+      Axios.get('http://localhost:3001/getURL', {
+        params: { id: id },
+      })
+        .then((response) => response)
+        .then((res) => setURL(res));
+    } catch (err) {
+      console.log(err);
     }
   },
 };

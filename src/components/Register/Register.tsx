@@ -15,22 +15,22 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [file, setFile] = useState();
-  const [images, setImages] = useState();
-
-  console.log(file);
-
+  const [url, setURL] = useState();
   const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    //Services.RegisterUser({ username, name, lastname, email, password, file });
+    Services.RegisterUser({ username, name, lastname, email, password, file });
   }
 
-  function fileSelected(event: any) {
+  async function fileSelected(event: any) {
     const file = event.target.files[0];
     formData.append('image', file);
+    formData.append('userID', '1');
     setFile(file);
-    UserRequirements.PostFeedPhoto(formData);
+    // await UserRequirements.PostFeedPhoto(formData);
+    await UserRequirements.getURL(1, setURL);
+    console.log(url);
   }
 
   return (
