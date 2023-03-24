@@ -88,11 +88,19 @@ export const UserRequirements = {
     try {
       Axios.get('http://localhost:3001/getURL', {
         params: { id: id },
-      })
-        .then((response) => response)
-        .then((res) => setURL(res));
+      }).then((response) => setURL(response.data[0].Link));
     } catch (err) {
       console.log(err);
+    }
+  },
+  PHP: async () => {
+    try {
+      const request = await fetch('http://localhost/ReactPHP/test.php');
+      const result = await request.json();
+      return result;
+    } catch (err) {
+      console.log(err);
+    } finally {
     }
   },
 };

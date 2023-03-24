@@ -15,12 +15,13 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [file, setFile] = useState();
-  const [url, setURL] = useState();
+  const [url, setURL] = useState('');
   const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    Services.RegisterUser({ username, name, lastname, email, password, file });
+    //Services.RegisterUser({ username, name, lastname, email, password, file });
+    //UserRequirements.PHP();
   }
 
   async function fileSelected(event: any) {
@@ -28,11 +29,18 @@ const Register = () => {
     formData.append('image', file);
     formData.append('userID', '1');
     setFile(file);
+    // Upload
     // await UserRequirements.PostFeedPhoto(formData);
-    await UserRequirements.getURL(1, setURL);
-    console.log(url);
-  }
 
+    // Download
+    await UserRequirements.getURL(1, setURL);
+
+    //JSON PHP
+    // const req = await UserRequirements.PHP();
+    // req.map((item: any) => url.push(item));
+    // console.log(url);
+  }
+  console.log(url);
   return (
     <Container>
       <Content>
@@ -57,7 +65,7 @@ const Register = () => {
               placeholder="Insira seu nome."
               onChange={({ target }: any) => setName(target.value)}
             />
-
+            {url && <img src={'http://' + url} alt="oi"></img>}
             <Input
               label="Sobrenome"
               type="password"
