@@ -10,11 +10,15 @@ export const Button = styled.button`
   border-radius: 4px;
   letter-spacing: 0.2px;
   font-family: 'Poppins';
-
   &:hover {
     background-color: #ff7f00;
   }
   &:focus {
     border: 2px solid #e54818;
+  }
+  &:disabled {
+    background-color: #202020;
+    color: grey;
+    cursor: not-allowed;
   }
 `;

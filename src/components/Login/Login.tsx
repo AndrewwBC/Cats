@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Services from '../../api';
+import Services, { PHP, UserRequirements } from '../../api';
 import { Button } from '../FormComponents/Button/style';
 import Form from '../FormComponents/Form';
 import Input from '../FormComponents/Input';
@@ -8,12 +8,16 @@ import { LowTitle } from '../GeneralComponents/Titles';
 import { Container, Content } from './styles';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('Primeiro');
+  const [password, setPassword] = useState('Segundo');
+  const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    Services.UserLogin(email, password);
+    formData.append('nome', email);
+    formData.append('email', password);
+    PHP.TESTE(formData);
+    //Services.UserLogin(email, password);
   }
 
   return (

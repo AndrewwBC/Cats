@@ -25,3 +25,10 @@ export const OneInputInline = styled.div`
   display: flex;
   grid-column: 1/-1;
 `;
+
+export const ErrorMSG = styled.span`
+  font-family: 'Poppins';
+  color: red;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+`;

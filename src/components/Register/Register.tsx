@@ -6,7 +6,7 @@ import { Button } from '../FormComponents/Button/style';
 import Form from '../FormComponents/Form';
 import Input from '../FormComponents/Input';
 import { LowTitle } from '../GeneralComponents/Titles';
-import { Container, Content, TwoInputsInline } from './styles';
+import { Container, Content, ErrorMSG, TwoInputsInline } from './styles';
 
 const Register = () => {
   const [username, setUserName] = useState('');
@@ -14,33 +14,34 @@ const Register = () => {
   const [lastname, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [file, setFile] = useState();
-  const [url, setURL] = useState('');
-  const formData = new FormData();
+  const [error, setError] = useState(false);
+  const [userError, setUserError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
+
+  //const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
-    //Services.RegisterUser({ username, name, lastname, email, password, file });
+
+    Services.RegisterUser({ username, name, lastname, email, password });
     //UserRequirements.PHP();
   }
 
-  async function fileSelected(event: any) {
-    const file = event.target.files[0];
-    formData.append('image', file);
-    formData.append('userID', '1');
-    setFile(file);
-    // Upload
-    // await UserRequirements.PostFeedPhoto(formData);
+  // async function fileSelected(event: any) {
+  //   // const file = event.target.files[0];
+  //   // formData.append('image', file);
+  //   // formData.append('userID', '1');
+  //   // setFile(file);
+  //   // Upload
+  //   // await UserRequirements.PostFeedPhoto(formData);
+  //   // Download
+  //   //await UserRequirements.getURL(1, setURL);
+  //   //JSON PHP
+  //   // await UserRequirements.PHP(setURL).then((response) => url.push(response));
+  //   // // console.log(url);
+  // }
 
-    // Download
-    await UserRequirements.getURL(1, setURL);
-
-    //JSON PHP
-    // const req = await UserRequirements.PHP();
-    // req.map((item: any) => url.push(item));
-    // console.log(url);
-  }
-  console.log(url);
   return (
     <Container>
       <Content>
@@ -48,63 +49,69 @@ const Register = () => {
           <LowTitle style={{ marginBottom: '24px', placeSelf: 'center' }}>
             Cadastre-se!
           </LowTitle>
-
           <Input
             label="Nome de usuário"
             type="text"
             name="username"
             placeholder="Escolha um nome de usuário."
-            onChange={({ target }: any) => setUserName(target.value)}
+            value={username}
+            setValue={setUserName}
+            setUserError={setUserError}
           />
-
+          {!userError && <h4>Usuário já existente.</h4>}
           <TwoInputsInline>
             <Input
               label="Nome"
               type="text"
-              name="password"
+              name="nome"
               placeholder="Insira seu nome."
-              onChange={({ target }: any) => setName(target.value)}
+              value={name}
+              setValue={setName}
             />
-            {url && <img src={'http://' + url} alt="oi"></img>}
+
             <Input
               label="Sobrenome"
-              type="password"
-              name="password"
+              type="text"
+              name="sobrenome"
               placeholder="Insira o sobrenome."
-              onChange={({ target }: any) => setLastName(target.value)}
+              value={lastname}
+              setValue={setLastName}
             />
           </TwoInputsInline>
-
           <Input
             label="E-mail"
-            type="password"
-            name="password"
+            type="email"
+            name="email"
             placeholder="josedasilva@gmail.com"
-            onChange={({ target }: any) => setEmail(target.value)}
+            value={email}
+            setValue={setEmail}
+            setError={setError}
+            setEmailError={setEmailError}
           />
-
+          {!emailError && <h4>Email já existente</h4>}
           <Input
             label="Senha"
             type="password"
             name="password"
             placeholder="Insira sua senha"
-            onChange={({ target }: any) => setPassword(target.value)}
+            value={password}
+            setValue={setPassword}
+            setPassError={setPassError}
           />
-
-          <Input
-            label="Senha"
-            type="file"
-            name="file"
-            accept="image/*"
-            placeholder="Foto"
-            onChange={fileSelected}
-          />
-          <Button onClick={(e) => handleSubmit(e)}>Cadastrar</Button>
-
+          {!passError && <ErrorMSG>Insira ao menos seis caractéres</ErrorMSG>}
+          {console.log(error, emailError, userError, passError)}
+          {error && emailError && userError && passError ? (
+            <Button disabled={false} onClick={(e) => handleSubmit(e)}>
+              Cadastrar
+            </Button>
+          ) : (
+            <Button disabled={true} onClick={(e) => handleSubmit(e)}>
+              Cadastrar
+            </Button>
+          )}
           <h3 style={{ color: '#202020', placeSelf: 'center' }}>
             Já possui conta? Faça login!
           </h3>
-
           <NavLink style={{ placeSelf: 'center' }} to="/login">
             <Button>Login</Button>
           </NavLink>

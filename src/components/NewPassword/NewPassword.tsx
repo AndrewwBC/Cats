@@ -14,8 +14,6 @@ const NewPassword = () => {
   useEffect(() => {
     if (newPassword)
       newPassword === confirmPassword ? setSamePass(true) : setSamePass(false);
-
-      
   }, [confirmPassword, newPassword]);
 
   return (
@@ -32,6 +30,7 @@ const NewPassword = () => {
             onChange={({ target }: any) => setNewPassword(target.value)}
             placeholder=""
             type="password"
+            value={newPassword}
           ></Input>
           <Input
             label="Confirme sua senha"
@@ -39,6 +38,7 @@ const NewPassword = () => {
             onChange={({ target }: any) => setConfirmPassword(target.value)}
             placeholder=""
             type="password"
+            value={confirmPassword}
           ></Input>
 
           {samePass && (

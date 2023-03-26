@@ -27,9 +27,6 @@ export const StyledInput = styled.input`
   border-radius: 4px;
   background-color: #e9e9e9;
   transition: 0.3s;
-  &:active {
-    border: none;
-  }
   &:hover {
     background-color: #fff;
   }

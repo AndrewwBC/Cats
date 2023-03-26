@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import NewPassword from './components/NewPassword';
+import ValidateEmail from './components/ValidateEmail';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/Forgotpassword" element={<ForgotPassword />} />
           <Route path="/newpassword" element={<NewPassword />} />
+          <Route path="/validateemail/:token" element={<ValidateEmail />} />
         </Routes>
         <Footer />
       </BrowserRouter>

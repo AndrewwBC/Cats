@@ -7,7 +7,7 @@ interface Register {
   name: string;
   lastname: string;
   email: string;
-  file: string | any;
+
   password: string;
 }
 
@@ -18,7 +18,6 @@ const Services = {
     lastname,
     email,
     password,
-    file,
   }: Register) => {
     try {
       Axios.post('http://localhost:3001/register', {
@@ -27,7 +26,6 @@ const Services = {
         lastname: lastname,
         email: email,
         password: password,
-        file: file,
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
@@ -93,14 +91,55 @@ export const UserRequirements = {
       console.log(err);
     }
   },
-  PHP: async () => {
+  CheckUserName: async (username: string, setCheckUser: any) => {
     try {
-      const request = await fetch('http://localhost/ReactPHP/test.php');
-      const result = await request.json();
-      return result;
+      Axios.get('http://localhost:3001/checkusername', {
+        params: { username: username },
+      }).then((response) => setCheckUser(response.data));
     } catch (err) {
       console.log(err);
-    } finally {
+    }
+  },
+  CheckEmail: async (email: string, setError: any) => {
+    try {
+      Axios.get('http://localhost:3001/checkemail', {
+        params: { email: email },
+      }).then((response) => setError(response.data));
+    } catch (err) {
+      setError(false);
+    }
+  },
+  CheckHashEmail: async (emailHash: string, setReload: any) => {
+    try {
+      Axios.get('http://localhost:3001/checkhashemail', {
+        params: { email: emailHash },
+      }).then((response) => setReload(response.data));
+    } catch (err) {
+      setReload(false);
+    }
+  },
+};
+
+export const PHP = {
+  // testar com o hook direto no PHP também
+  // PHP: async (setURL: any) => {
+  //   try {
+  //     const request = await fetch('http://localhost/ReactPHP/test.php');
+  //     const result = await request.json();
+  //     setURL(result);
+  //     console.log(result);
+  //   } catch (err) {
+  //     console.log(err);
+  //   } finally {
+  //   }
+  // },
+  TESTE: async (formData: any) => {
+    try {
+      await Axios.post('http://localhost/ReactPHP/login.php', formData).then(
+        (response) => console.log(response.data),
+      );
+    } catch (err) {
+      console.log(err);
     }
   },
 };
