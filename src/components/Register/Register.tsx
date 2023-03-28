@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import Services, { UserRequirements } from '../../api';
+import Services, { PHP, UserRequirements } from '../../api';
 import { Button } from '../FormComponents/Button/style';
 import Form from '../FormComponents/Form';
 import Input from '../FormComponents/Input';
@@ -18,14 +18,49 @@ const Register = () => {
   const [userError, setUserError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
-
+  const [checkUser, setCheckUser] = useState<any>();
+  const [checkEmail, setCheckEmail] = useState<any>();
   //const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
 
-    Services.RegisterUser({ username, name, lastname, email, password });
+    // if (checkUser === 1) {
+    //   setUserError(true);
+    // } else if (checkUser === 0) {
+    //   setUserError(false);
+    // }
+
+    // if (checkEmail === 1) {
+    //   setEmailError(true);
+    // } else if (checkEmail === 0) {
+    //   setEmailError(false);
+    // }
+    //Services.RegisterUser({ username, name, lastname, email, password });
     //UserRequirements.PHP();
+  }
+
+  function handleBlur({ target }: any) {
+    UserRequirements.CheckUserName(username, setCheckUser);
+    UserRequirements.CheckEmail(email, setCheckEmail);
+    if (target.type === 'email') {
+      const type = {
+        email: {
+          regex:
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          message: 'Email inválido.',
+        },
+      };
+      if (type.email.regex.test(target.value)) setError(false);
+      if (!type.email.regex.test(target.value)) setError(true);
+    }
+    if (target.type === 'password') {
+      if (target.value.length < 6) {
+        setPassError(true);
+      } else {
+        setPassError(false);
+      }
+    }
   }
 
   // async function fileSelected(event: any) {
@@ -57,8 +92,10 @@ const Register = () => {
             value={username}
             setValue={setUserName}
             setUserError={setUserError}
+            onBlur={handleBlur}
+            onChange={({ target }: any) => setUserName(target.value)}
           />
-          {!userError && <h4>Usuário já existente.</h4>}
+          {checkUser && <h4>Usuário já existente.</h4>}
           <TwoInputsInline>
             <Input
               label="Nome"
@@ -67,6 +104,7 @@ const Register = () => {
               placeholder="Insira seu nome."
               value={name}
               setValue={setName}
+              onChange={({ target }: any) => setName(target.value)}
             />
 
             <Input
@@ -76,6 +114,7 @@ const Register = () => {
               placeholder="Insira o sobrenome."
               value={lastname}
               setValue={setLastName}
+              onChange={({ target }: any) => setLastName(target.value)}
             />
           </TwoInputsInline>
           <Input
@@ -87,31 +126,30 @@ const Register = () => {
             setValue={setEmail}
             setError={setError}
             setEmailError={setEmailError}
+            onBlur={handleBlur}
+            onChange={({ target }: any) => setEmail(target.value)}
           />
-          {!emailError && <h4>Email já existente</h4>}
+          {checkEmail && <h4>Email já existente</h4>}
           <Input
             label="Senha"
             type="password"
-            name="password"
+            name="email"
             placeholder="Insira sua senha"
             value={password}
             setValue={setPassword}
             setPassError={setPassError}
+            onChange={({ target }: any) => setPassword(target.value)}
+            onBlur={handleBlur}
           />
-          {!passError && <ErrorMSG>Insira ao menos seis caractéres</ErrorMSG>}
-          {console.log(error, emailError, userError, passError)}
-          {error && emailError && userError && passError ? (
-            <Button disabled={false} onClick={(e) => handleSubmit(e)}>
-              Cadastrar
-            </Button>
-          ) : (
-            <Button disabled={true} onClick={(e) => handleSubmit(e)}>
-              Cadastrar
-            </Button>
-          )}
+          {passError && <ErrorMSG>Insira ao menos seis caractéres</ErrorMSG>}
+          {error && <ErrorMSG>Insira um Email válido</ErrorMSG>}
+
+          <Button onClick={(e) => handleSubmit(e)}>Cadastrar</Button>
+
           <h3 style={{ color: '#202020', placeSelf: 'center' }}>
             Já possui conta? Faça login!
           </h3>
+
           <NavLink style={{ placeSelf: 'center' }} to="/login">
             <Button>Login</Button>
           </NavLink>

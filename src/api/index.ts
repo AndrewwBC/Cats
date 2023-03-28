@@ -95,7 +95,9 @@ export const UserRequirements = {
     try {
       Axios.get('http://localhost:3001/checkusername', {
         params: { username: username },
-      }).then((response) => setCheckUser(response.data));
+      }).then((response) =>
+        response.data.length === 1 ? setCheckUser(true) : setCheckUser(false),
+      );
     } catch (err) {
       console.log(err);
     }
@@ -104,7 +106,9 @@ export const UserRequirements = {
     try {
       Axios.get('http://localhost:3001/checkemail', {
         params: { email: email },
-      }).then((response) => setError(response.data));
+      }).then((response) =>
+        response.data.length === 1 ? setError(true) : setError(false),
+      );
     } catch (err) {
       setError(false);
     }
@@ -135,8 +139,19 @@ export const PHP = {
   // },
   TESTE: async (formData: any) => {
     try {
-      await Axios.post('http://localhost/ReactPHP/login.php', formData).then(
-        (response) => console.log(response.data),
+      await Axios.post('http://localhost/ReactPHP/login.php').then((response) =>
+        console.log(response),
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  EmailEntrada: async (formData: any) => {
+    try {
+      await Axios.post('http://localhost/ReactPHP/Funções/BancoDados.php').then(
+        (response) => {
+          console.log(response);
+        },
       );
     } catch (err) {
       console.log(err);

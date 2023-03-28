@@ -8,15 +8,15 @@ import { LowTitle } from '../GeneralComponents/Titles';
 import { Container, Content } from './styles';
 
 const Login = () => {
-  const [email, setEmail] = useState('Primeiro');
-  const [password, setPassword] = useState('Segundo');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const formData = new FormData();
-
+  console.log(email);
   function handleSubmit(e: any) {
     e.preventDefault();
-    formData.append('nome', email);
-    formData.append('email', password);
-    PHP.TESTE(formData);
+    formData.append('email', email);
+
+    //PHP.EmailEntrada(formData);
     //Services.UserLogin(email, password);
   }
 
@@ -39,7 +39,8 @@ const Login = () => {
             type="text"
             name="nome"
             placeholder="Insira seu email"
-            onChange={({ target }: any) => setEmail(target.value)}
+            value={email}
+            setValue={setEmail}
           />
 
           <Input
@@ -47,7 +48,8 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Insira sua senha"
-            onChange={({ target }: any) => setPassword(target.value)}
+            value={password}
+            setValue={setPassword}
             forget={true}
           />
           <Button onClick={(e) => handleSubmit(e)}>Entrar</Button>
