@@ -10,7 +10,7 @@ export const Content = styled.section`
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   align-items: center;
   justify-content: center;
 `;

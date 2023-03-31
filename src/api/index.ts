@@ -44,7 +44,9 @@ const Services = {
       await Axios.get('http://localhost:3001/login', {
         params: { email: email, password: password },
       }).then((response) =>
-        response.data.length === 1 ? setResponse(true) : setResponse(false),
+        response.data.length === 1
+          ? setResponse(response.data[0].Cod)
+          : setResponse(false),
       );
     } catch (err) {
       console.log(err);
@@ -62,6 +64,19 @@ const Services = {
     }
   },
   DeleteUser: async () => {},
+  S3GetAllFiles: async (setFiles: any, setLoad: any, setTeste: any) => {
+    try {
+      setLoad(true);
+      await Axios.get('http://localhost:3001/s3getallfiles').then((response) =>
+        setFiles(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoad(false);
+      setTeste(true);
+    }
+  },
 };
 
 export const UserRequirements = {

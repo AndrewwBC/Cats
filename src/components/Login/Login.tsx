@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Services, { PHP, UserRequirements } from '../../api';
 import { Button } from '../FormComponents/Button/style';
 import Form from '../FormComponents/Form';
@@ -10,17 +10,35 @@ import { Container, Content } from './styles';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState<any>();
   const [load, setLoad] = useState(false);
+  const [files, setFiles] = useState<any>();
+
   const formData = new FormData();
+  const navigate = useNavigate();
 
   function handleSubmit(e: any) {
     e.preventDefault();
     //formData.append('email', email);
     //PHP.EmailEntrada(formData);
-    Services.UserLogin(email, password, setResponse, setLoad);
+    const type = {
+      email: {
+        regex:
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        message: 'Email inválido.',
+      },
+    };
+    // if (type.email.regex.test(email) && password.length !== 0) {
+    //   Services.UserLogin(email, password, setResponse, setLoad);
+    // } else {
+    //   alert('Preencha os dados corretamente');
+    // }
   }
-  console.log(response, load);
+
+  if (response) {
+    localStorage.setItem('usercod', response);
+    navigate('/generalfeed');
+  }
   return (
     <Container>
       <Content>

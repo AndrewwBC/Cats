@@ -9,6 +9,7 @@ import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import NewPassword from './components/NewPassword';
 import ValidateEmail from './components/ValidateEmail';
+import GeneralFeed from './components/GeneralFeed/GeneralFeed';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/Forgotpassword" element={<ForgotPassword />} />
           <Route path="/newpassword/:email" element={<NewPassword />} />
           <Route path="/validateemail/:token" element={<ValidateEmail />} />
+          <Route path="/generalfeed" element={<GeneralFeed />} />
         </Routes>
         <Footer />
       </BrowserRouter>
