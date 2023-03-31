@@ -10,16 +10,17 @@ import { Container, Content } from './styles';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [response, setResponse] = useState();
+  const [load, setLoad] = useState(false);
   const formData = new FormData();
-  console.log(email);
+
   function handleSubmit(e: any) {
     e.preventDefault();
-    formData.append('email', email);
-
+    //formData.append('email', email);
     //PHP.EmailEntrada(formData);
-    //Services.UserLogin(email, password);
+    Services.UserLogin(email, password, setResponse, setLoad);
   }
-
+  console.log(response, load);
   return (
     <Container>
       <Content>
@@ -40,7 +41,7 @@ const Login = () => {
             name="nome"
             placeholder="Insira seu email"
             value={email}
-            setValue={setEmail}
+            onChange={({ target }: any) => setEmail(target.value)}
           />
 
           <Input
@@ -49,17 +50,22 @@ const Login = () => {
             name="password"
             placeholder="Insira sua senha"
             value={password}
-            setValue={setPassword}
+            onChange={({ target }: any) => setPassword(target.value)}
             forget={true}
           />
-          <Button onClick={(e) => handleSubmit(e)}>Entrar</Button>
+
+          <Button
+            disabled={load ? true : false}
+            onClick={(e) => handleSubmit(e)}
+          >
+            Entrar
+          </Button>
 
           <h3 style={{ color: '#202020', placeSelf: 'center' }}>
             Ainda não é cadastrado? Registre-se!
           </h3>
-
           <NavLink style={{ placeSelf: 'center' }} to="/register">
-            <Button>Cadastrar</Button>
+            <Button disabled={load ? true : false}>Cadastrar</Button>
           </NavLink>
         </Form>
       </Content>

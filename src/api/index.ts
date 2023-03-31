@@ -33,13 +33,23 @@ const Services = {
     }
   },
 
-  UserLogin: async (email: string, password: string) => {
+  UserLogin: async (
+    email: string,
+    password: string,
+    setResponse: any,
+    setLoad: any,
+  ) => {
     try {
-      Axios.get('http://localhost:3001/login', {
+      setLoad(true);
+      await Axios.get('http://localhost:3001/login', {
         params: { email: email, password: password },
-      }).then((response) => console.log(response));
+      }).then((response) =>
+        response.data.length === 1 ? setResponse(true) : setResponse(false),
+      );
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoad(false);
     }
   },
   UpdateUser: async () => {
@@ -55,13 +65,46 @@ const Services = {
 };
 
 export const UserRequirements = {
-  ResetPassword: async (resetData: string) => {
+  ForgotPassword: async (
+    setLoad: any,
+    setError: any,
+    email: string,
+    setResponse: any,
+  ) => {
     try {
-      Axios.get('http://localhost:3001/forgotpassword', {
-        params: { resetInput: resetData },
-      }).then((response) => console.log(response));
+      setLoad(true);
+      await Axios.get('http://localhost:3001/forgotpassword', {
+        params: { email: email },
+      }).then((response) =>
+        response.data.length === 1 ? setResponse(true) : setResponse(false),
+      );
     } catch (error) {
+      setError(true);
+      setLoad(false);
       console.log(error);
+    } finally {
+      setLoad(false);
+    }
+  },
+  ResetPassword: async (
+    setLoad: any,
+    setError: any,
+    email: string,
+    password: string,
+    setResponse: any,
+  ) => {
+    try {
+      setLoad(true);
+      await Axios.post('http://localhost:3001/resetpassword', {
+        password: password,
+        email: email,
+      }).then((response) => setResponse(response.data.affectedRows));
+    } catch (error) {
+      setError(true);
+      setLoad(false);
+      console.log(error);
+    } finally {
+      setLoad(false);
     }
   },
   PostFeedPhoto: async (photoData: any) => {
@@ -102,24 +145,27 @@ export const UserRequirements = {
       console.log(err);
     }
   },
-  CheckEmail: async (email: string, setError: any) => {
+  CheckEmail: async (email: string, setResponse: any, setLoad: any) => {
     try {
-      Axios.get('http://localhost:3001/checkemail', {
+      await Axios.get('http://localhost:3001/checkemail', {
         params: { email: email },
       }).then((response) =>
-        response.data.length === 1 ? setError(true) : setError(false),
+        response.data.length === 1 ? setResponse(true) : setResponse(false),
       );
     } catch (err) {
-      setError(false);
+      console.log(err);
     }
   },
   CheckHashEmail: async (emailHash: string, setReload: any) => {
     try {
       Axios.get('http://localhost:3001/checkhashemail', {
         params: { email: emailHash },
-      }).then((response) => setReload(response.data));
+      }).then((response) => console.log(response));
+      setReload(false);
     } catch (err) {
       setReload(false);
+    } finally {
+      setReload(true);
     }
   },
 };
@@ -148,11 +194,12 @@ export const PHP = {
   },
   EmailEntrada: async (formData: any) => {
     try {
-      await Axios.post('http://localhost/ReactPHP/Funções/BancoDados.php').then(
-        (response) => {
-          console.log(response);
-        },
-      );
+      await Axios.post(
+        'http://localhost/ReactPHP/Funções/BancoDados.php',
+        formData,
+      ).then((response) => {
+        console.log(response);
+      });
     } catch (err) {
       console.log(err);
     }

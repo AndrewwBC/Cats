@@ -18,32 +18,33 @@ const Register = () => {
   const [userError, setUserError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
+  const [empty, setEmpty] = useState(false);
+  const [load, setLoad] = useState(false);
   const [checkUser, setCheckUser] = useState<any>();
   const [checkEmail, setCheckEmail] = useState<any>();
-  //const formData = new FormData();
+  const formData = new FormData();
 
   function handleSubmit(e: any) {
     e.preventDefault();
 
-    // if (checkUser === 1) {
-    //   setUserError(true);
-    // } else if (checkUser === 0) {
-    //   setUserError(false);
-    // }
+    formData.append('username', username);
+    formData.append('name', name);
+    formData.append('lastname', lastname);
+    formData.append('email', email);
+    formData.append('password', password);
 
-    // if (checkEmail === 1) {
-    //   setEmailError(true);
-    // } else if (checkEmail === 0) {
-    //   setEmailError(false);
-    // }
     //Services.RegisterUser({ username, name, lastname, email, password });
-    //UserRequirements.PHP();
+    if (!checkUser && !checkEmail && !error && !passError && !empty) {
+      PHP.EmailEntrada(formData);
+    } else {
+      alert('Preencha todos os campos corretamente!');
+    }
   }
 
   function handleBlur({ target }: any) {
     UserRequirements.CheckUserName(username, setCheckUser);
-    UserRequirements.CheckEmail(email, setCheckEmail);
-    if (target.type === 'email') {
+    UserRequirements.CheckEmail(email, setCheckEmail, setLoad);
+    if (target.type === 'email' && target.value.length > 1) {
       const type = {
         email: {
           regex:
@@ -54,12 +55,21 @@ const Register = () => {
       if (type.email.regex.test(target.value)) setError(false);
       if (!type.email.regex.test(target.value)) setError(true);
     }
-    if (target.type === 'password') {
+    if (target.type === 'password' && target.value.length >= 1) {
       if (target.value.length < 6) {
         setPassError(true);
       } else {
         setPassError(false);
       }
+    }
+
+    if (
+      (target.name === 'name' && target.value.length === 0) ||
+      (target.name === 'sobrenome' && target.value.length === 0)
+    ) {
+      setEmpty(true);
+    } else {
+      setEmpty(false);
     }
   }
 
@@ -105,6 +115,7 @@ const Register = () => {
               value={name}
               setValue={setName}
               onChange={({ target }: any) => setName(target.value)}
+              onBlur={handleBlur}
             />
 
             <Input
@@ -115,6 +126,7 @@ const Register = () => {
               value={lastname}
               setValue={setLastName}
               onChange={({ target }: any) => setLastName(target.value)}
+              onBlur={handleBlur}
             />
           </TwoInputsInline>
           <Input

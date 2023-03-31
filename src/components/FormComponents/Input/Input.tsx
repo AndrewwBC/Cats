@@ -1,7 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 import { ForgotPassword, Label, StyledInput } from './styles';
-import { UserRequirements } from '../../../api';
 
 interface InputInfo {
   label: string;
@@ -30,11 +28,6 @@ const Input = ({
   value,
   onChange,
   onBlur,
-  setError,
-  setValue,
-  setUserError,
-  setEmailError,
-  setPassError,
 }: InputInfo): JSX.Element => {
   return (
     <>
