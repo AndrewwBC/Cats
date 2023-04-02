@@ -9,9 +9,10 @@ const PostPhoto = () => {
   const formData = new FormData();
 
   async function handleSubmit(event: any) {
+    event.preventDefault();
     formData.append('image', file);
     formData.append('description', description);
-    formData.append('userID', userCod);
+    formData.append('user_cod', userCod);
 
     //Upload
     await UserRequirements.PostFeedPhoto(formData);
@@ -38,7 +39,6 @@ const PostPhoto = () => {
             name=""
             id=""
             accept="image/*"
-            value={file}
             onChange={fileSelected}
           />
         </div>

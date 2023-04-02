@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
   max-width: 500px;
+
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;

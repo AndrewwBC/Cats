@@ -77,6 +77,25 @@ const Services = {
       setTeste(true);
     }
   },
+  GetPosts: async (setPost: any) => {
+    try {
+      await Axios.get('http://localhost:3001/getposts').then((response) =>
+        setPost(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  },
+  GetComments: async (setComments: any) => {
+    try {
+      await Axios.get('http://localhost:3001/getcomments').then((response) =>
+        setComments(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 export const UserRequirements = {
@@ -191,6 +210,27 @@ export const UserRequirements = {
     } catch (err) {
       console.log(err);
     } finally {
+    }
+  },
+  PutComment: async (comment: any, postCod: any, userCod: any) => {
+    try {
+      Axios.post('http://localhost:3001/putcomment', {
+        comment: comment,
+        postCod: postCod,
+        userCod: userCod,
+      }).then((response) => console.log(response));
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  PutLikes: async (postCod: any, userCod: any) => {
+    try {
+      Axios.post('http://localhost:3001/putlike', {
+        postCod: postCod,
+        userCod: userCod,
+      }).then((response) => console.log(response));
+    } catch (err) {
+      console.log(err);
     }
   },
 };
