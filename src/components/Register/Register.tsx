@@ -20,10 +20,11 @@ const Register = () => {
   const [passError, setPassError] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [load, setLoad] = useState(false);
+  const [teste, setTeste] = useState<any>([]);
   const [checkUser, setCheckUser] = useState<any>();
   const [checkEmail, setCheckEmail] = useState<any>();
   const formData = new FormData();
-
+  console.log(teste);
   function handleSubmit(e: any) {
     e.preventDefault();
 
@@ -72,20 +73,6 @@ const Register = () => {
       setEmpty(false);
     }
   }
-
-  // async function fileSelected(event: any) {
-  //   // const file = event.target.files[0];
-  //   // formData.append('image', file);
-  //   // formData.append('userID', '1');
-  //   // setFile(file);
-  //   // Upload
-  //   // await UserRequirements.PostFeedPhoto(formData);
-  //   // Download
-  //   //await UserRequirements.getURL(1, setURL);
-  //   //JSON PHP
-  //   // await UserRequirements.PHP(setURL).then((response) => url.push(response));
-  //   // // console.log(url);
-  // }
 
   return (
     <Container>

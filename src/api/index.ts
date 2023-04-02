@@ -183,6 +183,16 @@ export const UserRequirements = {
       setReload(true);
     }
   },
+  PostPhoto: async (formData: any) => {
+    try {
+      await Axios.post('http://localhost:3001/postphoto', formData, {
+        headers: { 'Content-Type': 'undefined' },
+      }).then((response) => console.log(response));
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  },
 };
 
 export const PHP = {

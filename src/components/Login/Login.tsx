@@ -28,11 +28,11 @@ const Login = () => {
         message: 'Email inválido.',
       },
     };
-    // if (type.email.regex.test(email) && password.length !== 0) {
-    //   Services.UserLogin(email, password, setResponse, setLoad);
-    // } else {
-    //   alert('Preencha os dados corretamente');
-    // }
+    if (type.email.regex.test(email) && password.length !== 0) {
+      Services.UserLogin(email, password, setResponse, setLoad);
+    } else {
+      alert('Preencha os dados corretamente');
+    }
   }
 
   if (response) {
