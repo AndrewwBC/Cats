@@ -29,6 +29,4 @@ export const ImgContainer = styled.img`
   justify-self: center;
   place-self: center;
   border-radius: 12px;
-  background: #f9f9f9;
-  box-shadow: 7px 7px 14px #e3e3e3, -7px -7px 14px #ffffff;
 `;

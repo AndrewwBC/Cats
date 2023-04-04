@@ -96,6 +96,15 @@ const Services = {
       console.log(err);
     }
   },
+  GetLikes: async (setLikes: any) => {
+    try {
+      await Axios.get('http://localhost:3001/getlikes').then((response) =>
+        setLikes(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 export const UserRequirements = {
