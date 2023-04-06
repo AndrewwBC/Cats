@@ -23,6 +23,7 @@ const Register = () => {
   const [teste, setTeste] = useState<any>([]);
   const [checkUser, setCheckUser] = useState<any>();
   const [checkEmail, setCheckEmail] = useState<any>();
+  const [response, setResponse] = useState<any>();
   const formData = new FormData();
   console.log(teste);
   function handleSubmit(e: any) {
@@ -36,12 +37,12 @@ const Register = () => {
 
     //Services.RegisterUser({ username, name, lastname, email, password });
     if (!checkUser && !checkEmail && !error && !passError && !empty) {
-      PHP.EmailEntrada(formData);
+      PHP.Cadastro(formData, setResponse, setLoad);
     } else {
       alert('Preencha todos os campos corretamente!');
     }
   }
-
+  console.log(response);
   function handleBlur({ target }: any) {
     UserRequirements.CheckUserName(username, setCheckUser);
     UserRequirements.CheckEmail(email, setCheckEmail, setLoad);

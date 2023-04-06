@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Services, { PHP, UserRequirements } from '../../api';
 import { Button } from '../FormComponents/Button/style';
@@ -17,10 +17,11 @@ const Login = () => {
   const formData = new FormData();
   const navigate = useNavigate();
 
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    //formData.append('email', email);
-    //PHP.EmailEntrada(formData);
+
+    formData.append('email', email);
+    formData.append('password', password);
     const type = {
       email: {
         regex:
@@ -29,16 +30,20 @@ const Login = () => {
       },
     };
     if (type.email.regex.test(email) && password.length !== 0) {
-      Services.UserLogin(email, password, setResponse, setLoad);
+      //Services.UserLogin(email, password, setResponse, setLoad);
+      PHP.Login(formData, setResponse, setLoad);
     } else {
       alert('Preencha os dados corretamente');
     }
   }
 
+  console.log(response);
+
   if (response) {
     localStorage.setItem('usercod', response);
-    navigate('/generalfeed');
+    // navigate('/generalfeed');
   }
+
   return (
     <Container>
       <Content>

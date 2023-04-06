@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Services from '../../api';
+import Services, { PHP } from '../../api';
 import { Container, Content } from './styles';
 import UserPosts from '../GeneralComponents/UserPosts/UserPosts';
 import PostPhoto from '../GeneralComponents/PostPhoto/PostPhoto';
@@ -7,7 +7,15 @@ import PostPhoto from '../GeneralComponents/PostPhoto/PostPhoto';
 const GeneralFeed = () => {
   const [files, setFiles] = useState<any>();
   const [load, setLoad] = useState(true);
+  const [response, setResponse] = useState(true);
   const [teste, setTeste] = useState(false);
+
+  function envioMassa() {
+    PHP.Promoção(setResponse, setLoad);
+  }
+
+  console.log(response);
+
   useEffect(() => {
     getFiles();
   }, []);
@@ -34,6 +42,7 @@ const GeneralFeed = () => {
             ))} */}
             <UserPosts></UserPosts>
             <PostPhoto></PostPhoto>
+            <button onClick={envioMassa}>Envio em Massa</button>
           </Content>
         </Container>
       </>

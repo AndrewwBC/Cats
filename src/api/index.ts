@@ -278,6 +278,55 @@ export const PHP = {
       console.log(err);
     }
   },
+  Login: async (formData: any, setResponse: any, setLoad: any) => {
+    try {
+      setLoad(true);
+      await Axios.post('http://localhost/ReactPHP/login.php', formData).then(
+        (response) => setResponse(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoad(false);
+    }
+  },
+  Promoção: async (setResponse: any, setLoad: any) => {
+    try {
+      setLoad(true);
+      await Axios.post('http://localhost/ReactPHP/promoção.php').then(
+        (response) => setResponse(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoad(false);
+    }
+  },
+  Cadastro: async (formData: any, setResponse: any, setLoad: any) => {
+    try {
+      setLoad(true);
+      await Axios.post('http://localhost/ReactPHP/cadastro.php', formData).then(
+        (response) => setResponse(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoad(false);
+    }
+  },
+  ValidaEmail: async (setResponse: any, setLoad: any, token: any) => {
+    try {
+      await Axios.get('http://localhost/ReactPHP/validaEmail.php', {
+        params: {
+          token: token,
+        },
+      }).then((response) => setResponse(response));
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoad(false);
+    }
+  },
 };
 
 export default Services;

@@ -41,7 +41,7 @@ const UserPosts = () => {
     if (comment !== '') {
       UserRequirements.PutComment(comment, Post_Cod, Number(userCod));
     }
-
+    setComment('');
     (document.getElementById(Post_Cod) as HTMLInputElement).value = '';
   }
 
@@ -52,7 +52,7 @@ const UserPosts = () => {
   let counter: any = 0;
   let counterComments: any = 0;
   if (!post && !comments) return <div>oi</div>;
-  else if (post && comments)
+  if (post && comments && likes)
     return (
       <>
         <Container>

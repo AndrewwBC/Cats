@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { UserRequirements } from '../../api';
+import { PHP, UserRequirements } from '../../api';
 import { LowTitle } from '../GeneralComponents/Titles';
 
 import { Content } from '../HomePage/styles';
@@ -8,6 +8,7 @@ import { Container } from './styles';
 
 const ValidateEmail = () => {
   const [reload, setReload] = useState();
+  const [response, setResponse] = useState();
 
   let { token } = useParams();
   const navigate = useNavigate();
@@ -18,9 +19,10 @@ const ValidateEmail = () => {
   }, []);
 
   async function checarEmail() {
-    await UserRequirements.CheckHashEmail(token, setReload);
+    //await UserRequirements.CheckHashEmail(token, setReload);
+    PHP.ValidaEmail(setResponse, setReload, token);
   }
-
+  console.log(response);
   if (reload) {
     navigate('/');
   }
