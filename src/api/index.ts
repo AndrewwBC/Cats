@@ -188,6 +188,15 @@ export const UserRequirements = {
       console.log(err);
     }
   },
+  GetUserName: async (cod: any, setGetUser: any) => {
+    try {
+      Axios.get('http://localhost:3001/checkusername', {
+        params: { cod: cod },
+      }).then((response) => setGetUser(response.data));
+    } catch (err) {
+      console.log(err);
+    }
+  },
   CheckEmail: async (email: string, setResponse: any, setLoad: any) => {
     try {
       await Axios.get('http://localhost:3001/checkemail', {

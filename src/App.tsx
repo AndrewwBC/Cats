@@ -11,23 +11,26 @@ import NewPassword from './components/Routes/NewPassword';
 import ValidateEmail from './components/Routes/ValidateEmail';
 import GeneralFeed from './components/Routes/GeneralFeed/GeneralFeed';
 import ChangePassword from './components/Routes/ChangePassword/ChangePassword';
+import { UserStorage } from './Hook/userContext';
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/Forgotpassword" element={<ForgotPassword />} />
-          <Route path="/newpassword/:email" element={<NewPassword />} />
-          <Route path="/validateemail/:token" element={<ValidateEmail />} />
-          <Route path="/generalfeed" element={<GeneralFeed />} />
-          <Route path="/changepassword" element={<ChangePassword />} />
-        </Routes>
-        <Footer />
+        <UserStorage>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/Forgotpassword" element={<ForgotPassword />} />
+            <Route path="/newpassword/:email" element={<NewPassword />} />
+            <Route path="/validateemail/:token" element={<ValidateEmail />} />
+            <Route path="/generalfeed" element={<GeneralFeed />} />
+            <Route path="/changepassword" element={<ChangePassword />} />
+          </Routes>
+          <Footer />
+        </UserStorage>
       </BrowserRouter>
     </>
   );

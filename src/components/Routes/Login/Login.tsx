@@ -41,6 +41,7 @@ const Login = () => {
 
   if (response) {
     localStorage.setItem('usercod', response);
+    window.location.reload();
     navigate('/generalfeed');
   }
 

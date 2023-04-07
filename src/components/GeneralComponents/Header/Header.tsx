@@ -1,8 +1,13 @@
+import { useState, useEffect, useContext } from 'react';
 import { Paragraph } from '../Paragraph';
 import { Container, Content, Logo, Menu } from './styles';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../../../Hook/userContext';
 
 const Header = () => {
+  let usuario = useContext(UserContext);
+  console.log(usuario);
+
   return (
     <>
       <Container>
@@ -19,7 +24,11 @@ const Header = () => {
           </NavLink>
           <NavLink to="login">
             <Menu>
-              <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
+              {usuario.user ? (
+                <Paragraph itemProp="16px">{usuario.user}</Paragraph>
+              ) : (
+                <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
+              )}
 
               <img
                 height={36}
