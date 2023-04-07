@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   max-width: 100%;
-  background-color: #f9f9f9;
+  background-color: grey;
   box-shadow: inset 0px 0px 1px black;
 `;
 

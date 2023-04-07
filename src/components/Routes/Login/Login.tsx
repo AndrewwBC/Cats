@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Services, { PHP, UserRequirements } from '../../api';
-import { Button } from '../FormComponents/Button/style';
-import Form from '../FormComponents/Form';
-import Input from '../FormComponents/Input';
-import { LowTitle } from '../GeneralComponents/Titles';
+import Services, { PHP, UserRequirements } from '../../../api';
+import { Button } from '../../FormComponents/Button/style';
+import Form from '../../FormComponents/Form';
+import Input from '../../FormComponents/Input';
+import { LowTitle } from '../../GeneralComponents/Titles';
 import { Container, Content } from './styles';
 
 const Login = () => {
@@ -30,8 +30,8 @@ const Login = () => {
       },
     };
     if (type.email.regex.test(email) && password.length !== 0) {
-      //Services.UserLogin(email, password, setResponse, setLoad);
-      PHP.Login(formData, setResponse, setLoad);
+      Services.UserLogin(email, password, setResponse, setLoad);
+      //PHP.Login(formData, setResponse, setLoad);
     } else {
       alert('Preencha os dados corretamente');
     }
@@ -41,7 +41,7 @@ const Login = () => {
 
   if (response) {
     localStorage.setItem('usercod', response);
-    // navigate('/generalfeed');
+    navigate('/generalfeed');
   }
 
   return (
@@ -66,7 +66,6 @@ const Login = () => {
             value={email}
             onChange={({ target }: any) => setEmail(target.value)}
           />
-
           <Input
             label="Senha"
             type="password"
@@ -76,14 +75,12 @@ const Login = () => {
             onChange={({ target }: any) => setPassword(target.value)}
             forget={true}
           />
-
           <Button
             disabled={load ? true : false}
             onClick={(e) => handleSubmit(e)}
           >
             Entrar
           </Button>
-
           <h3 style={{ color: '#202020', placeSelf: 'center' }}>
             Ainda não é cadastrado? Registre-se!
           </h3>

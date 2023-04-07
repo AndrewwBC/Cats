@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import Services, { PHP, UserRequirements } from '../../api';
-import { Button } from '../FormComponents/Button/style';
-import Form from '../FormComponents/Form';
-import Input from '../FormComponents/Input';
-import { LowTitle } from '../GeneralComponents/Titles';
+import Services, { PHP, UserRequirements } from '../../../api';
+import { Button } from '../../FormComponents/Button/style';
+import Form from '../../FormComponents/Form';
+import Input from '../../FormComponents/Input';
+import { LowTitle } from '../../GeneralComponents/Titles';
 import { Container, Content, ErrorMSG, TwoInputsInline } from './styles';
 
 const Register = () => {
@@ -15,17 +15,14 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const [userError, setUserError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [load, setLoad] = useState(false);
-  const [teste, setTeste] = useState<any>([]);
   const [checkUser, setCheckUser] = useState<any>();
   const [checkEmail, setCheckEmail] = useState<any>();
   const [response, setResponse] = useState<any>();
   const formData = new FormData();
-  console.log(teste);
+
   function handleSubmit(e: any) {
     e.preventDefault();
 
@@ -43,6 +40,12 @@ const Register = () => {
     }
   }
   console.log(response);
+
+  useEffect(() => {
+    UserRequirements.CheckUserName(username, setCheckUser);
+    UserRequirements.CheckEmail(email, setCheckEmail, setLoad);
+  }, [username, email]);
+
   function handleBlur({ target }: any) {
     UserRequirements.CheckUserName(username, setCheckUser);
     UserRequirements.CheckEmail(email, setCheckEmail, setLoad);
@@ -89,7 +92,6 @@ const Register = () => {
             placeholder="Escolha um nome de usuário."
             value={username}
             setValue={setUserName}
-            setUserError={setUserError}
             onBlur={handleBlur}
             onChange={({ target }: any) => setUserName(target.value)}
           />
@@ -125,7 +127,6 @@ const Register = () => {
             value={email}
             setValue={setEmail}
             setError={setError}
-            setEmailError={setEmailError}
             onBlur={handleBlur}
             onChange={({ target }: any) => setEmail(target.value)}
           />

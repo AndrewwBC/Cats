@@ -6,11 +6,11 @@ import {
   LikeContainer,
   CommentContainer,
 } from './style';
-import { ImgContainer } from '../../HomePage/styles';
+import { ImgContainer } from '../../Routes/HomePage/styles';
 import './styles.css';
 import Services, { UserRequirements } from '../../../api';
 import { Button } from '../../FormComponents/Button/style';
-import { TwoInputsInline } from '../../Login/styles';
+import { TwoInputsInline } from '../../Routes/Login/styles';
 
 const UserPosts = () => {
   const [post, setPost] = useState<any>();
@@ -22,15 +22,22 @@ const UserPosts = () => {
   let userCod = localStorage.getItem('usercod');
 
   useEffect(() => {
-    Services.GetPosts(setPost);
-    Services.GetComments(setComments);
-    Services.GetLikes(setLikes);
+    getInfo();
   }, []);
 
-  setTimeout(() => {
-    Services.GetComments(setComments);
-    Services.GetLikes(setLikes);
-  }, 1000);
+  async function getInfo() {
+    await Services.GetPosts(setPost);
+    await Services.GetComments(setComments);
+    await Services.GetLikes(setLikes);
+  }
+
+  console.log(post, comments, likes);
+
+  // setInterval(() => {
+  //   Services.GetComments(setComments);
+  //   Services.GetLikes(setLikes);
+  //   Services.GetPosts(setPost);
+  // }, 2000);
 
   // function getOneComment(id: any) {
   //   Services.GetComments(setComment, id);
@@ -51,7 +58,8 @@ const UserPosts = () => {
   }
   let counter: any = 0;
   let counterComments: any = 0;
-  if (!post && !comments) return <div>oi</div>;
+
+  if (!post && !comments && !likes) return <div>Load</div>;
   if (post && comments && likes)
     return (
       <>

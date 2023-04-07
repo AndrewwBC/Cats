@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Content, Main, Intro, ImgContainer } from './styles';
-import { Paragraph } from '../GeneralComponents/Paragraph';
-import { NormalTitle } from '../GeneralComponents/Titles';
+import { Paragraph } from '../../GeneralComponents/Paragraph';
+import { NormalTitle } from '../../GeneralComponents/Titles';
 
 const HomePage = () => {
   //let index = 0;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { PHP, UserRequirements } from '../../api';
-import { LowTitle } from '../GeneralComponents/Titles';
+import { PHP, UserRequirements } from '../../../api';
+import { LowTitle } from '../../GeneralComponents/Titles';
 
 import { Content } from '../HomePage/styles';
 import { Container } from './styles';

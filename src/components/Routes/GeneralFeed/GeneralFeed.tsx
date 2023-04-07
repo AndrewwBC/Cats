@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Services, { PHP } from '../../api';
+import Services, { PHP } from '../../../api';
 import { Container, Content } from './styles';
-import UserPosts from '../GeneralComponents/UserPosts/UserPosts';
-import PostPhoto from '../GeneralComponents/PostPhoto/PostPhoto';
+import UserPosts from '../../GeneralComponents/UserPosts/UserPosts';
+import PostPhoto from '../../GeneralComponents/PostPhoto/PostPhoto';
 
 const GeneralFeed = () => {
   const [files, setFiles] = useState<any>();
@@ -30,6 +30,7 @@ const GeneralFeed = () => {
       <>
         <Container>
           <Content>
+            <PostPhoto></PostPhoto>
             {/* {files.Contents.map((item: any, index: any) => (
               <img
                 style={{ display: 'block', objectFit: 'cover' }}
@@ -41,7 +42,7 @@ const GeneralFeed = () => {
               />
             ))} */}
             <UserPosts></UserPosts>
-            <PostPhoto></PostPhoto>
+
             <button onClick={envioMassa}>Envio em Massa</button>
           </Content>
         </Container>

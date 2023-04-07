@@ -1,16 +1,16 @@
 import './styles/global.css';
 import Header from './components/GeneralComponents/Header';
-import HomePage from './components/HomePage';
+import HomePage from './components/Routes/HomePage';
 import Footer from './components/GeneralComponents/Footer';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/Routes/Login';
+import Register from './components/Routes/Register';
 import ForgotPassword from './components/ForgotPassword';
-import NewPassword from './components/NewPassword';
-import ValidateEmail from './components/ValidateEmail';
-import GeneralFeed from './components/GeneralFeed/GeneralFeed';
-import ChangePassword from './components/ChangePassword/ChangePassword';
+import NewPassword from './components/Routes/NewPassword';
+import ValidateEmail from './components/Routes/ValidateEmail';
+import GeneralFeed from './components/Routes/GeneralFeed/GeneralFeed';
+import ChangePassword from './components/Routes/ChangePassword/ChangePassword';
 
 const App = () => {
   return (
