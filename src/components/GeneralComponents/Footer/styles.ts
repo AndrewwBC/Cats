@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.footer`
   max-width: 100%;
-  background-color: #202020;
+  background-color: ${({ theme }) => theme.background};
   padding: 1.2rem 0px;
 `;
 

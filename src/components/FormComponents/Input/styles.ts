@@ -3,16 +3,17 @@ import styled from 'styled-components';
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  font-size: 18px;
+  color: ${({ theme }) => theme.text};
+  font-size: 1rem;
   gap: 6px;
   font-family: 'Poppins';
 `;
 
 export const ForgotPassword = styled.a`
   color: #e54818;
-  margin-top: -12px;
+  margin-top: -6px;
   place-self: end;
-  font-size: 18px;
+  font-size: 1rem;
   font-family: 'Roboto';
   cursor: pointer;
   &:hover {
@@ -22,7 +23,7 @@ export const ForgotPassword = styled.a`
 `;
 
 export const StyledInput = styled.input`
-  padding: 12px 24px 12px 6px;
+  padding: 8px 24px 8px 12px;
   border: 2px solid transparent;
   border-radius: 4px;
   background-color: #e9e9e9;

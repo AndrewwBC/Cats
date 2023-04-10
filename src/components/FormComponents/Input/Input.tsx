@@ -1,20 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import { ForgotPassword, Label, StyledInput } from './styles';
 
+
 interface InputInfo {
   label: string;
   name: string;
   placeholder: string;
   type: string;
-  forget?: any;
+  forget?: boolean;
   accept?: string;
   onChange?: any;
-  value?: any;
-  setError?: any;
-  setValue?: any;
-  setUserError?: any;
-  setEmailError?: any;
-  setPassError?: any;
+  value?: string;
   onBlur?: any;
 }
 

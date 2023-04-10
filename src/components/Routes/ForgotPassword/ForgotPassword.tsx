@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { UserRequirements } from '../../api';
-import { Button } from '../FormComponents/Button/style';
-import Form from '../FormComponents/Form';
-import Input from '../FormComponents/Input';
+import { UserRequirements } from '../../../api';
+import { Button } from '../../FormComponents/Button/style';
+import Form from '../../FormComponents/Form';
+import Input from '../../FormComponents/Input';
 import { Container, Content } from './styles';
 
 const ForgotPassword = () => {
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
           ></Input>
 
           <Button
-            style={{ placeSelf: 'center' }}
+            style={{ placeSelf: 'center', marginTop: '16px' }}
             type="submit"
             disabled={load ? true : false}
             onClick={(e) => handleSubmit(e)}

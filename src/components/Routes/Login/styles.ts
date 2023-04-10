@@ -5,7 +5,8 @@ export const Container = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f9f9f9;
+  background-color: ${({ theme }) => theme.background};
+  transition: 1s;
 `;
 
 export const Content = styled.article`

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-  background-color: #f9f9f9;
-  margin-bottom: 140px;
+  background-color: ${({ theme }) => theme.background};
+  padding-bottom: 140px;
   padding-top: 60px;
 `;
 
@@ -16,10 +16,8 @@ export const Content = styled.section`
 `;
 
 export const Intro = styled.article`
-  max-width: 100%;
-  max-height: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 24px;
   text-align: center;
 `;

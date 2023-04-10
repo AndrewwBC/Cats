@@ -1,13 +1,11 @@
-import { useState, useEffect, useContext } from 'react';
 import { Paragraph } from '../Paragraph';
 import { Container, Content, Logo, Menu } from './styles';
 import { NavLink } from 'react-router-dom';
-import { UserContext } from '../../../Hook/userContext';
+import useTheme from '../../../hooks/useTheme';
 
-const Header = () => {
-  let usuario = useContext(UserContext);
-  console.log(usuario);
-
+const Header = ({ user }: any) => {
+  const { theme, setTheme } = useTheme();
+  console.log(user);
   return (
     <>
       <Container>
@@ -22,10 +20,14 @@ const Header = () => {
               />
             </Logo>
           </NavLink>
-          <NavLink to="login">
-            <Menu>
-              {usuario.user ? (
-                <Paragraph itemProp="16px">{usuario.user}</Paragraph>
+
+          <Menu>
+            <NavLink
+              style={{ display: 'flex', alignItems: 'center' }}
+              to="login"
+            >
+              {user ? (
+                <Paragraph itemProp="16px">{user}</Paragraph>
               ) : (
                 <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
               )}
@@ -36,8 +38,11 @@ const Header = () => {
                 src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"
                 alt=""
               />
-            </Menu>
-          </NavLink>
+            </NavLink>
+            <div>
+              <button onClick={() => setTheme(!theme)}>Tema</button>
+            </div>
+          </Menu>
         </Content>
       </Container>
     </>

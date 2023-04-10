@@ -44,9 +44,7 @@ const Services = {
       await Axios.get('http://localhost:3001/login', {
         params: { email: email, password: password },
       }).then((response) =>
-        response.data.length === 1
-          ? setResponse(response.data[0].Cod)
-          : setResponse(false),
+        response ? setResponse(response.data) : setResponse(false),
       );
     } catch (err) {
       console.log(err);

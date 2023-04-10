@@ -1,26 +1,27 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100vh;
+  margin: 2rem;
+  height: calc(100vh - 180px);
   display: flex;
   align-items: center;
 `;
 
 export const FormBody = styled.form`
-  width: 500px;
+  max-width: 500px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  padding: 64px;
+  padding: 72px 42px;
   background-color: #f9f9f9;
   display: grid;
-  gap: 24px;
+  gap: 12px;
   grid-template-columns: 1fr;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 25px;
-  background: #f9f9f9;
-  box-shadow: 9px 9px 18px #d4d4d4, -9px -9px 18px #ffffff;
+  background-color: ${({ theme }) => theme.background};
+  box-shadow: 9px 9px 18px ${({ theme }) => theme.background}, -9px -9px 18px ${({ theme }) => theme.background};
 `;
 
 export const TwoInputsInline = styled.div`

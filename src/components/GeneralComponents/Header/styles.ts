@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   max-width: 100%;
-  background-color: grey;
+  background-color: ${({ theme }) => theme.background};
   box-shadow: inset 0px 0px 1px black;
 `;
 
@@ -18,7 +18,7 @@ export const Content = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
-  padding: 12px 0px;
+  padding: 12px 12px;
   align-items: center;
   justify-content: space-between;
 `;
