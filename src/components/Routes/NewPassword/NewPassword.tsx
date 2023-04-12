@@ -3,7 +3,7 @@ import { Button } from '../../FormComponents/Button/style';
 import Form from '../../FormComponents/Form';
 import Input from '../../FormComponents/Input';
 import { Paragraph } from '../../GeneralComponents/Paragraph';
-import { LowTitle } from '../../GeneralComponents/Titles';
+import { Title } from '../../GeneralComponents/Titles';
 import { Container } from './styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { UserRequirements } from '../../../api';
@@ -48,9 +48,9 @@ const NewPassword = () => {
     <Container>
       <>
         <Form>
-          <LowTitle style={{ placeSelf: 'center', marginBottom: '.6rem' }}>
+          <Title style={{ placeSelf: 'center', marginBottom: '.6rem' }}>
             Mude sua senha!
-          </LowTitle>
+          </Title>
 
           <Input
             label="Digite uma nova senha"

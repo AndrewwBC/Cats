@@ -5,19 +5,20 @@ import {
   PutComent,
   LikeContainer,
   CommentContainer,
+  ImgFeed,
+  Heart,
 } from './style';
-import { ImgContainer } from '../../Routes/HomePage/styles';
 import './styles.css';
 import Services, { UserRequirements } from '../../../api';
 import { Button } from '../../FormComponents/Button/style';
-import { TwoInputsInline } from '../../Routes/Login/styles';
 
 const UserPosts = () => {
   const [post, setPost] = useState<any>();
   const [comments, setComments] = useState<any>();
   const [likes, setLikes] = useState<any>();
   const [comment, setComment] = useState('');
-  const [modal, setModal] = useState(false);
+  const [heart, setHeart] = useState<any>(false);
+  //const [modal, setModal] = useState(false);
 
   let userCod = localStorage.getItem('usercod');
 
@@ -40,7 +41,7 @@ const UserPosts = () => {
   // }, 2000);
 
   // function getOneComment(id: any) {
-  //   Services.GetComments(setComment, id);
+  //   Services.GetComments(setComment);
   // }
 
   function testeComent(Post_Cod: any) {
@@ -67,72 +68,54 @@ const UserPosts = () => {
           <div>
             {post.map((item: any) => (
               <div className="postContainer">
-                <ImgContainer
+                <ImgFeed
                   width={420}
                   height={500}
                   src={`http://localhost:3001/images/${item.Img}`}
                   alt="Image"
                 />{' '}
                 <ActionContainer>
-                  <LikeContainer>
-                    <div>
-                      {(counter = '')}
-                      {likes.map((like: any, index: any) => {
-                        if (like.Post_Cod === item.Post_Cod) {
-                          counter++;
-                        } else {
-                          return null;
-                        }
-                      })}
-                      <p>{counter} Likes</p>
-                    </div>
-                    <div>
-                      <p>Veja quem curtiu</p>
-                    </div>
-                    <Button onClick={(e: any) => testeLike(item.Post_Cod)}>
-                      Like
-                    </Button>
-                  </LikeContainer>
                   <div>
-                    <span style={{ fontFamily: 'Poppins' }}>Comentários</span>
-                    <CommentContainer>
-                      {comments.map((cmt: any, index: any) =>
-                        cmt.Post_Cod === item.Post_Cod ? (
-                          <>
-                            <img
-                              key={cmt.Comment_Cod}
-                              height={40}
-                              width={40}
-                              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-                              alt=""
-                            />
-                            <div
-                              style={{
-                                fontFamily: 'Poppins',
-                                display: 'flex',
-                              }}
-                            >
-                              <p>{cmt.Comment}</p>
-                            </div>
-                            <div>
-                              <p>Horário</p>
-                            </div>
-                          </>
-                        ) : null,
-                      )}
-                    </CommentContainer>
-                    <span>
-                      {(counterComments = '')}
-                      {comments.map((commentCount: any) => {
-                        if (commentCount.Post_Cod === item.Post_Cod) {
-                          counterComments++;
-                        } else {
-                          return null;
-                        }
-                      })}
-                      <p>Ver todos {counterComments} comentários </p>
-                    </span>
+                    <p>Oi</p>
                   </div>
+                  <CommentContainer>
+                    {comments.map((cmt: any, index: any) =>
+                      cmt.Post_Cod === item.Post_Cod ? (
+                        <>
+                          <img
+                            key={cmt.Comment_Cod}
+                            height={40}
+                            width={40}
+                            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                            alt=""
+                          />
+                          <div
+                            style={{
+                              fontFamily: 'Poppins',
+                              display: 'flex',
+                            }}
+                          >
+                            <p>{cmt.Comment}</p>
+                          </div>
+                          <div>
+                            <p>Horário</p>
+                          </div>
+                        </>
+                      ) : null,
+                    )}
+                  </CommentContainer>
+                  <div>
+                    {(counterComments = '')}
+                    {comments.map((commentCount: any) => {
+                      if (commentCount.Post_Cod === item.Post_Cod) {
+                        counterComments++;
+                      } else {
+                        return null;
+                      }
+                    })}
+                    <p>Ver todos {counterComments} comentários </p>
+                  </div>
+
                   <PutComent>
                     <div>
                       <input
@@ -153,6 +136,29 @@ const UserPosts = () => {
                       </button>
                     </div>
                   </PutComent>
+                  <LikeContainer>
+                    <div>
+                      {(counter = '')}
+                      {likes.map((like: any, index: any) => {
+                        if (like.Post_Cod === item.Post_Cod) {
+                          counter++;
+                        } else {
+                          return null;
+                        }
+                      })}
+                      <p>{counter} Likes</p>
+                    </div>
+                    <div>
+                      <p>Veja quem curtiu</p>
+                    </div>
+                    <Heart
+                      onClick={(e: any) => testeLike(item.Post_Cod)}
+                      onDoubleClick={() => setHeart(!heart)}
+                      itemProp={heart}
+                    >
+                      Like
+                    </Heart>
+                  </LikeContainer>
                 </ActionContainer>
               </div>
             ))}

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Services, { PHP, UserRequirements } from '../../../api';
 import { Button } from '../../FormComponents/Button/style';
 import Form from '../../FormComponents/Form';
 import Input from '../../FormComponents/Input';
-import { LowTitle } from '../../GeneralComponents/Titles';
+import { Title } from '../../GeneralComponents/Titles';
 import { Container, Content, ErrorMSG, TwoInputsInline } from './styles';
 
 const isValidEmailRegex =
@@ -12,6 +12,7 @@ const isValidEmailRegex =
 const formData = new FormData();
 
 const Register = () => {
+  const nave = useNavigate();
   const [userData, setUserData] = useState({
     username: '',
     name: '',
@@ -53,8 +54,10 @@ const Register = () => {
       alert('Preencha todos os campos corretamente!');
     }
   }
-  console.log(userData);
-
+  //if(response) nave('/login')
+  if (response) {
+    nave('/login');
+  }
   useEffect(() => {
     UserRequirements.CheckUserName(userData.username, setCheckUser);
     UserRequirements.CheckEmail(userData.email, setCheckEmail, setLoad);
@@ -91,9 +94,9 @@ const Register = () => {
     <Container>
       <Content>
         <Form>
-          <LowTitle style={{ marginBottom: '24px', placeSelf: 'center' }}>
+          <Title style={{ marginBottom: '24px', placeSelf: 'center' }}>
             Cadastre-se!
-          </LowTitle>
+          </Title>
           <Input
             label="Nome de usuário"
             type="text"
@@ -108,6 +111,7 @@ const Register = () => {
               }))
             }
           />
+
           {checkUser && <h4>Usuário já existente.</h4>}
           <TwoInputsInline>
             <Input

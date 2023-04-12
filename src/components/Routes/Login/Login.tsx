@@ -25,23 +25,22 @@ const Login = () => {
   async function handleSubmit(e: any) {
     e.preventDefault();
 
-    formData.append('email', loginData.email);
-    formData.append('password', loginData.password);
+    let { email, password } = loginData;
 
-    if (isValidEmailRegex.test(loginData.email) && loginData.password) {
-      Services.UserLogin(
-        loginData.email,
-        loginData.password,
-        setResponse,
-        setLoad,
-      );
-      //PHP.Login(formData, setResponse, setLoad);
+    formData.append('email', email);
+    formData.append('password', password);
+
+    if (isValidEmailRegex.test(email) && password) {
+      Services.UserLogin(email, password, setResponse, setLoad);
+      PHP.Login(formData, setResponse, setLoad);
     } else {
       alert('Preencha os dados corretamente');
     }
   }
   if (response) {
+    console.log(response);
     localStorage.setItem('usercod', response[0].Cod);
+    localStorage.setItem('username', response[0].UserName);
     setUser(response[0].UserName);
     navigate('/generalfeed');
   }

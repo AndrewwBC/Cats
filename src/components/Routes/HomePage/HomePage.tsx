@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Content, Main, Intro, ImgContainer } from './styles';
 import { Paragraph } from '../../GeneralComponents/Paragraph';
-import { NormalTitle } from '../../GeneralComponents/Titles';
+import { Title } from '../../GeneralComponents/Titles';
 
 const HomePage = () => {
   let Images = [
@@ -17,13 +17,19 @@ const HomePage = () => {
           <ImgContainer src={Images[0]} height={720} width={480} id="slide" />
 
           <Intro>
-            <NormalTitle>Olá!</NormalTitle>
-            <Paragraph style={{ marginBottom: '.5rem' }} itemProp="1.2rem">
-              Bem vindo ao CatGram.
-            </Paragraph>
-            <Paragraph style={{ marginBottom: '.5rem' }} itemProp="1.2rem">
-              A melhor rede social para o seu felino!
-            </Paragraph>
+            <div>
+              <Title>Olá!</Title>
+            </div>
+            <div>
+              <Paragraph style={{ marginBottom: '.5rem' }} itemProp="1.2rem">
+                Bem vindo ao CatGram.
+              </Paragraph>
+            </div>
+            <div>
+              <Paragraph style={{ marginBottom: '.5rem' }} itemProp="1.2rem">
+                A melhor rede social para o seu felino!
+              </Paragraph>
+            </div>
           </Intro>
         </Content>
       </Main>

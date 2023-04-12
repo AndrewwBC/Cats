@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PHP, UserRequirements } from '../../../api';
-import { LowTitle } from '../../GeneralComponents/Titles';
+import { Title } from '../../GeneralComponents/Titles';
 
 import { Content } from '../HomePage/styles';
 import { Container } from './styles';
 
 const ValidateEmail = () => {
   const [reload, setReload] = useState();
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState<any>();
 
   let { token } = useParams();
   const navigate = useNavigate();
@@ -22,17 +22,20 @@ const ValidateEmail = () => {
     //await UserRequirements.CheckHashEmail(token, setReload);
     PHP.ValidaEmail(setResponse, setReload, token);
   }
-  console.log(response);
-  if (reload) {
-    navigate('/');
+
+  if (response) {
+    setTimeout(() => {
+      navigate('/login');
+    }, 1000);
+    setResponse(false);
   }
 
   return (
     <Container>
       <Content>
-        <LowTitle style={{ gridColumn: '1/-1' }}>
+        <Title style={{ gridColumn: '1/-1' }}>
           Estamos validando o seu Email...
-        </LowTitle>
+        </Title>
       </Content>
     </Container>
   );

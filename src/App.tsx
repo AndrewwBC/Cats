@@ -17,8 +17,11 @@ import useTheme from './hooks/useTheme';
 import GlobalStyles from './styles/globalStyles';
 
 const App = () => {
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const { theme } = useTheme();
+
+  if (localStorage.getItem('username'))
+    setUser(localStorage.getItem('username'));
 
   return (
     <>

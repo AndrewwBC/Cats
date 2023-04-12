@@ -9,7 +9,7 @@ import {
   DropFiles,
   InputFile,
 } from './styles';
-import { LowTitle } from '../Titles';
+import { Title } from '../Titles';
 import Input from '../../FormComponents/Input/Input';
 import { Paragraph } from '../Paragraph';
 
@@ -46,7 +46,7 @@ const PostPhoto = () => {
   return (
     <Container>
       <Content>
-        <LowTitle style={{ color: 'white' }}>Faça uma postagem</LowTitle>
+        <Title style={{ color: 'white' }}>Faça uma postagem</Title>
         <div style={{ justifySelf: 'end' }} onClick={() => setArrow(!arrow)}>
           <Arrow
             height={40}

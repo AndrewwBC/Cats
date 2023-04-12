@@ -88,7 +88,7 @@ const Services = {
   GetComments: async (setComments: any) => {
     try {
       await Axios.get('http://localhost:3001/getcomments').then((response) =>
-        setComments(response.data),
+        response.data ? setComments(response.data) : setComments(true),
       );
     } catch (err) {
       console.log(err);
@@ -97,7 +97,7 @@ const Services = {
   GetLikes: async (setLikes: any) => {
     try {
       await Axios.get('http://localhost:3001/getlikes').then((response) =>
-        setLikes(response.data),
+        response.data ? setLikes(response.data) : setLikes(true),
       );
     } catch (err) {
       console.log(err);
@@ -289,7 +289,7 @@ export const PHP = {
     try {
       setLoad(true);
       await Axios.post('http://localhost/ReactPHP/login.php', formData).then(
-        (response) => setResponse(response.data),
+        (response) => setResponse(response),
       );
     } catch (err) {
       console.log(err);
@@ -313,7 +313,7 @@ export const PHP = {
     try {
       setLoad(true);
       await Axios.post('http://localhost/ReactPHP/cadastro.php', formData).then(
-        (response) => setResponse(response.data),
+        (response) => setResponse(response.data[0]),
       );
     } catch (err) {
       console.log(err);

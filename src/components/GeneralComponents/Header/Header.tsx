@@ -24,7 +24,7 @@ const Header = ({ user }: any) => {
           <Menu>
             <NavLink
               style={{ display: 'flex', alignItems: 'center' }}
-              to="login"
+              to={user ? '/userpage' : '/login'}
             >
               {user ? (
                 <Paragraph itemProp="16px">{user}</Paragraph>
