@@ -239,11 +239,12 @@ export const UserRequirements = {
       console.log(err);
     }
   },
-  PutLikes: async (postCod: any, userCod: any) => {
+  PutLikes: async (postCod: any, userCod: any, typeofChange: any) => {
     try {
       Axios.post('http://localhost:3001/putlike', {
         postCod: postCod,
         userCod: userCod,
+        typeofchange: typeofChange,
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);

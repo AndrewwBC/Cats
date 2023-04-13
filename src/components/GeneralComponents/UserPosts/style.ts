@@ -24,9 +24,9 @@ export const PutComent = styled.div`
 `;
 
 export const LikeContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  align-items: center;
   padding-bottom: 32px;
   border-bottom: 1px solid black;
 `;
@@ -62,11 +62,9 @@ export const ImgFeed = styled.img`
   }
 `;
 
-export const Heart = styled.div`
+export const Heart = styled.img`
   display: block;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  background: url(${(props) =>
-    props.itemProp
-      ? 'https://icons.iconarchive.com/icons/paomedia/small-n-flat/48/heart-icon.png'
-      : 'https://icons.iconarchive.com/icons/iconsmind/outline/48/Heart-2-icon.png'});
 `;

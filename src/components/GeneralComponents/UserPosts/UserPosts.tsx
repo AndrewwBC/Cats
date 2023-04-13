@@ -10,7 +10,6 @@ import {
 } from './style';
 import './styles.css';
 import Services, { UserRequirements } from '../../../api';
-import { Button } from '../../FormComponents/Button/style';
 
 const UserPosts = () => {
   const [post, setPost] = useState<any>();
@@ -18,7 +17,6 @@ const UserPosts = () => {
   const [likes, setLikes] = useState<any>();
   const [comment, setComment] = useState('');
   const [heart, setHeart] = useState<any>(false);
-  //const [modal, setModal] = useState(false);
 
   let userCod = localStorage.getItem('usercod');
 
@@ -27,22 +25,22 @@ const UserPosts = () => {
   }, []);
 
   async function getInfo() {
-    await Services.GetPosts(setPost);
-    await Services.GetComments(setComments);
-    await Services.GetLikes(setLikes);
+    const [posts, comments, likes] = await Promise.all([
+      Services.GetPosts(setPost),
+      Services.GetComments(setComments),
+      Services.GetLikes(setLikes),
+    ]);
+
+    return { posts, comments, likes };
   }
-
-  console.log(post, comments, likes);
-
-  // setInterval(() => {
-  //   Services.GetComments(setComments);
-  //   Services.GetLikes(setLikes);
-  //   Services.GetPosts(setPost);
-  // }, 2000);
 
   // function getOneComment(id: any) {
   //   Services.GetComments(setComment);
   // }
+
+  setTimeout(() => {
+    getInfo();
+  }, 500);
 
   function testeComent(Post_Cod: any) {
     console.log(Post_Cod);
@@ -53,11 +51,12 @@ const UserPosts = () => {
     (document.getElementById(Post_Cod) as HTMLInputElement).value = '';
   }
 
-  function testeLike(Post_Cod: any) {
-    console.log(Post_Cod);
-    UserRequirements.PutLikes(Post_Cod, Number(userCod));
+  function setLike(Post_Cod: any, typeofchange: any) {
+    UserRequirements.PutLikes(Post_Cod, Number(userCod), typeofchange);
   }
+
   let counter: any = 0;
+  let LikeFlag = false;
   let counterComments: any = 0;
 
   if (!post && !comments && !likes) return <div>Load</div>;
@@ -108,7 +107,7 @@ const UserPosts = () => {
                     {(counterComments = '')}
                     {comments.map((commentCount: any) => {
                       if (commentCount.Post_Cod === item.Post_Cod) {
-                        counterComments++;
+                        return counterComments++;
                       } else {
                         return null;
                       }
@@ -137,6 +136,34 @@ const UserPosts = () => {
                     </div>
                   </PutComent>
                   <LikeContainer>
+                    <Heart
+                      onDoubleClick={(e: any) => setLike(item.Post_Cod, false)}
+                      src="https://www.svgrepo.com/show/511016/heart-02.svg"
+                    />
+
+                    <Heart
+                      onDoubleClick={(e: any) => setLike(item.Post_Cod, true)}
+                      src="https://www.svgrepo.com/show/513311/heart.svg"
+                    />
+
+                    {/* {likes.map((like: any, index: any) =>
+                      like.User_Cod === Number(userCod) &&
+                      like.Post_Cod === item.Post_Cod ? (
+                        <Heart
+                          onDoubleClick={(e: any) =>
+                            setLike(item.Post_Cod, true)
+                          }
+                          src="https://www.svgrepo.com/show/513311/heart.svg"
+                        />
+                      ) : (
+                        <Heart
+                          onDoubleClick={(e: any) =>
+                            setLike(item.Post_Cod, false)
+                          }
+                          src="https://www.svgrepo.com/show/511016/heart-02.svg"
+                        />
+                      ),
+                    )} */}
                     <div>
                       {(counter = '')}
                       {likes.map((like: any, index: any) => {
@@ -148,16 +175,6 @@ const UserPosts = () => {
                       })}
                       <p>{counter} Likes</p>
                     </div>
-                    <div>
-                      <p>Veja quem curtiu</p>
-                    </div>
-                    <Heart
-                      onClick={(e: any) => testeLike(item.Post_Cod)}
-                      onDoubleClick={() => setHeart(!heart)}
-                      itemProp={heart}
-                    >
-                      Like
-                    </Heart>
                   </LikeContainer>
                 </ActionContainer>
               </div>
