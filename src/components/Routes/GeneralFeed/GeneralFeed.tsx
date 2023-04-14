@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Services, { PHP } from '../../../api';
 import { Container, Content } from './styles';
-import UserPosts from '../../GeneralComponents/UserPosts/UserPosts';
+import FeedPost from '../../GeneralComponents/FeedPost/FeedPost';
 import PostPhoto from '../../GeneralComponents/PostPhoto/PostPhoto';
 
 const GeneralFeed = () => {
@@ -16,22 +16,19 @@ const GeneralFeed = () => {
 
   console.log(response);
 
-  useEffect(() => {
-    getFiles();
-  }, []);
+  // useEffect(() => {
+  //   getFiles();
+  // }, []);
 
-  async function getFiles() {
-    await Services.S3GetAllFiles(setFiles, setLoad, setTeste);
-  }
+  // async function getFiles() {
+  //   await Services.S3GetAllFiles(setFiles, setLoad, setTeste);
+  // }
 
-  if (load) return <div>Oi</div>;
-  if (!load && teste)
-    return (
-      <>
-        <Container>
-          <Content>
-            <PostPhoto></PostPhoto>
-            {/* {files.Contents.map((item: any, index: any) => (
+  return (
+    <>
+      <Container>
+        <Content>
+          {/* {files.Contents.map((item: any, index: any) => (
               <img
                 style={{ display: 'block', objectFit: 'cover' }}
                 key={index}
@@ -41,14 +38,13 @@ const GeneralFeed = () => {
                 width={400}
               />
             ))} */}
-            <UserPosts></UserPosts>
-
-            <button onClick={envioMassa}>Envio em Massa</button>
-          </Content>
-        </Container>
-      </>
-    );
-  else return <div>Olá</div>;
+          <PostPhoto />
+          <FeedPost />
+          {/* <button onClick={envioMassa}>Envio em Massa</button> */}
+        </Content>
+      </Container>
+    </>
+  );
 };
 
 export default GeneralFeed;

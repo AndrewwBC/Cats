@@ -22,10 +22,12 @@ const PostPhoto = () => {
   const formData = new FormData();
 
   async function handleSubmit(event: any) {
+    let username: any = localStorage.getItem('username');
     event.preventDefault();
     formData.append('image', file);
     formData.append('description', description);
     formData.append('user_cod', userCod);
+    formData.append('username', username);
     //Upload
     await UserRequirements.PostFeedPhoto(formData);
     //Download

@@ -85,22 +85,34 @@ const Services = {
     } finally {
     }
   },
-  GetComments: async (setComments: any) => {
+  GetComments: async (setComments: any, postCod: number) => {
     try {
-      await Axios.get('http://localhost:3001/getcomments').then((response) =>
-        response.data ? setComments(response.data) : setComments(true),
+      await Axios.get('http://localhost:3001/getcomments', {
+        params: {
+          postCod: postCod,
+        },
+      }).then((response) =>
+        response.data.length >= 1
+          ? setComments(response.data)
+          : setComments(false),
       );
     } catch (err) {
       console.log(err);
+      setComments(false);
     }
   },
-  GetLikes: async (setLikes: any) => {
+  GetLikes: async (setLikes: any, postCod: any) => {
     try {
-      await Axios.get('http://localhost:3001/getlikes').then((response) =>
-        response.data ? setLikes(response.data) : setLikes(true),
+      await Axios.get('http://localhost:3001/getlikes', {
+        params: {
+          postCod: postCod,
+        },
+      }).then((response) =>
+        response.data.length >= 1 ? setLikes(response.data) : setLikes(false),
       );
     } catch (err) {
       console.log(err);
+      setLikes(false);
     }
   },
 };
