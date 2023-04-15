@@ -5,13 +5,16 @@ import {
   Content,
   Description,
   Image,
+  InputComment,
   PostInteraction,
   User,
+  UserNameDescription,
 } from './styles';
 
 import Comments from '../PostComponents/Comments/Comments';
 import Likes from '../PostComponents/Likes/Likes';
 import Input from '../../FormComponents/Input/Input';
+import IconsData from '../PostComponents/IconsData/IconsData';
 
 const FeedPost = () => {
   const [post, setPost] = useState<any>();
@@ -36,23 +39,16 @@ const FeedPost = () => {
                 src={`http://localhost:3001/images/${item.Img}`}
               />
               <PostInteraction>
-                <User>
-                  <div>
-                    <p>{item.UserName}</p>
-                  </div>
-                  <div>
-                    <p>10/10/2023</p>
-                  </div>
-                </User>
-                <Description> Olaaaaa</Description>
-                <Comments postCod={item.Post_Cod} />
-                <Input
-                  label="Comentário"
-                  name="comment"
-                  type="text"
-                  placeholder="Comente..."
-                />
+                <IconsData />
                 <Likes postCod={item.Post_Cod} />
+                <UserNameDescription>
+                  <div>
+                    <User>Drew123</User>
+                  </div>
+                  <Description>{item.Description}</Description>
+                </UserNameDescription>
+                <Comments postCod={item.Post_Cod} />
+                <InputComment placeholder="Adicione um comentário..." />
               </PostInteraction>
             </Content>
           ))}

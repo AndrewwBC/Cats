@@ -1,5 +1,6 @@
 import React, { useEffect, useState, memo } from 'react';
 import Services from '../../../../api';
+import { Likes } from './styles';
 
 const Comments = (postCod: any) => {
   const [likes, setLikes] = useState<any>(false);
@@ -13,7 +14,7 @@ const Comments = (postCod: any) => {
   }
   console.log(likes);
   if (!likes) return <div></div>;
-  if (likes) return <div>{likes.length} Likes</div>;
+  if (likes) return <Likes>{likes.length} curtida</Likes>;
   else return <div>Oi</div>;
 };
 

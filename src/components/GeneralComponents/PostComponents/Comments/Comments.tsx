@@ -20,22 +20,17 @@ const Comments = (postCod: any) => {
       <Container>
         {comments.map((item: any) => (
           <EachComment>
-            <Img
-              height={32}
-              width={32}
-              src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-            />
             <div>
-              <p>{item.Comment}</p>
+              <p>pedrinho123</p>
             </div>
             <div>
-              <p>Horario</p>
+              <p>{item.Comment}</p>
             </div>
           </EachComment>
         ))}
       </Container>
     );
-  else return <div>Oi</div>;
+  else return <div>Insira um comentário</div>;
 };
 
 export default memo(Comments);

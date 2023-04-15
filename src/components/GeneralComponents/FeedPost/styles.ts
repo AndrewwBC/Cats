@@ -8,11 +8,23 @@ export const Container = styled.section`
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  grid-template-columns: 1fr;
   justify-content: center;
   margin-bottom: 24px;
 `;
 
+export const PostInteraction = styled.div`
+  display: grid;
+  grid-template-rows: auto 2fr auto auto;
+  max-height: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: 1px solid black;
+  padding: 16px;
+  gap: 12px;
+`;
 export const Image = styled.img`
   width: 100%;
   height: 32rem;
@@ -20,27 +32,36 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const Description = styled.div`
-  background-color: ${({ theme }) => theme.text};
-  padding: 16px;
-  color: ${({ theme }) => theme.background};
+export const UserNameDescription = styled.div`
   border-radius: 8px;
-`;
-
-export const PostInteraction = styled.div`
+  background-color: ${({ theme }) => theme.postInteraction};
   display: grid;
-  grid-template-rows: auto 2fr auto auto;
-  max-height: 100%;
-  padding: 16px;
+  grid-template-columns: auto 1fr;
+  padding: 8px 4px;
+  align-items: center;
   gap: 12px;
+  color: #222;
 `;
 
-export const User = styled.div`
+export const Description = styled.div`
+  color: ${({ theme }) => theme.postInterText};
   border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  padding: 4px 2px;
-  align-items: center;
-  gap: 12px 0px;
-  color: #222;
+`;
+export const User = styled.p`
+  font-family: 'Roboto';
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  opacity: 0.7;
+  color: ${({ theme }) => theme.postInterText};
+`;
+
+export const InputComment = styled.input`
+  background-color: transparent;
+  padding: 12px 4px;
+  border-radius: 4px;
+  border: none;
+  background-color: ${({ theme }) => theme.postInteraction};
+  &::placeholder {
+    color: ${({ theme }) => theme.postInterText};
+  }
 `;

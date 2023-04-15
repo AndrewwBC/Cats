@@ -5,6 +5,8 @@ export const lightTheme = {
   accent: '#0880AE',
   footer: '#303030',
   footerText: '#f9f9f9',
+  postInteraction: '#f9f9f9',
+  postInterText: '#202020',
 };
 
 export const darkTheme = {
@@ -14,4 +16,6 @@ export const darkTheme = {
   accent: '#8A85FF',
   footer: '#000',
   footerText: '#f9f9f9',
+  postInteraction: '#202020',
+  postInterText: '#f5f5f5',
 };
