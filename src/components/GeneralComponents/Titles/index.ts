@@ -5,7 +5,7 @@ export const Title = styled.h1`
   font-family: 'Poppins';
   font-weight: bold;
   color: ${({ theme }) => theme.text};
-  letter-spacing: 0.2px;
+
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }

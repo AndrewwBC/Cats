@@ -1,27 +1,34 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 2rem;
   height: calc(100vh - 180px);
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 `;
 
 export const FormBody = styled.form`
-  max-width: 500px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  padding: 72px 42px;
+  padding: ${(props) => (props.itemProp ? '0px 0px 0px 12px' : '42px 32px')};
   background-color: #f9f9f9;
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr;
+  grid-template-columns: ${(props) => (props.itemProp ? '1fr 1fr' : '1fr')};
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 25px;
-  background-color: ${({ theme }) => theme.background};
-  box-shadow: 9px 9px 18px ${({ theme }) => theme.background}, -9px -9px 18px ${({ theme }) => theme.background};
+  place-items: center;
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.form};
+  box-shadow: 9px 9px 18px ${({ theme }) => theme.background},
+    -9px -9px 18px ${({ theme }) => theme.background};
+  @media (max-width: 1000px) {
+    max-width: 768px;
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const TwoInputsInline = styled.div`

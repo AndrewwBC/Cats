@@ -3,9 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
     * {
         box-sizing: border-box;
-        margin: 0;
-        outline: 0;
-        padding: none;
+        margin: 0px;
+        outline: 0px;
+        padding: 0px;
         transition: .3s;
     } 
    

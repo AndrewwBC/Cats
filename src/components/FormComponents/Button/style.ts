@@ -8,7 +8,6 @@ export const Button = styled.button`
   padding: 4px 24px;
   cursor: pointer;
   border-radius: 4px;
-  letter-spacing: 0.2px;
   font-family: 'Poppins';
   &:hover {
     background-color: #ff7f00;

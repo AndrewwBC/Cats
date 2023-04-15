@@ -1,9 +1,9 @@
 import { Container, FormBody } from './styles';
 
-const Form = (props: any) => {
+const Form = ({ itemProp, children }: any) => {
   return (
     <Container>
-      <FormBody>{props.children}</FormBody>
+      <FormBody itemProp={itemProp}>{children}</FormBody>
     </Container>
   );
 };

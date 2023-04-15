@@ -4,8 +4,9 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.text};
-  font-size: 1rem;
-  gap: 6px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  gap: 2px;
   font-family: 'Poppins';
 `;
 
@@ -23,7 +24,8 @@ export const ForgotPassword = styled.a`
 `;
 
 export const StyledInput = styled.input`
-  padding: 8px 24px 8px 12px;
+  padding: 7px 16px 5px 4px;
+  margin-bottom: 4px;
   border: 2px solid transparent;
   border-radius: 4px;
   background-color: #e9e9e9;

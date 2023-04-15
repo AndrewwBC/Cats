@@ -5,7 +5,13 @@ import { Button } from '../../FormComponents/Button/style';
 import Form from '../../FormComponents/Form';
 import Input from '../../FormComponents/Input';
 import { Title } from '../../GeneralComponents/Titles';
-import { Container, Content, ErrorMSG, TwoInputsInline } from './styles';
+import {
+  CatImg,
+  Container,
+  Content,
+  ErrorMSG,
+  TwoInputsInline,
+} from './styles';
 
 const isValidEmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -93,105 +99,142 @@ const Register = () => {
   return (
     <Container>
       <Content>
-        <Form>
-          <Title style={{ marginBottom: '24px', placeSelf: 'center' }}>
-            Cadastre-se!
-          </Title>
-          <Input
-            label="Nome de usuário"
-            type="text"
-            name="username"
-            placeholder="Escolha um nome de usuário."
-            value={userData.username}
-            onBlur={handleBlur}
-            onChange={({ target }: any) =>
-              setUserData((prevState) => ({
-                ...prevState,
-                username: target.value,
-              }))
-            }
-          />
-
-          {checkUser && <h4>Usuário já existente.</h4>}
-          <TwoInputsInline>
-            <Input
-              label="Nome"
-              type="text"
-              name="name"
-              placeholder="Insira seu nome."
-              value={userData.name}
-              onChange={({ target }: any) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  name: target.value,
-                }))
-              }
-              onBlur={handleBlur}
-            />
-
-            <Input
-              label="Sobrenome"
-              type="text"
-              name="lastname"
-              placeholder="Insira o sobrenome."
-              value={userData.lastname}
-              onChange={({ target }: any) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  lastname: target.value,
-                }))
-              }
-              onBlur={handleBlur}
-            />
-          </TwoInputsInline>
-          <Input
-            label="E-mail"
-            type="email"
-            name="email"
-            placeholder="josedasilva@gmail.com"
-            value={userData.email}
-            onBlur={handleBlur}
-            onChange={({ target }: any) =>
-              setUserData((prevState) => ({
-                ...prevState,
-                email: target.value,
-              }))
-            }
-          />
-          {checkEmail && <h4>Email já existente</h4>}
-          <Input
-            label="Senha"
-            type="password"
-            name="password"
-            placeholder="Insira sua senha"
-            value={userData.password}
-            onChange={({ target }: any) =>
-              setUserData((prevState) => ({
-                ...prevState,
-                password: target.value,
-              }))
-            }
-            onBlur={handleBlur}
-          />
-          {error.passError && (
-            <ErrorMSG>Insira ao menos seis caractéres</ErrorMSG>
-          )}
-          {error.errorEmail && <ErrorMSG>Insira um Email válido</ErrorMSG>}
-
-          <Button
-            style={{ margin: '16px 0px' }}
-            onClick={(e) => handleSubmit(e)}
+        <Form itemProp={true}>
+          <div
+            style={{
+              display: 'flex',
+              padding: '0px 64px',
+              flexDirection: 'column',
+            }}
           >
-            Cadastrar
-          </Button>
+            <p
+              style={{
+                fontSize: '1.5rem',
+                fontFamily: 'Poppins',
+                margin: '24px 0 6px 0',
+                placeSelf: 'start',
+                fontWeight: '400',
+              }}
+            >
+              Cadastre-se!
+            </p>
+            <p
+              style={{
+                fontSize: '14px',
+                fontFamily: 'Poppins',
+                margin: '0px 0px 18px 0px',
+                placeSelf: 'start',
+                fontWeight: '400',
+              }}
+            >
+              Junte-se a nossa comunidade felina, e aproveite para compartilhar
+              o cotidiano do seu gato!
+            </p>
+            <div>
+              <Input
+                label="Nome de usuário"
+                type="text"
+                name="username"
+                placeholder="Escolha um nome de usuário."
+                value={userData.username}
+                onBlur={handleBlur}
+                onChange={({ target }: any) =>
+                  setUserData((prevState) => ({
+                    ...prevState,
+                    username: target.value,
+                  }))
+                }
+              />
 
-          <h3 style={{ color: '#202020', placeSelf: 'center' }}>
-            Já possui conta? Faça login!
-          </h3>
+              {checkUser && <h4>Usuário já existente.</h4>}
 
-          <NavLink style={{ placeSelf: 'center' }} to="/login">
-            <Button>Login</Button>
-          </NavLink>
+              <Input
+                label="Nome completo"
+                type="text"
+                name="name"
+                placeholder="Insira seu nome."
+                value={userData.name}
+                onChange={({ target }: any) =>
+                  setUserData((prevState) => ({
+                    ...prevState,
+                    name: target.value,
+                  }))
+                }
+                onBlur={handleBlur}
+              />
+
+              <Input
+                label="E-mail"
+                type="email"
+                name="email"
+                placeholder="josedasilva@gmail.com"
+                value={userData.email}
+                onBlur={handleBlur}
+                onChange={({ target }: any) =>
+                  setUserData((prevState) => ({
+                    ...prevState,
+                    email: target.value,
+                  }))
+                }
+              />
+              {checkEmail && <h4>Email já existente</h4>}
+              <Input
+                label="Senha"
+                type="password"
+                name="password"
+                placeholder="Insira sua senha"
+                value={userData.password}
+                onChange={({ target }: any) =>
+                  setUserData((prevState) => ({
+                    ...prevState,
+                    password: target.value,
+                  }))
+                }
+                onBlur={handleBlur}
+              />
+              {error.passError && (
+                <ErrorMSG>Insira ao menos seis caractéres</ErrorMSG>
+              )}
+              {error.errorEmail && <ErrorMSG>Insira um Email válido</ErrorMSG>}
+            </div>
+
+            <Button
+              style={{ margin: '14px 0px' }}
+              onClick={(e) => handleSubmit(e)}
+            >
+              Cadastrar
+            </Button>
+
+            <div
+              style={{
+                fontSize: '18px',
+                color: '#c9c9c9',
+                alignSelf: 'center',
+              }}
+            >
+              <p>
+                Já possui conta?{' '}
+                <NavLink
+                  to="/login"
+                  style={{ color: '#fb1', borderBottom: '2px solid #000' }}
+                >
+                  {' '}
+                  Faça Login
+                </NavLink>
+              </p>
+            </div>
+            <NavLink
+              style={{
+                alignSelf: 'center',
+                margin: '16px 0px',
+              }}
+              to="/login"
+            >
+              <Button>Login</Button>
+            </NavLink>
+          </div>
+
+          <CatImg src="https://images.unsplash.com/photo-1526674183561-4bfb419ab4e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" />
         </Form>
       </Content>
     </Container>
