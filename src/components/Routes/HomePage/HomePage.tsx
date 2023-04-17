@@ -55,7 +55,7 @@ const HomePage = () => {
 
             <IntroText>
               <Paragraph style={{}} itemProp="18px">
-                A melhor rede social para o seu felino!
+                A melhor rede social para o seu felinoaaaaaaaa
               </Paragraph>
 
               <Paragraph itemProp="18px">
