@@ -10,19 +10,14 @@ export const Container = styled.div`
 `;
 
 export const FormBody = styled.form`
-  padding: ${(props) => (props.itemProp ? '0px 0px 0px 12px' : '42px 32px')};
-  background-color: #f9f9f9;
+  padding: ${(props) => (props.itemProp ? '0px 0px 0px 12px' : '42px 48px')};
   display: grid;
   gap: 12px;
   grid-template-columns: ${(props) => (props.itemProp ? '1fr 1fr' : '1fr')};
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  place-items: center;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.form};
-  box-shadow: 9px 9px 18px ${({ theme }) => theme.background},
-    -9px -9px 18px ${({ theme }) => theme.background};
   @media (max-width: 1000px) {
     max-width: 768px;
   }

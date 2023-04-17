@@ -86,14 +86,14 @@ const Login = () => {
             forget={true}
           />
           <Button
-            style={{ marginTop: '16px' }}
+            style={{ marginTop: '12px' }}
             disabled={load ? true : false}
             onClick={(e) => handleSubmit(e)}
           >
             Entrar
           </Button>
-          <h4 style={{ color: '#202020', placeSelf: 'center' }}>
-            Ainda não é cadastrado? Registre-se!
+          <h4 style={{ placeSelf: 'center', fontWeight: 400 }}>
+            Não possui conta? <NavLink to="/register">Registre-se!</NavLink>
           </h4>
           <NavLink style={{ placeSelf: 'center' }} to="/register">
             <Button disabled={load ? true : false}>Cadastrar</Button>

@@ -18,12 +18,16 @@ export default createGlobalStyle`
     button{
         border: none;
     }
+    p{
+        color: ${(props) => props.theme.text};   
+    }
 
     h1,h2,h3,h4 {
         color: ${(props) => props.theme.titles};     
     }
     a{
         text-decoration: none;
+        color: ${(props) => props.theme.link};
     }
 
 `;

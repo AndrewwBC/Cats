@@ -5,8 +5,8 @@ export const Container = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 52px;
   background-color: ${({ theme }) => theme.background};
-  transition: 1s;
 `;
 
 export const Content = styled.article`

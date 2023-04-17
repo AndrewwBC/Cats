@@ -15,11 +15,10 @@ export const Title = styled.h1`
 `;
 
 export const Catgram = styled.h1`
-  font-size: 1.8rem;
+  font-size: 3rem;
   font-family: 'Poppins';
   font-weight: bold;
   color: ${({ theme }) => theme.text};
-  letter-spacing: 0.2px;
   position: relative;
   z-index: 10;
 `;

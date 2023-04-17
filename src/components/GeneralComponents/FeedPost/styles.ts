@@ -24,6 +24,7 @@ export const PostInteraction = styled.div`
   border: 1px solid black;
   padding: 16px;
   gap: 12px;
+  background-color: ${({ theme }) => theme.feedBg};
 `;
 export const Image = styled.img`
   width: 100%;
@@ -34,7 +35,7 @@ export const Image = styled.img`
 
 export const UserNameDescription = styled.div`
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.postInteraction};
+
   display: grid;
   grid-template-columns: auto 1fr;
   padding: 8px 4px;
@@ -60,7 +61,7 @@ export const InputComment = styled.input`
   padding: 12px 4px;
   border-radius: 4px;
   border: none;
-  background-color: ${({ theme }) => theme.postInteraction};
+
   &::placeholder {
     color: ${({ theme }) => theme.postInterText};
   }

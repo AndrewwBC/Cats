@@ -19,6 +19,7 @@ export const Content = styled.article`
   align-items: center;
   justify-content: center;
 `;
+
 export const CatImg = styled.img`
   display: block;
   width: 100%;
@@ -47,4 +48,8 @@ export const ErrorMSG = styled.span`
   color: red;
   font-size: 16px;
   letter-spacing: 0.2px;
+`;
+
+export const BackLogin = styled.p`
+  color: ${({ theme }) => theme.text};
 `;

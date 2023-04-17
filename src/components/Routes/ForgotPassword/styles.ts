@@ -5,6 +5,8 @@ export const Container = styled.section`
   display: flex;
   align-items: center;
   justify-items: center;
+  background-color: ${({ theme }) => theme.background};
+  margin-bottom: 54px;
 `;
 
 export const Content = styled.div`

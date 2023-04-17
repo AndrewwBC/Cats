@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import Services, { PHP } from '../../../api';
+import React, { useState } from 'react';
+import { PHP } from '../../../api';
 import { Container, Content } from './styles';
 import FeedPost from '../../GeneralComponents/FeedPost/FeedPost';
 import PostPhoto from '../../GeneralComponents/PostPhoto/PostPhoto';
 
 const GeneralFeed = () => {
-  const [files, setFiles] = useState<any>();
-  const [load, setLoad] = useState(true);
-  const [response, setResponse] = useState(true);
-  const [teste, setTeste] = useState(false);
+  //const [files, setFiles] = useState<any>();
+  //const [load, setLoad] = useState(true);
+  //const [response, setResponse] = useState(true);
+  //const [teste, setTeste] = useState(false);
 
-  function envioMassa() {
-    PHP.Promoção(setResponse, setLoad);
-  }
+  // function envioMassa() {
+  //   PHP.Promoção(setResponse, setLoad);
+  // }
 
-  console.log(response);
+  //console.log(response);
 
   // useEffect(() => {
   //   getFiles();
@@ -28,17 +28,6 @@ const GeneralFeed = () => {
     <>
       <Container>
         <Content>
-          {/* {files.Contents.map((item: any, index: any) => (
-              <img
-                style={{ display: 'block', objectFit: 'cover' }}
-                key={index}
-                src={`http://localhost:3001/images/${item.Key}`}
-                alt=""
-                height={600}
-                width={400}
-              />
-            ))} */}
-          <PostPhoto />
           <FeedPost />
           {/* <button onClick={envioMassa}>Envio em Massa</button> */}
         </Content>

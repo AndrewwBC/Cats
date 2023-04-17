@@ -18,7 +18,7 @@ export const Content = styled.div`
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
-  padding: 12px 12px;
+  padding: 12px 0;
   align-items: center;
   justify-content: space-between;
 `;

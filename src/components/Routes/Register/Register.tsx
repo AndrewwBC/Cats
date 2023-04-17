@@ -4,8 +4,8 @@ import Services, { PHP, UserRequirements } from '../../../api';
 import { Button } from '../../FormComponents/Button/style';
 import Form from '../../FormComponents/Form';
 import Input from '../../FormComponents/Input';
-import { Title } from '../../GeneralComponents/Titles';
 import {
+  BackLogin,
   CatImg,
   Container,
   Content,
@@ -212,16 +212,13 @@ const Register = () => {
                 alignSelf: 'center',
               }}
             >
-              <p>
+              <BackLogin>
                 Já possui conta?{' '}
-                <NavLink
-                  to="/login"
-                  style={{ color: '#fb1', borderBottom: '2px solid #000' }}
-                >
+                <NavLink to="/login" style={{ borderBottom: '2px solid #000' }}>
                   {' '}
                   Faça Login
                 </NavLink>
-              </p>
+              </BackLogin>
             </div>
             <NavLink
               style={{
