@@ -97,7 +97,7 @@ const Register = () => {
   }
 
   return (
-    <Container>
+    <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: -50}} transition={{duration: .3}} >
       <Content>
         <Form itemProp={true}>
           <div

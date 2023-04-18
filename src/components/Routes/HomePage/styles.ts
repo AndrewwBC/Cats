@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import {motion as m } from 'framer-motion'
 
-export const Main = styled.main`
+export const Main = styled(m.main)`
   background-color: ${({ theme }) => theme.background};
   padding-bottom: 140px;
   padding-top: 60px;

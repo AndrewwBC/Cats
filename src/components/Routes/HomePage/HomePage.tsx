@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Content,
   Main,
@@ -14,6 +13,7 @@ import { Paragraph } from '../../GeneralComponents/Paragraph';
 import { Catgram, Title } from '../../GeneralComponents/Titles';
 import { Button } from '../../FormComponents/Button/style';
 
+
 const HomePage = () => {
   let Images = [
     'https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80',
@@ -22,8 +22,8 @@ const HomePage = () => {
   ];
 
   return (
-    <>
-      <Main>
+  
+      <Main initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0}} transition={{duration: .3}}  >
         <Content>
           <ImgContainer
             style={{
@@ -83,7 +83,7 @@ const HomePage = () => {
           </Infos>
         </Content>
       </Main>
-    </>
+    
   );
 };
 

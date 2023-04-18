@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import {motion as m } from 'framer-motion'
 
-export const Container = styled.section`
+export const Container = styled(m.section)`
   display: flex;
   height: calc(100vh - 120px);
   align-items: center;

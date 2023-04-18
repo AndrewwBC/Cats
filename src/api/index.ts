@@ -142,9 +142,9 @@ export const UserRequirements = {
   ResetPassword: async (
     setLoad: any,
     setError: any,
-    email: string,
-    password: string,
-    setResponse: any,
+    email?: string,
+    password?: string,
+    setResponse?: any,
   ) => {
     try {
       setLoad(true);
@@ -207,7 +207,7 @@ export const UserRequirements = {
       console.log(err);
     }
   },
-  CheckEmail: async (email: string, setResponse: any, setLoad: any) => {
+  CheckEmail: async (email: string | undefined, setResponse: any, setLoad: any) => {
     try {
       await Axios.get('http://localhost:3001/checkemail', {
         params: { email: email },
