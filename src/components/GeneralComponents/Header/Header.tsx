@@ -4,11 +4,9 @@ import { NavLink } from 'react-router-dom';
 import useTheme from '../../../hooks/useTheme';
 
 const Header = ({ user }: any) => {
+
   const { theme, setTheme } = useTheme();
 
-  
-
-  console.log(user);
   return (
     <>
       <Container>

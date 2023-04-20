@@ -1,21 +1,21 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, {  useState, memo, useCallback } from 'react';
 import Services from '../../../../api';
-import { Likes } from './styles';
+import { Like } from './styles';
 
-const Comments = (postCod: any) => {
-  const [likes, setLikes] = useState<any>(false);
+const Likes = (postCod: any) => {
+  const [likes, setLikes] = useState<boolean | any>(false);
 
-  useEffect(() => {
+  useCallback(() => {
     getLikes();
   }, [postCod.postCod]);
 
+ 
   async function getLikes() {
     await Services.GetLikes(setLikes, postCod.postCod);
   }
-  console.log(likes);
-  if (!likes) return <div></div>;
-  if (likes) return <Likes>{likes.length} curtida</Likes>;
+  
+  if (likes) return <Like>{likes.length} curtida</Like>;
   else return <div>Oi</div>;
 };
 
-export default memo(Comments);
+export default memo(Likes);

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import {motion as m } from 'framer-motion'
 
-export const Container = styled.main`
+export const Container = styled(m.main)`
   height: 100%;
   padding: 2rem 0;
   background-color: ${({ theme }) => theme.feedBg};

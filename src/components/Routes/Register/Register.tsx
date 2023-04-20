@@ -41,13 +41,15 @@ const Register = () => {
   function handleSubmit(e: any) {
     e.preventDefault();
 
+    let {username, name, lastname, email, password} =  userData;
+
     formData.append('username', userData.username);
     formData.append('name', userData.name);
     formData.append('lastname', userData.lastname);
     formData.append('email', userData.email);
     formData.append('password', userData.password);
 
-    //Services.RegisterUser({ username, name, lastname, email, password });
+    Services.RegisterUser({ username, name, lastname, email, password});
     if (
       !checkUser &&
       !checkEmail &&
@@ -55,7 +57,7 @@ const Register = () => {
       !error.passError &&
       !error.empty
     ) {
-      PHP.Cadastro(formData, setResponse, setLoad);
+      //PHP.Cadastro(formData, setResponse, setLoad);
     } else {
       alert('Preencha todos os campos corretamente!');
     }

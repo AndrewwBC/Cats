@@ -11,8 +11,8 @@ const IconsData = () => {
   return (
     <Content>
       <Icons>
-        {Links.map((item) => (
-          <Icon src={item} />
+        {Links.map((item, index) => (
+          <Icon key={index} src={item} />
         ))}
       </Icons>
       <div>

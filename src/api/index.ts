@@ -101,14 +101,14 @@ const Services = {
       setComments(false);
     }
   },
-  GetLikes: async (setLikes: any, postCod: any) => {
+  GetLikes: async (setLikes: any, postCod: number) => {
     try {
       await Axios.get('http://localhost:3001/getlikes', {
         params: {
           postCod: postCod,
         },
       }).then((response) =>
-        response.data.length >= 1 ? setLikes(response.data) : setLikes(false),
+        response.data.length >= 1 ? setLikes(response) : setLikes(response),
       );
     } catch (err) {
       console.log(err);

@@ -1,25 +1,27 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo, useCallback } from 'react';
 import Services from '../../../../api';
 import { Container, EachComment, Img } from './styles';
-import { ImgContainer } from '../../../Routes/HomePage/styles';
 
 const Comments = (postCod: any) => {
-  const [comments, setComments] = useState<any>(false);
+  const [comments, setComments] = useState<boolean | any>(false);
 
-  useEffect(() => {
+  useCallback(() => {
+    
     getComments();
   }, [postCod.postCod]);
 
   async function getComments() {
-    await Services.GetComments(setComments, postCod.postCod);
+    await Services.GetComments(setComments, postCod.postCod);  
   }
+
   console.log(comments);
+ 
   if (!comments) return <div></div>;
   if (comments)
     return (
       <Container>
         {comments.map((item: any) => (
-          <EachComment>
+          <EachComment key={item.Comment_Cod}>
             <div>
               <p>pedrinho123</p>
             </div>

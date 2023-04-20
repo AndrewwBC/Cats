@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import {motion as m } from 'framer-motion'
 
-export const Container = styled.section`
+export const Container = styled(m.section)`
   max-width: 800px;
   height: 100%;
   margin-top: 120px;
@@ -18,6 +19,7 @@ export const Content = styled.div`
 export const PostInteraction = styled.div`
   display: grid;
   grid-template-rows: auto 2fr auto auto;
+  max-width: 100%;
   max-height: 100%;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;

@@ -32,21 +32,19 @@ const Login = () => {
 
     if (isValidEmailRegex.test(email) && password) {
       Services.UserLogin(email, password, setResponse, setLoad);
-      PHP.Login(formData, setResponse, setLoad);
+      //PHP.Login(formData, setResponse, setLoad);
     } else {
       alert('Preencha os dados corretamente');
     }
   }
   if (response) {
-    console.log(response);
     localStorage.setItem('usercod', response[0].Cod);
     localStorage.setItem('username', response[0].UserName);
     setUser(response[0].UserName);
     navigate('/generalfeed');
   }
-
   return (
-    <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: 50}} transition={{duration: .3}}>
+    <Container initial={{opacity: 0}} animate={{opacity: 1}}>
       <Content>
         <Form>
           <Catgram

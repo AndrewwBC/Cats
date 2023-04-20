@@ -13,7 +13,6 @@ import {
 
 import Comments from '../PostComponents/Comments/Comments';
 import Likes from '../PostComponents/Likes/Likes';
-import Input from '../../FormComponents/Input/Input';
 import IconsData from '../PostComponents/IconsData/IconsData';
 
 const FeedPost = () => {
@@ -26,21 +25,20 @@ const FeedPost = () => {
   async function getInfo() {
     await Services.GetPosts(setPost);
   }
-  console.log(post);
-  if (!post) return <div>Load</div>;
+  
+  if (!post) return <div style={{height: '100vh' }}>Load</div>;
   else
     return (
       <>
-        <Container>
+        <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: 50}} transition={{duration: .6}}>
           {post.map((item: any) => (
-            <Content>
+            <Content key={item.Post_Cod}>
               <Image
-                key={item.User_Cod}
                 src={`http://localhost:3001/images/${item.Img}`}
-              />
+              /> 
               <PostInteraction>
                 <IconsData />
-                <Likes postCod={item.Post_Cod} />
+                <p>{item.Likes}</p>
                 <UserNameDescription>
                   <div>
                     <User>Drew123</User>

@@ -26,7 +26,7 @@ const GeneralFeed = () => {
 
   return (
     <>
-      <Container>
+      <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: 50}} transition={{duration: .3}}>
         <Content>
           <FeedPost />
           {/* <button onClick={envioMassa}>Envio em Massa</button> */}
