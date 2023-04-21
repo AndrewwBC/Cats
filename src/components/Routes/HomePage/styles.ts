@@ -87,7 +87,7 @@ export const InfosText = styled.p`
     width: 8px;
     height: 12px;
     border-radius: 4px;
-    background-color: #f4cfa9;
+    background-color: #fF7045;
   }
   &::after {
     content: ' ';
@@ -96,7 +96,7 @@ export const InfosText = styled.p`
     right: -24px;
     height: 12px;
     border-radius: 4px;
-    background-color: #f4cfa9;
+    background-color: #fF7045;
   }
 
   @media (max-width: 768px) {

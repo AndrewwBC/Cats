@@ -25,7 +25,7 @@ export const CatImg = styled.img`
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   @media (max-width: 768px) {

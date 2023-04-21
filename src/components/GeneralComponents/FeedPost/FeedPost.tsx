@@ -9,11 +9,14 @@ import {
   PostInteraction,
   User,
   UserNameDescription,
+  LikeText,
+  SendCommentDiv,
+  SendCommentButton
 } from './styles';
 
 import Comments from '../PostComponents/Comments/Comments';
-import Likes from '../PostComponents/Likes/Likes';
 import IconsData from '../PostComponents/IconsData/IconsData';
+import { Button } from '../../FormComponents/Button/style';
 
 const FeedPost = () => {
   const [post, setPost] = useState<any>();
@@ -38,7 +41,7 @@ const FeedPost = () => {
               /> 
               <PostInteraction>
                 <IconsData />
-                <p>{item.Likes}</p>
+                {item.Likes === 0? <LikeText>Seja o primeiro a curtir</LikeText> : item.Likes > 1? <LikeText>{item.Likes} curtidas</LikeText> : <LikeText>{item.Likes} curtida</LikeText> }
                 <UserNameDescription>
                   <div>
                     <User>Drew123</User>
@@ -46,7 +49,12 @@ const FeedPost = () => {
                   <Description>{item.Description}</Description>
                 </UserNameDescription>
                 <Comments postCod={item.Post_Cod} />
-                <InputComment placeholder="Adicione um comentário..." />
+              
+                <SendCommentDiv>
+                <InputComment placeholder="Adicione um comentário..."/>
+                <SendCommentButton>Enviar</SendCommentButton>
+                </SendCommentDiv>
+
               </PostInteraction>
             </Content>
           ))}

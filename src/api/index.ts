@@ -115,6 +115,20 @@ const Services = {
       setLikes(false);
     }
   },
+  GetUser: async (setData: any ,userCod: any) => {
+    try {
+      await Axios.get('http://localhost:3001/getuser', {
+        params: {
+          userCod: userCod,
+        },
+      }).then((response) =>
+        response? setData(response.data[0]) : setData(false),
+      );
+    } catch (err) {
+      console.log(err);
+      setData(false);
+    }
+  }
 };
 
 export const UserRequirements = {

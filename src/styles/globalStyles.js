@@ -18,6 +18,11 @@ export default createGlobalStyle`
     button{
         border: none;
     }
+
+    li{
+        list-style: none;
+    }
+
     p{
         color: ${(props) => props.theme.text};   
     }

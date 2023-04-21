@@ -1,4 +1,3 @@
-import React from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import HomePage from '../Routes/HomePage/HomePage'
 import Login from '../Routes/Login/Login'
@@ -8,6 +7,7 @@ import { ForgotPassword } from '../FormComponents/Input/styles'
 import NewPassword from '../Routes/NewPassword/NewPassword'
 import ValidateEmail from '../Routes/ValidateEmail/validateEmail'
 import GeneralFeed from '../Routes/GeneralFeed/GeneralFeed'
+import UserPage from '../Routes/UserPage/UserPage'
 
 
 const AnimatedRoutes = () => {
@@ -24,6 +24,7 @@ const AnimatedRoutes = () => {
             <Route path="/newpassword/:email" element={<NewPassword/>} />
             <Route path="/validateemail/:token" element={<ValidateEmail />} />
             <Route path="/generalfeed" element={<GeneralFeed />} />     
+            <Route path="/userpage" element={<UserPage />} />    
         </Routes>
     </AnimatePresence>
   )

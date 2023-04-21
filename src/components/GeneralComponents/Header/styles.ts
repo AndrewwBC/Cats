@@ -9,9 +9,9 @@ import styled from 'styled-components';
 // };
 
 export const Container = styled.header`
-  max-width: 100%;
+  width: 100%;
   background-color: ${({ theme }) => theme.background};
-  box-shadow: inset 0px 0px 1px black;
+  border-bottom: 1px solid #fb1;
 `;
 
 export const Content = styled.div`
@@ -21,6 +21,9 @@ export const Content = styled.div`
   padding: 12px 0;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 768px){
+        padding: 24px;
+    }
 `;
 
 export const Logo = styled.div`

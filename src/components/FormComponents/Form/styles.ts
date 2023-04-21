@@ -12,12 +12,13 @@ export const Container = styled.div`
 export const FormBody = styled.form`
   padding: ${(props) => (props.itemProp ? '0px 0px 0px 12px' : '42px 48px')};
   display: grid;
-  gap: 12px;
-  grid-template-columns: ${(props) => (props.itemProp ? '1fr 1fr' : '1fr')};
+  gap: 12px 0px;
+  grid-template-columns: ${(props) => (props.itemProp ? '2fr 1fr' : '1fr')};
   align-items: center;
   justify-content: center;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.form};
+  max-width: 800px;
   @media (max-width: 1000px) {
     max-width: 768px;
   }
