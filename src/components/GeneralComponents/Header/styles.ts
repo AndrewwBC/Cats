@@ -11,7 +11,6 @@ import styled from 'styled-components';
 export const Container = styled.header`
   width: 100%;
   background-color: ${({ theme }) => theme.background};
-  border-bottom: 1px solid #fb1;
 `;
 
 export const Content = styled.div`

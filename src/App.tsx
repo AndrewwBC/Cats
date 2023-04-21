@@ -7,6 +7,7 @@ import useUser from './hooks/useUser';
 import useTheme from './hooks/useTheme';
 import GlobalStyles from './styles/globalStyles';
 import AnimatedRoutes from './components/AnimatedRoutes/AnimatedRoutes';
+import SideMenu from './components/GeneralComponents/SideMenu/SideMenu';
 
 const App = () => {
   const { user, setUser } = useUser()
@@ -20,7 +21,8 @@ const App = () => {
       <BrowserRouter>
         <ThemeProvider theme={theme ? darkTheme : lightTheme}>
           <Header user={user} />
-          <GlobalStyles />             
+          <GlobalStyles />            
+              <SideMenu/> 
               <AnimatedRoutes/>                         
           <Footer />
         </ThemeProvider>

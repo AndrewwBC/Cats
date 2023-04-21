@@ -11,10 +11,12 @@ export const lightTheme = {
   postInteraction: '#F7E2C7',
   postInterText: '#202020',
   link: '#35281E',
+  sideMenu: '#f9f9f9'
 };
 
 export const darkTheme = {
   background: '#111',
+  sideMenu: '#000',
   titles: '#f9f9f9',
   text: '#f9f9f9',
   accent: '#8A85FF',

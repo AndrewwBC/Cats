@@ -2,10 +2,11 @@ import styled from "styled-components";
 import {motion as m } from 'framer-motion'
 
 export const Container = styled.main`
-    height: 100%;
     max-width: 1000px;
-    margin: 32px auto 0px auto;
-    border: 1px dashed red;
+    height: 100vh;
+    margin: 32px auto;
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 4px;
 `
 
 export const Content = styled.section`
@@ -17,7 +18,7 @@ export const UserData = styled.article`
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
+    padding: 32px 32px 0px 32px;
     @media (max-width: 680px){
         flex-direction: column;
         justify-content: center;
@@ -48,6 +49,7 @@ export const UserPhoto = styled.img`
     display: block;
     max-width: 100%;
     border-radius: 99999px;
+    object-fit: cover;
 
 `
 
@@ -90,18 +92,21 @@ export const NumbersButton = styled.button`
 export const UserFeed = styled.article`
     margin-top: 160px;
     display: grid;
-    gap: 12px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: 400px;
+    gap: 12px;
+    padding: 8px;
     overflow-y: auto;
     @media (max-width: 768px){
         margin-top: 48px;
         padding: 0px 12px;
+        grid-template-rows: none;
     } 
 `
 
 export const FeedImg = styled.img`
-display: block;
-    max-width: 100%;
-    max-height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 `
