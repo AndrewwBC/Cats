@@ -44,7 +44,7 @@ const Services = {
       await Axios.get('http://localhost:3001/login', {
         params: { email: email, password: password },
       }).then((response) =>
-        response ? setResponse(response.data) : setResponse(false),
+        response ? setResponse(response.data[0]) : setResponse(false),
       );
     } catch (err) {
       console.log(err);
@@ -101,14 +101,15 @@ const Services = {
       setComments(false);
     }
   },
-  GetLikes: async (setLikes: any, postCod: number) => {
+  GetLikes: async (setLikes: any, postCod: number, userCod: number | boolean) => {
     try {
       await Axios.get('http://localhost:3001/getlikes', {
         params: {
           postCod: postCod,
+          userCod: userCod
         },
       }).then((response) =>
-        response.data.length >= 1 ? setLikes(response) : setLikes(response),
+        response.data.length >= 1 ? setLikes(response) : setLikes(false),
       );
     } catch (err) {
       console.log(err);

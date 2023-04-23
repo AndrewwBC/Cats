@@ -16,16 +16,18 @@ export const Container = styled.header`
 export const Content = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  display: flex;
-  padding: 12px 0;
+  display: grid;
+  padding: 12px;
+  gap: 128px;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: 1fr auto auto;
+  justify-content: center;
   @media (max-width: 1115px){
-        padding-left: 24px;
+    padding-left: 24px;
     }
   @media (max-width: 768px){
-        padding: 24px;
-        padding-left: 48px;
+    padding: 24px;
+    padding-left: 48px;
     }
 `;
 
@@ -36,5 +38,7 @@ export const Logo = styled.div`
 export const Menu = styled.nav`
   display: flex;
   align-items: center;
-  justify-items: center;
+  flex-shrink: 0;
+  justify-items: self-end;
+
 `;

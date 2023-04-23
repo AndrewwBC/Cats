@@ -1,48 +1,53 @@
-import { useCallback, useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import Services, { PHP, UserRequirements } from '../../../api';
-import { Button } from '../../FormComponents/Button/style';
-import Form from '../../FormComponents/Form';
-import Input from '../../FormComponents/Input';
-import { Catgram } from '../../GeneralComponents/Titles';
-import { Container, Content } from './styles';
-import useUser from '../../../hooks/useUser';
+import { useCallback, useEffect, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import Services, { PHP, UserRequirements } from '../../../api'
+import { Button } from '../../FormComponents/Button/style'
+import Form from '../../FormComponents/Form'
+import Input from '../../FormComponents/Input'
+import { Catgram } from '../../GeneralComponents/Titles'
+import { Container, Content } from './styles'
+import useUser from '../../../hooks/useUser'
+import useUserCod from '../../../hooks/useUserCod'
 
 const isValidEmailRegex =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const formData = new FormData();
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const formData = new FormData()
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
-  });
-  const [response, setResponse] = useState<any>();
-  const [load, setLoad] = useState(false);
-  const { setUser } = useUser();
-  const navigate = useNavigate();
+  })
+  const [response, setResponse] = useState<any>()
+  const [load, setLoad] = useState(false)
+  const { setUser } = useUser()
+  const { setUserCod } = useUserCod()
+  const navigate = useNavigate()
 
   async function handleSubmit(e: any) {
-    e.preventDefault();
+    e.preventDefault()
 
-    let { email, password } = loginData;
+    let { email, password } = loginData
 
-    formData.append('email', email);
-    formData.append('password', password);
+    formData.append('email', email)
+    formData.append('password', password)
 
     if (isValidEmailRegex.test(email) && password) {
-      Services.UserLogin(email, password, setResponse, setLoad);
+      Services.UserLogin(email, password, setResponse, setLoad)
       //PHP.Login(formData, setResponse, setLoad);
     } else {
-      alert('Preencha os dados corretamente');
+      alert('Preencha os dados corretamente')
     }
   }
   if (response) {
-    setUser(response[0].UserName);
-    navigate('/generalfeed');
+    localStorage.setItem('username', response.UserName)
+    localStorage.setItem('usercod', response.Cod)
+    setUser(response.UserName)
+    setUserCod(response.Cod)
+    navigate('/userpage')
   }
   return (
-    <Container initial={{opacity: 0}} animate={{opacity: 1}}>
+    <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Content>
         <Form>
           <Catgram
@@ -97,7 +102,7 @@ const Login = () => {
         </Form>
       </Content>
     </Container>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

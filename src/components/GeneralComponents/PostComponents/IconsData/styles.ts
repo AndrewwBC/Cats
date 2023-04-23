@@ -14,7 +14,6 @@ export const Icons = styled.div`
 `;
 
 export const Icon = styled.img`
-  display: block;
   width: 24px;
   height: 24px;
 `;

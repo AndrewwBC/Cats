@@ -1,50 +1,34 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.section`
-  max-width: 42rem;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  left: 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
+  background-color: ${({theme}) => theme.background};
   padding: 1rem 2rem;
   justify-content: center;
   border-radius: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
-export const Arrow = styled.img`
-  display: block;
-  border-radius: 6px;
-  color: black;
-  background-color: #f9f9f9;
-  transition: 0.5s;
-  cursor: pointer;
-`;
-
 export const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Animate = keyframes`
-  from{
-    transform: translate3d(0,-20px,0);
-  
-  } to{
-    transform: translate3d(0,0,0);
-  }
-
-`;
-
-export const DropDown = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  animation: ${Animate} ease-in-out 0.5s;
-  grid-column: 1/-1;
+  padding: 32px 12px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0,0,0,.8);
+  border-radius: 4px;
 `;
+
+
 
 export const InputFile = styled.input`
   margin-right: 20px;

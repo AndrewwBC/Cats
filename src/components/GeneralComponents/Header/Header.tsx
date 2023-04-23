@@ -1,58 +1,61 @@
-import { Paragraph } from '../Paragraph';
-import { Container, Content, Logo, Menu } from './styles';
-import { NavLink } from 'react-router-dom';
-import useTheme from '../../../hooks/useTheme';
-import SideMenu from '../SideMenu/SideMenu';
-import useUser from '../../../hooks/useUser';
-
+import { Paragraph } from '../Paragraph'
+import { Container, Content, Logo, Menu } from './styles'
+import { NavLink } from 'react-router-dom'
+import useTheme from '../../../hooks/useTheme'
+import SideMenu from '../SideMenu/SideMenu'
+import useUser from '../../../hooks/useUser'
+import { BsSun, BsMoon } from 'react-icons/bs'
+import { AiOutlineUser } from 'react-icons/ai'
 const Header = () => {
+  const { theme, setTheme } = useTheme()
+  const { user } = useUser()
 
-  const { theme, setTheme } = useTheme();
-  const {user} = useUser()
-
-  if(user) return <SideMenu/>
+  if (user) return <SideMenu />
   else
-  return (
-    <>
-      <Container>
-        <Content>
-          <NavLink to="/">
-            <Logo>
-              <img
-                height={36}
-                width={36}
-                src="https://iconsplace.com/wp-content/uploads/_icons/ffa500/256/png/cat-icon-11-256.png"
-                alt="Icon"
-              />
-            </Logo>
-          </NavLink>
-
-          <Menu>
-            <NavLink
-              style={{ display: 'flex', alignItems: 'center' }}
-              to={user ? '/userpage' : '/login'}
-            >
-              {user ? (
-                <Paragraph itemProp="16px">{user}</Paragraph>
-              ) : (
-                <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
-              )}
-
-              <img
-                height={36}
-                width={36}
-                src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png"
-                alt=""
-              />
+    return (
+      <>
+        <Container>
+          <Content>
+            <NavLink to="/">
+              <Logo>
+                <img
+                  height={36}
+                  width={36}
+                  src="https://iconsplace.com/wp-content/uploads/_icons/ffa500/256/png/cat-icon-11-256.png"
+                  alt="Icon"
+                />
+              </Logo>
             </NavLink>
-            <div>
-              <button onClick={() => setTheme(!theme)}>Tema</button>
-            </div>
-          </Menu>
-        </Content>
-      </Container>
-    </>
-  );
-};
 
-export default Header;
+            <Menu>
+              <NavLink
+                style={{ display: 'flex', alignItems: 'center' }}
+                to={user ? '/userpage' : '/login'}
+              >
+                {user ? (
+                  <Paragraph itemProp="16px">{user}</Paragraph>
+                ) : (
+                  <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
+                )}
+              </NavLink>
+              <AiOutlineUser size={28} />
+            </Menu>
+            <div>
+              <button
+                style={{ background: 'none', cursor: 'pointer' }}
+                onClick={() => setTheme(!theme)}
+              >
+                {theme ? (
+                  <BsMoon size={28} />
+                ) : (
+                  <BsSun size={28} color="orange" />
+                )}
+              </button>
+            </div>
+          </Content>
+        </Container>
+      </>
+    )
+}
+
+export default Header

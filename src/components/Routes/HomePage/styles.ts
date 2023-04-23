@@ -12,8 +12,7 @@ export const Main = styled(m.main)`
 
 export const Content = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 200px 200px 200px 200px;
+  grid-template-columns: 1fr 1fr ;
   max-width: 1000px;
   margin: 0 auto;
   align-items: center;
@@ -29,8 +28,6 @@ export const Intro = styled.article`
   grid-template-columns: 1fr;
   flex-wrap: wrap;
   flex-direction: column;
-  grid-column: 1/4;
-  grid-row: 1/3;
   gap: 24px;
   text-align: center;
 `;
@@ -58,8 +55,6 @@ export const Access = styled.p`
 export const Infos = styled.div`
   display: flex;
   flex-direction: column;
-  grid-column: 4/-1;
-  grid-row: 4;
   padding: 24px;
   align-items: center;
   justify-content: center;

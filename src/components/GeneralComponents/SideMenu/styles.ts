@@ -6,6 +6,7 @@ export const SideContent = styled.nav`
     left: 0;
     top: 0;
     transition: .5s;
+    z-index: 10;
     background-color: ${({ theme }) => theme.sideMenu};
     width: 48px;
     &:hover{
@@ -46,7 +47,7 @@ export const IconsContainer = styled.ul`
     align-items: start;
     border-radius: 4px;
     flex-grow: 1;
-    gap: 24px;
+    gap: 32px;
     overflow: hidden;
 `
 
@@ -63,7 +64,7 @@ export const IconAndTitle = styled.div`
     }
 `
 
-export const IconTile = styled.p`
+export const IconTitle = styled.p`
     font-family: 'Poppins';
     font-size: 16px;
 `
