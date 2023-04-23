@@ -2,11 +2,16 @@ import { Paragraph } from '../Paragraph';
 import { Container, Content, Logo, Menu } from './styles';
 import { NavLink } from 'react-router-dom';
 import useTheme from '../../../hooks/useTheme';
+import SideMenu from '../SideMenu/SideMenu';
+import useUser from '../../../hooks/useUser';
 
-const Header = ({ user }: any) => {
+const Header = () => {
 
   const { theme, setTheme } = useTheme();
+  const {user} = useUser()
 
+  if(user) return <SideMenu/>
+  else
   return (
     <>
       <Container>

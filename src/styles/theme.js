@@ -16,7 +16,7 @@ export const lightTheme = {
 
 export const darkTheme = {
   background: '#111',
-  sideMenu: '#000',
+  sideMenu: '#111',
   titles: '#f9f9f9',
   text: '#f9f9f9',
   accent: '#8A85FF',

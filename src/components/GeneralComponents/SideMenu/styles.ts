@@ -65,7 +65,7 @@ export const IconAndTitle = styled.div`
 
 export const IconTile = styled.p`
     font-family: 'Poppins';
-    font-size: 18px;
+    font-size: 16px;
 `
 
 export const Icon = styled.img`

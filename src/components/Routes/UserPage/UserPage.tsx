@@ -2,6 +2,7 @@ import React, {useState, useEffect, memo} from 'react'
 import { Container, Content, FeedImg, Numbers, NumbersButton, NumbersContainer, UserData, UserFeed, UserInfo, UserName, UserNamePhoto, UserPhoto} from './styles'
 import Services from '../../../api'
 import { Button } from '../../FormComponents/Button/style'
+import SideMenu from '../../GeneralComponents/SideMenu/SideMenu'
 
 
 let userCod = localStorage.getItem('usercod')    
@@ -36,6 +37,7 @@ const UserPage = () => {
   return (
     <Container>
       <Content>
+      <SideMenu/> 
           <UserData>
             <UserNamePhoto>
                 <UserPhoto height={80} width={80} src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="" />

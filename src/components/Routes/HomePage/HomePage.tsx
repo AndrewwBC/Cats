@@ -12,6 +12,7 @@ import {
 import { Paragraph } from '../../GeneralComponents/Paragraph';
 import { Catgram, Title } from '../../GeneralComponents/Titles';
 import { Button } from '../../FormComponents/Button/style';
+import SideMenu from '../../GeneralComponents/SideMenu/SideMenu';
 
 
 const HomePage = () => {

@@ -20,8 +20,12 @@ export const Content = styled.div`
   padding: 12px 0;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 1115px){
+        padding-left: 24px;
+    }
   @media (max-width: 768px){
         padding: 24px;
+        padding-left: 48px;
     }
 `;
 

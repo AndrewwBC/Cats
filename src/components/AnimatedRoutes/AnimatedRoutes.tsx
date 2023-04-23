@@ -19,7 +19,7 @@ const AnimatedRoutes = () => {
         <Routes key={location.pathname} location={location} >
             <Route key={"homepage"} path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="/register" element={<Register />} />          
             <Route path="/Forgotpassword" element={<ForgotPassword/>} />
             <Route path="/newpassword/:email" element={<NewPassword/>} />
             <Route path="/validateemail/:token" element={<ValidateEmail />} />

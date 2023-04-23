@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useCallback} from "react";
 import {
   IconAndTitle,
   IconTile,
@@ -7,27 +7,37 @@ import {
   SideContent,
   TitleButton,
 } from "./styles";
-import { Catgram } from "../Titles";
-import { GrConfigure } from "react-icons/gr";
+import { Catgram, Title } from "../Titles";
+import { CiSettings } from "react-icons/ci";
 import { SlHome } from "react-icons/sl";
 import { BsChatDots } from "react-icons/bs";
 import { IoMdLogOut } from "react-icons/io";
-import { NavLink } from "react-router-dom";
-const SideMenu = () => {
+import {CgProfile} from 'react-icons/cg'
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import useUser from "../../../hooks/useUser";
 
-  function handleClick(event: any){
-    console.log(event.target.to)
+
+
+const SideMenu = () => {
+  const navigate = useNavigate()
+
+  const {  user,setUser } = useUser()
+
+  function logOut(){
+    setUser('')
+    navigate('')
   }
 
   return (
     <>
       <SideContent>
         <TitleButton>
-          <Catgram style={{ fontSize: "24px"}}>CatGram</Catgram>
+          <Catgram style={{ fontSize: "18px"}}>{user}</Catgram>
         </TitleButton>
+      
         <IconsContainer>
           <li>
-            <NavLink to={"/generalfeed"} onClick={(event) => handleClick(event)}>
+            <NavLink to={"/generalfeed"}>
               <IconAndTitle>
                 <SlHome size={24} />
                 <IconTile>Homepage</IconTile>
@@ -36,7 +46,16 @@ const SideMenu = () => {
           </li>
 
           <li>
-            <NavLink to={"/generalfeed"} onClick={(event) => handleClick(event)}>
+            <NavLink to={"/generalfeed"}>
+              <IconAndTitle>
+                <CgProfile size={24} />
+                <IconTile>Perfil</IconTile>
+              </IconAndTitle>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={"/generalfeed"}>
               <IconAndTitle>
                 <BsChatDots size={24} />
                 <IconTile>Mensagens</IconTile>
@@ -45,17 +64,17 @@ const SideMenu = () => {
           </li>
 
           <li>
-            <NavLink to={"/generalfeed"} onClick={(event) => handleClick(event)}>
+            <NavLink to={"/generalfeed"}>
               <IconAndTitle>
-                <GrConfigure size={24} />
+                <CiSettings size={26} />
                 <IconTile>Configurações</IconTile>
               </IconAndTitle>
             </NavLink>
           </li>
 
-          <li>
-            <NavLink to={"/generalfeed"} onClick={(event) => handleClick(event)}>
-              <IconAndTitle>
+          <li style={{flexGrow: '1'}}>
+          <NavLink to={"/"}>
+              <IconAndTitle  onClick={logOut}>
                 <IoMdLogOut size={24} />
                 <IconTile>Sair</IconTile>
               </IconAndTitle>
@@ -67,4 +86,4 @@ const SideMenu = () => {
   );
 };
 
-export default SideMenu;
+export default memo(SideMenu);

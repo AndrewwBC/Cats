@@ -3,6 +3,7 @@ import { PHP } from '../../../api';
 import { Container, Content } from './styles';
 import FeedPost from '../../GeneralComponents/FeedPost/FeedPost';
 import PostPhoto from '../../GeneralComponents/PostPhoto/PostPhoto';
+import SideMenu from '../../GeneralComponents/SideMenu/SideMenu';
 
 const GeneralFeed = () => {
   //const [files, setFiles] = useState<any>();
@@ -28,6 +29,7 @@ const GeneralFeed = () => {
     <>
       <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: 50}} transition={{duration: .3}}>
         <Content>
+          <SideMenu/> 
           <FeedPost />
           {/* <button onClick={envioMassa}>Envio em Massa</button> */}
         </Content>

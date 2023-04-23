@@ -38,8 +38,6 @@ const Login = () => {
     }
   }
   if (response) {
-    localStorage.setItem('usercod', response[0].Cod);
-    localStorage.setItem('username', response[0].UserName);
     setUser(response[0].UserName);
     navigate('/generalfeed');
   }

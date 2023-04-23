@@ -36,9 +36,11 @@ const FeedPost = () => {
         <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: 50}} transition={{duration: .6}}>
           {post.map((item: any) => (
             <Content key={item.Post_Cod}>
+              <div>
               <Image
                 src={`http://localhost:3001/images/${item.Img}`}
               /> 
+              </div>
               <PostInteraction>
                 <IconsData />
                 {item.Likes === 0? <LikeText>Seja o primeiro a curtir</LikeText> : item.Likes > 1? <LikeText>{item.Likes} curtidas</LikeText> : <LikeText>{item.Likes} curtida</LikeText> }

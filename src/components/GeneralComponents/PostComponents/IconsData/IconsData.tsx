@@ -1,22 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Content, Icon, Icons } from './styles';
+import { FaRegHeart, FaHeart, FaRegComment, FaRegPaperPlane } from 'react-icons/fa'
 
 const IconsData = () => {
-  const Links = [
-    'https://www.svgrepo.com/show/509131/heart.svg',
-    'https://www.svgrepo.com/show/473857/comment.svg',
-    'https://www.svgrepo.com/show/509186/paper-plane.svg',
-  ];
+  const [like, setLike] = useState(false);
 
   return (
     <Content>
-      <Icons>
-        {Links.map((item, index) => (
-          <Icon key={index} src={item} />
-        ))}
+      <Icons>   
+        {like?  <FaHeart style={{cursor: 'pointer'}}  onDoubleClick={() => setLike(!like)} size={22} color='red'/>:  <FaRegHeart style={{cursor: 'pointer'}}  onDoubleClick={() => setLike(!like)} size={20}/> }
+        <FaRegComment style={{cursor: 'pointer'}}   size={22}/>
+        <FaRegPaperPlane style={{cursor: 'pointer'}}   size={22}/>
       </Icons>
       <div>
-        <p style={{ color: '#222' }}>20/03/2023</p>
+        <p style={{ pointerEvents: 'none' }}>20/03/2023</p>
       </div>
     </Content>
   );

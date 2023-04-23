@@ -10,6 +10,7 @@ export const Container = styled(m.section)`
 export const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 480px;
   justify-content: center;
   margin-bottom: 24px;
 `;
@@ -28,7 +29,7 @@ export const PostInteraction = styled.div`
 `;
 export const Image = styled.img`
   width: 100%;
-  height: 32rem;
+  height: 100%;
   display: block;
   object-fit: cover;
 `;
