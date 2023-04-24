@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, useEffect, memo, useCallback } from 'react'
 import Services, { UserRequirements } from '../../../api'
 import {
   Container,
@@ -13,11 +13,12 @@ import {
   SendCommentDiv,
   SendCommentButton,
 } from './styles'
-
 import Comments from '../PostComponents/Comments/Comments'
 import IconsData from '../PostComponents/IconsData/IconsData'
-import { Button } from '../../FormComponents/Button/style'
 import useUserCod from '../../../hooks/useUserCod'
+import useRender from '../../../hooks/useRender'
+import InputFeed from '../../FormComponents/InputFeed/InputFeed'
+import SendComments from '../PostComponents/SendComments/SendComments'
 
 const FeedPost = () => {
   const [post, setPost] = useState<any>()
@@ -25,22 +26,17 @@ const FeedPost = () => {
   const [pushComments, setPushComments] = useState(false)
 
   const { userCod } = useUserCod()
+  const { render, setRender } = useRender()
 
   useEffect(() => {
     getInfo()
-  }, [pushComments])
+  }, [])
 
-  async function getInfo() {
+  const getInfo = useCallback(async () => {
     await Services.GetPosts(setPost)
-  }
+  }, [])
 
-  const sendComment = (postCod: number) => {
-    UserRequirements.PutComment(comment, postCod, userCod)
-    setComment('')
-    setPushComments(!pushComments)
-  }
-
-  if (!post) return <div style={{ height: '100vh' }}>Load</div>
+  if (!post) return <div style={{ height: '100vh' }}>Carregando</div>
   else
     return (
       <>
@@ -71,17 +67,7 @@ const FeedPost = () => {
                   <Description>{item.Description}</Description>
                 </UserNameDescription>
                 <Comments postCod={item.Post_Cod} pushComments={pushComments} />
-
-                <SendCommentDiv>
-                  <InputComment
-                    value={comment}
-                    onChange={({ target }) => setComment(target.value)}
-                    placeholder="Adicione um comentário..."
-                  />
-                  <SendCommentButton onClick={() => sendComment(item.Post_Cod)}>
-                    Enviar
-                  </SendCommentButton>
-                </SendCommentDiv>
+                <SendComments item={item.Post_Cod} />
               </PostInteraction>
             </Content>
           ))}

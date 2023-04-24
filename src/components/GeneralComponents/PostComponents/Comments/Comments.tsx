@@ -1,13 +1,15 @@
-import React, { useEffect, useState, memo, useCallback } from 'react'
+import React, { useEffect, useState, memo, useCallback, useMemo } from 'react'
 import Services from '../../../../api'
-import { Container, EachComment, Img } from './styles'
+import { Container, EachComment } from './styles'
+import useRender from '../../../../hooks/useRender'
 
-const Comments = ({ postCod, pushComments }: any) => {
+const Comments = ({ postCod }: any) => {
   const [comments, setComments] = useState<boolean | any>(false)
+  const { render } = useRender()
 
-  useEffect(() => {
+  useMemo(() => {
     Services.GetComments(setComments, postCod)
-  }, [postCod, pushComments])
+  }, [render, postCod])
 
   if (!comments) return <div></div>
   if (comments)
@@ -16,7 +18,7 @@ const Comments = ({ postCod, pushComments }: any) => {
         {comments.map((item: any, index: number) => {
           if (index === comments.length - 1)
             return (
-              <EachComment key={item.Comment_Cod}>
+              <EachComment key={Math.random()}>
                 <div>
                   <p>pedrinho123</p>
                 </div>
