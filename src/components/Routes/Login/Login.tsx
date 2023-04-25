@@ -7,7 +7,6 @@ import Input from '../../FormComponents/Input'
 import { Catgram } from '../../GeneralComponents/Titles'
 import { Container, Content } from './styles'
 import useUser from '../../../hooks/useUser'
-import useUserCod from '../../../hooks/useUserCod'
 
 const isValidEmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -20,18 +19,14 @@ const Login = () => {
   })
   const [response, setResponse] = useState<any>()
   const [load, setLoad] = useState(false)
-  const { setUser } = useUser()
-  const { setUserCod } = useUserCod()
+  const { user, setUser } = useUser()
   const navigate = useNavigate()
 
   async function handleSubmit(e: any) {
     e.preventDefault()
-
     let { email, password } = loginData
-
     formData.append('email', email)
     formData.append('password', password)
-
     if (isValidEmailRegex.test(email) && password) {
       Services.UserLogin(email, password, setResponse, setLoad)
       //PHP.Login(formData, setResponse, setLoad);
@@ -40,10 +35,8 @@ const Login = () => {
     }
   }
   if (response) {
-    localStorage.setItem('username', response.UserName)
-    localStorage.setItem('usercod', response.Cod)
-    setUser(response.UserName)
-    setUserCod(response.Cod)
+    setUser({ userData: response })
+    localStorage.setItem('user', JSON.stringify({ userData: response }))
     navigate('/userpage')
   }
   return (

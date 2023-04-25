@@ -3,10 +3,10 @@ import React, { createContext, useState } from 'react'
 const UserContext = createContext<any>(null)
 
 const UserStorage = ({ children }: any) => {
-  const [user, setUser] = useState<any>('')
+  const [user, setUser] = useState<any>(false)
   const [theme, setTheme] = useState<any>(false)
-  const [userCod, setUserCod] = useState<any>('')
   const [render, setRender] = useState(false)
+  const [fakeComment, setFakeComment] = useState(false)
 
   return (
     <UserContext.Provider
@@ -15,10 +15,10 @@ const UserStorage = ({ children }: any) => {
         setUser,
         theme,
         setTheme,
-        userCod,
-        setUserCod,
         render,
         setRender,
+        fakeComment,
+        setFakeComment,
       }}
     >
       {children}

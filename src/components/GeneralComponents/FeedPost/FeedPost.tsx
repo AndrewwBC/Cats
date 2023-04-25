@@ -15,7 +15,6 @@ import {
 } from './styles'
 import Comments from '../PostComponents/Comments/Comments'
 import IconsData from '../PostComponents/IconsData/IconsData'
-import useUserCod from '../../../hooks/useUserCod'
 import useRender from '../../../hooks/useRender'
 import InputFeed from '../../FormComponents/InputFeed/InputFeed'
 import SendComments from '../PostComponents/SendComments/SendComments'
@@ -25,13 +24,11 @@ const FeedPost = () => {
   const [comment, setComment] = useState('')
   const [pushComments, setPushComments] = useState(false)
 
-  const { userCod } = useUserCod()
   const { render, setRender } = useRender()
 
   useEffect(() => {
     getInfo()
   }, [])
-
   const getInfo = useCallback(async () => {
     await Services.GetPosts(setPost)
   }, [])

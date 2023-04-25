@@ -5,15 +5,12 @@ import { Container, Content, DropFiles, InputFile } from './styles'
 import { Title } from '../Titles'
 import Input from '../../FormComponents/Input/Input'
 import { Paragraph } from '../Paragraph'
-import useUserCod from '../../../hooks/useUserCod'
 import useUser from '../../../hooks/useUser'
 
 const PostPhoto = ({ setModal }: any) => {
   const [file, setFile] = useState<any>()
-  const [arrow, setArrow] = useState(false)
   const [description, setDescription] = useState('')
 
-  const { userCod } = useUserCod()
   const { user } = useUser()
 
   const formData = new FormData()
@@ -22,8 +19,8 @@ const PostPhoto = ({ setModal }: any) => {
     event.preventDefault()
     formData.append('image', file)
     formData.append('description', description)
-    formData.append('user_cod', userCod)
-    formData.append('username', user)
+    formData.append('user_cod', user.Cod)
+    formData.append('username', user.UserName)
     //Upload
     await UserRequirements.PostFeedPhoto(formData)
     //Download

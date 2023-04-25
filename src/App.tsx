@@ -8,23 +8,22 @@ import useTheme from './hooks/useTheme'
 import GlobalStyles from './styles/globalStyles'
 import AnimatedRoutes from './components/AnimatedRoutes/AnimatedRoutes'
 import SideMenu from './components/GeneralComponents/SideMenu/SideMenu'
-import useUserCod from './hooks/useUserCod'
+import { JsonObjectExpression } from 'typescript'
 
 const App = () => {
   const { user, setUser } = useUser()
-  const { setUserCod } = useUserCod()
   const { theme } = useTheme()
 
-  if (localStorage.getItem('username'))
-    setUser(localStorage.getItem('username'))
-  if (localStorage.getItem('usercod'))
-    setUserCod(localStorage.getItem('usercod'))
+  if (localStorage.getItem('user') && user === false) {
+    let userData: any = localStorage.getItem('user')
+    setUser(JSON.parse(userData))
+  }
 
   return (
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-          {user ? <SideMenu /> : <Header />}
+          {user && user.Cod ? <SideMenu /> : <Header />}
 
           <GlobalStyles />
           <AnimatedRoutes />

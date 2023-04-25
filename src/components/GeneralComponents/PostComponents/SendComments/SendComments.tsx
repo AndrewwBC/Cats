@@ -1,19 +1,29 @@
 import React, { useState, memo } from 'react'
 import { InputComment, SendCommentButton, SendCommentDiv } from './styles'
-import useUserCod from '../../../../hooks/useUserCod'
 import { UserRequirements } from '../../../../api'
-import useRender from '../../../../hooks/useRender'
+import useFakeComment from '../../../../hooks/useFakeComment'
+import useUser from '../../../../hooks/useUser'
 
 const SendComments = ({ item }: any) => {
   const [comment, setComment] = useState('')
-  const { userCod } = useUserCod()
-  const { render, setRender } = useRender()
+  const { user } = useUser()
+  const { setFakeComment } = useFakeComment()
 
   const sendComment = (postCod: number) => {
     if (comment.length > 0) {
-      UserRequirements.PutComment(comment, postCod, userCod)
+      // Insere comentario no banco
+      setFakeComment({
+        comment: comment,
+        username: user.userData.UserName,
+        postCod: postCod,
+      })
+      UserRequirements.PutComment(
+        comment,
+        postCod,
+        user.userData.Cod,
+        user.userData.UserName,
+      )
       setComment('')
-      setRender(!render)
     }
   }
   return (

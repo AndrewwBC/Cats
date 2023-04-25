@@ -255,18 +255,19 @@ export const UserRequirements = {
     } finally {
     }
   },
-  PutComment: async (comment: any, postCod: any, userCod: any) => {
+  PutComment: async (comment: any, postCod: any, userCod: any, userName: 'string') => {
     try {
       Axios.post('http://localhost:3001/putcomment', {
         comment: comment,
         postCod: postCod,
         userCod: userCod,
+        userName: userName
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
     }
   },
-  PutLikes: async (postCod: any, userCod: any, typeofChange: any) => {
+  PutLikes: async (postCod: any, userCod: any, typeofChange: boolean) => {
     try {
       Axios.post('http://localhost:3001/putlike', {
         postCod: postCod,

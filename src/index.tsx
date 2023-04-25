@@ -1,19 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/globalStyles';
-import { UserStorage } from './providers/userContext';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import './styles/globalStyles'
+import { UserStorage } from './providers/userContext'
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <UserStorage>
       <App />
     </UserStorage>
   </React.StrictMode>,
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

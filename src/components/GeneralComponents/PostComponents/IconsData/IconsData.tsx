@@ -7,21 +7,21 @@ import {
   FaRegPaperPlane,
 } from 'react-icons/fa'
 import Services, { UserRequirements } from '../../../../api'
-import useUserCod from '../../../../hooks/useUserCod'
+import useUser from '../../../../hooks/useUser'
 
 const IconsData = ({ postCod }: any) => {
-  const { userCod } = useUserCod()
+  const { user } = useUser()
   const [like, setLike] = useState(false)
   const [response, setResponse] = useState<any>()
 
   const userLikes = (command: boolean) => {
-    UserRequirements.PutLikes(postCod, userCod, command)
+    UserRequirements.PutLikes(postCod, user.userData.Cod, command)
     setLike(!like)
     setResponse(!response)
   }
 
   useEffect(() => {
-    Services.GetLikes(setResponse, postCod, userCod)
+    Services.GetLikes(setResponse, postCod, user.userData.Cod)
   }, [postCod])
 
   return (

@@ -1,35 +1,35 @@
-import { useEffect, useState } from 'react';
-import { Button } from '../../FormComponents/Button/style';
-import Form from '../../FormComponents/Form';
-import Input from '../../FormComponents/Input';
-import { Paragraph } from '../../GeneralComponents/Paragraph';
-import { Title } from '../../GeneralComponents/Titles';
-import { Container } from './styles';
-import { useNavigate, useParams } from 'react-router-dom';
-import { UserRequirements } from '../../../api';
+import { useEffect, useState } from 'react'
+import { Button } from '../../FormComponents/Button/style'
+import Form from '../../FormComponents/Form'
+import Input from '../../FormComponents/Input'
+import { Paragraph } from '../../GeneralComponents/Paragraph'
+import { Title } from '../../GeneralComponents/Titles'
+import { Container } from './styles'
+import { useNavigate, useParams } from 'react-router-dom'
+import { UserRequirements } from '../../../api'
 
 const NewPassword = () => {
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [samePass, setSamePass] = useState(false);
-  const [response, setResponse] = useState();
-  const [error, setError] = useState();
-  const [load, setLoad] = useState(false);
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [samePass, setSamePass] = useState(false)
+  const [response, setResponse] = useState()
+  const [error, setError] = useState()
+  const [load, setLoad] = useState(false)
 
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
-  let { email } = useParams();
+  let { email } = useParams()
 
   useEffect(() => {
-    UserRequirements.CheckEmail(email, setResponse, setLoad);
+    UserRequirements.CheckEmail(email, setResponse, setLoad)
     if (newPassword)
-      newPassword === confirmPassword ? setSamePass(true) : setSamePass(false);
-    if (newPassword === '') setSamePass(false);
-  }, [confirmPassword, newPassword, email]);
+      newPassword === confirmPassword ? setSamePass(true) : setSamePass(false)
+    if (newPassword === '') setSamePass(false)
+  }, [confirmPassword, newPassword, email])
   // if (response === false && response !== undefined) navigate('/');
 
   function handleSubmit(event: any) {
-    event.preventDefault();
+    event.preventDefault()
 
     UserRequirements.ResetPassword(
       setLoad,
@@ -37,12 +37,12 @@ const NewPassword = () => {
       email,
       confirmPassword,
       setResponse,
-    );
+    )
   }
   if (response === 1) {
     setTimeout(() => {
-      navigate('/login');
-    }, 1000);
+      navigate('/login')
+    }, 1000)
   }
   return (
     <Container>
@@ -89,7 +89,7 @@ const NewPassword = () => {
         </Form>
       </>
     </Container>
-  );
-};
+  )
+}
 
-export default NewPassword;
+export default NewPassword
