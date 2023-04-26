@@ -59,6 +59,7 @@ export const User = styled.p`
 export const LikeText= styled.p`
   font-family: 'Poppins';
   font-size: 14px;
+  margin-top: 18px;
   margin-left: 4px;
   color: ${({theme}) => theme.text};
 `

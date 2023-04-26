@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 4px;
 `;
 
 export const Icons = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: start;
   gap: 8px;
 `;
 

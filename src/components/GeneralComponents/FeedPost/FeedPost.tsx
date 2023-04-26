@@ -15,20 +15,15 @@ import {
 } from './styles'
 import Comments from '../PostComponents/Comments/Comments'
 import IconsData from '../PostComponents/IconsData/IconsData'
-import useRender from '../../../hooks/useRender'
-import InputFeed from '../../FormComponents/InputFeed/InputFeed'
 import SendComments from '../PostComponents/SendComments/SendComments'
 
 const FeedPost = () => {
   const [post, setPost] = useState<any>()
-  const [comment, setComment] = useState('')
-  const [pushComments, setPushComments] = useState(false)
-
-  const { render, setRender } = useRender()
 
   useEffect(() => {
     getInfo()
   }, [])
+
   const getInfo = useCallback(async () => {
     await Services.GetPosts(setPost)
   }, [])
@@ -49,21 +44,14 @@ const FeedPost = () => {
                 <Image src={`http://localhost:3001/images/${item.Img}`} />
               </div>
               <PostInteraction>
-                <IconsData postCod={item.Post_Cod} />
-                {item.Likes === 0 ? (
-                  <LikeText>Seja o primeiro a curtir</LikeText>
-                ) : item.Likes > 1 ? (
-                  <LikeText>{item.Likes} curtidas</LikeText>
-                ) : (
-                  <LikeText>{item.Likes} curtida</LikeText>
-                )}
+                <IconsData item={item} />
                 <UserNameDescription>
                   <div>
                     <User>Drew123</User>
                   </div>
                   <Description>{item.Description}</Description>
                 </UserNameDescription>
-                <Comments postCod={item.Post_Cod} pushComments={pushComments} />
+                <Comments postCod={item.Post_Cod} />
                 <SendComments item={item.Post_Cod} />
               </PostInteraction>
             </Content>

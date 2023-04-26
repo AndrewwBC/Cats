@@ -109,11 +109,26 @@ const Services = {
           userCod: userCod
         },
       }).then((response) =>
-        response.data.length >= 1 ? setLikes(response) : setLikes(false),
+        response.data.length >= 1 ? setLikes(true) : setLikes(false),
       );
     } catch (err) {
       console.log(err);
       setLikes(false);
+    }
+  },
+  GetHeart: async (setHeart: any, postCod: number, userCod: number | boolean) => {
+    try {
+      await Axios.get('http://localhost:3001/getHeart', {
+        params: {
+          postCod: postCod,
+          userCod: userCod
+        },
+      }).then((response) =>
+        response.data.length >= 1 ? setHeart(true) : setHeart(false) ,
+      );
+    } catch (err) {
+      console.log(err);
+      return false;
     }
   },
   GetUser: async (setData: any ,userCod: any) => {
@@ -267,11 +282,12 @@ export const UserRequirements = {
       console.log(err);
     }
   },
-  PutLikes: async (postCod: any, userCod: any, typeofChange: boolean) => {
+  PutLikes: async (postCod: any, userCod: any, userName: string, typeofChange: boolean) => {
     try {
       Axios.post('http://localhost:3001/putlike', {
         postCod: postCod,
         userCod: userCod,
+        userName: userName,
         typeofchange: typeofChange,
       }).then((response) => console.log(response));
     } catch (err) {

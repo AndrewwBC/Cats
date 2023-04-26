@@ -8,26 +8,30 @@ import {
 } from 'react-icons/fa'
 import Services, { UserRequirements } from '../../../../api'
 import useUser from '../../../../hooks/useUser'
+import { LikeText } from '../../FeedPost/styles'
 
-const IconsData = ({ postCod }: any) => {
+const IconsData = ({ item }: any) => {
   const { user } = useUser()
-  const [like, setLike] = useState(false)
-  const [response, setResponse] = useState<any>()
-
-  const userLikes = (command: boolean) => {
-    UserRequirements.PutLikes(postCod, user.userData.Cod, command)
-    setLike(!like)
-    setResponse(!response)
-  }
+  const [heart, setHeart] = useState<any>()
 
   useEffect(() => {
-    Services.GetLikes(setResponse, postCod, user.userData.Cod)
-  }, [postCod])
+    Services.GetHeart(setHeart, item.Post_Cod, user.userData.Cod)
+  }, [item.Post_Cod])
 
+  const userLikes = async (command: boolean) => {
+    await UserRequirements.PutLikes(
+      item.Post_Cod,
+      user.userData.Cod,
+      user.userData.UserName,
+      command,
+    )
+    setHeart(!heart)
+  }
+  console.log(heart)
   return (
     <Content>
       <Icons>
-        {response ? (
+        {heart ? (
           <FaHeart
             style={{ cursor: 'pointer' }}
             onDoubleClick={() => userLikes(false)}
@@ -44,6 +48,7 @@ const IconsData = ({ postCod }: any) => {
         <FaRegComment style={{ cursor: 'pointer' }} size={22} />
         <FaRegPaperPlane style={{ cursor: 'pointer' }} size={22} />
       </Icons>
+
       <div>
         <span>20/03/2023</span>
       </div>
@@ -51,4 +56,4 @@ const IconsData = ({ postCod }: any) => {
   )
 }
 
-export default memo(IconsData)
+export default IconsData

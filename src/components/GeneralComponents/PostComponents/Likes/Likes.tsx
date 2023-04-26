@@ -1,20 +1,19 @@
 import React, { useState, memo, useCallback } from 'react'
 import Services from '../../../../api'
 import { Like } from './styles'
+import { LikeText } from '../../FeedPost/styles'
 
-const Likes = (postCod: any) => {
-  const [likes, setLikes] = useState<boolean | any>(false)
+let likeCount = 0
 
-  useCallback(() => {
-    getLikes()
-  }, [postCod.postCod])
+const Likes = ({ like }: any) => {
+  console.log(like)
 
-  async function getLikes() {
-    await Services.GetLikes(setLikes, postCod.postCod, false)
-  }
-
-  if (likes) return <Like>{likes.length} curtida</Like>
-  else return <div>Oi</div>
+  return like === 0 ? (
+    <LikeText>Seja o primeiro a curtir</LikeText>
+  ) : likeCount === 1 ? (
+    <LikeText>{like + likeCount} curtidas</LikeText>
+  ) : (
+    <LikeText>{like - likeCount} curtida</LikeText>
+  )
 }
-
-export default memo(Likes)
+export default Likes
