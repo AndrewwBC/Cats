@@ -6,6 +6,7 @@ import SideMenu from '../SideMenu/SideMenu'
 import useUser from '../../../hooks/useUser'
 import { BsSun, BsMoon } from 'react-icons/bs'
 import { AiOutlineUser } from 'react-icons/ai'
+import ThemeButton from '../ThemeButton/ThemeButton'
 const Header = () => {
   const { theme, setTheme } = useTheme()
   const { user } = useUser()
@@ -40,18 +41,7 @@ const Header = () => {
               </NavLink>
               <AiOutlineUser size={28} />
             </Menu>
-            <div>
-              <button
-                style={{ background: 'none', cursor: 'pointer' }}
-                onClick={() => setTheme(!theme)}
-              >
-                {theme ? (
-                  <BsMoon size={28} />
-                ) : (
-                  <BsSun size={28} color="orange" />
-                )}
-              </button>
-            </div>
+            <ThemeButton />
           </Content>
         </Container>
       </>

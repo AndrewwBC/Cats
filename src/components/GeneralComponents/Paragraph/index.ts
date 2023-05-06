@@ -7,9 +7,9 @@ export const Paragraph = styled.p`
   letter-spacing: 0.2px;
   color: ${({ theme }) => theme.text};
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   @media (max-width: 535px) {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 `;

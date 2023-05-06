@@ -1,56 +1,79 @@
-import React, { useState, useCallback, memo, useEffect } from 'react'
-import { Content, Icon, Icons } from './styles'
+import React, { useState, useEffect } from 'react'
+import { Content, Icons } from './styles'
 import {
   FaRegHeart,
   FaHeart,
   FaRegComment,
   FaRegPaperPlane,
 } from 'react-icons/fa'
-import Services, { UserRequirements } from '../../../../api'
+import { PHP } from '../../../../api'
 import useUser from '../../../../hooks/useUser'
 import { LikeText } from '../../FeedPost/styles'
+import { useQueryCommentsData } from '../../../../hooks/useMutationCommentsData'
+
+const formData = new FormData()
 
 const IconsData = ({ item }: any) => {
   const { user } = useUser()
-  const [heart, setHeart] = useState<any>()
+  const [heart, setHeart] = useState<any>(false)
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
-    Services.GetHeart(setHeart, item.Post_Cod, user.userData.Cod)
+    PHP.GetHeart(setHeart, item.Post_Cod, user.Cod, 3)
   }, [item.Post_Cod])
 
   const userLikes = async (command: boolean) => {
-    await UserRequirements.PutLikes(
-      item.Post_Cod,
-      user.userData.Cod,
-      user.userData.UserName,
-      command,
-    )
+    formData.append('postCod', item.Post_Cod)
+    formData.append('userCod', user.Cod)
+    formData.append('userName', user.UserName)
+    formData.append('typeOfChange', command ? '1' : '0')
+    formData.append('functionKey', '4')
+
+    command ? setCount(count + 1) : setCount(count - 1)
+
+    await PHP.UserActions(formData)
     setHeart(!heart)
   }
-  console.log(heart)
+
   return (
     <Content>
-      <Icons>
-        {heart ? (
-          <FaHeart
-            style={{ cursor: 'pointer' }}
-            onDoubleClick={() => userLikes(false)}
-            size={22}
-            color="red"
-          />
-        ) : (
-          <FaRegHeart
-            style={{ cursor: 'pointer' }}
-            onDoubleClick={() => userLikes(true)}
-            size={22}
-          />
-        )}
-        <FaRegComment style={{ cursor: 'pointer' }} size={22} />
-        <FaRegPaperPlane style={{ cursor: 'pointer' }} size={22} />
-      </Icons>
-
       <div>
-        <span>20/03/2023</span>
+        <Icons>
+          {heart ? (
+            <FaHeart
+              style={{ cursor: 'pointer' }}
+              onClick={() => userLikes(false)}
+              size={window.innerWidth < 550 ? 20 : 22}
+              color="red"
+            />
+          ) : (
+            <FaRegHeart
+              style={{ cursor: 'pointer' }}
+              onClick={() => userLikes(true)}
+              size={window.innerWidth < 550 ? 20 : 22}
+            />
+          )}
+          <FaRegComment
+            style={{ cursor: 'pointer' }}
+            size={window.innerWidth < 550 ? 20 : 22}
+          />
+          <FaRegPaperPlane
+            style={{ cursor: 'pointer' }}
+            size={window.innerWidth < 550 ? 20 : 22}
+          />
+        </Icons>
+        <div>
+          {item.Likes + count === 0 ? (
+            <LikeText>Seja o primeiro a curtir</LikeText>
+          ) : item.Likes + count === 1 ? (
+            <LikeText>
+              {item.Likes + count}{' '}
+              {item.Likes + count > 1 ? 'curtidas' : 'curtida'}
+            </LikeText>
+          ) : (
+            <LikeText>{item.Likes + count} curtidas</LikeText>
+          )}
+        </div>
       </div>
     </Content>
   )

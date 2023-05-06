@@ -1,13 +1,17 @@
-import { Container, Content, CopyRights } from './styles';
+import { Container, Content, CopyRights } from './styles'
 
 const Footer = () => {
-  return (
-    <Container>
-      <Content>
-        <CopyRights>Alguns direitos reservados.</CopyRights>
-      </Content>
-    </Container>
-  );
-};
+  let user = localStorage.getItem('user')
 
-export default Footer;
+  if (user && window.innerWidth <= 768) return null
+  else
+    return (
+      <Container>
+        <Content>
+          <CopyRights>Alguns direitos reservados.</CopyRights>
+        </Content>
+      </Container>
+    )
+}
+
+export default Footer

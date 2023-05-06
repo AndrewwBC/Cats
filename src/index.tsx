@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles/globalStyles'
 import { UserStorage } from './providers/userContext'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
+const queryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
-    <UserStorage>
-      <App />
-    </UserStorage>
+    <QueryClientProvider client={queryClient}>
+      <UserStorage>
+        <App />
+      </UserStorage>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
 

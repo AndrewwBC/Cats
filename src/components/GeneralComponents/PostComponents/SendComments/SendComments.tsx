@@ -1,28 +1,29 @@
-import React, { useState, memo } from 'react'
+import { useState, memo } from 'react'
 import { InputComment, SendCommentButton, SendCommentDiv } from './styles'
-import { UserRequirements } from '../../../../api'
-import useFakeComment from '../../../../hooks/useFakeComment'
+import { PHP } from '../../../../api'
 import useUser from '../../../../hooks/useUser'
+import { useMutationCommentsData } from '../../../../hooks/useMutationCommentsData'
 
-const SendComments = ({ item }: any) => {
+const formData = new FormData()
+
+const SendComments = ({ postCod }: any) => {
   const [comment, setComment] = useState('')
   const { user } = useUser()
-  const { setFakeComment } = useFakeComment()
 
-  const sendComment = (postCod: number) => {
+  const { mutate } = useMutationCommentsData(postCod, '1')
+
+  const sendComment = async (postCod: number) => {
+    formData.append('comment', comment)
+    formData.append('postCod', postCod.toString())
+    formData.append('userCod', user.Cod)
+    formData.append('userName', user.UserName)
+    formData.append('command', '1')
+    /* insere comentario no banco */
+    formData.append('functionKey', '3')
+
     if (comment.length > 0) {
-      // Insere comentario no banco
-      setFakeComment({
-        comment: comment,
-        username: user.userData.UserName,
-        postCod: postCod,
-      })
-      UserRequirements.PutComment(
-        comment,
-        postCod,
-        user.userData.Cod,
-        user.userData.UserName,
-      )
+      await PHP.UserActions(formData)
+      mutate()
       setComment('')
     }
   }
@@ -30,12 +31,12 @@ const SendComments = ({ item }: any) => {
     <>
       <SendCommentDiv>
         <InputComment
-          id={item}
+          id={postCod}
           value={comment}
-          onChange={({ target }) => setComment(target.value)}
+          onChange={({ target }: any) => setComment(target.value)}
           placeholder="Adicione um comentário..."
         />
-        <SendCommentButton onClick={() => sendComment(item)}>
+        <SendCommentButton onClick={() => sendComment(postCod)}>
           Enviar
         </SendCommentButton>
       </SendCommentDiv>

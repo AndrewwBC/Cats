@@ -12,6 +12,9 @@ export const EachComment = styled.div`
   gap: 12px;
   align-items: center;
   justify-content: center;
+  @media (max-width: 500px){
+    font-size: 14px;
+  }
 `;
 
 export const Img = styled.img`

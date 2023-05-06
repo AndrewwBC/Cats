@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Content = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 4px;
 `;
 
 export const Icons = styled.div`
@@ -12,7 +11,3 @@ export const Icons = styled.div`
   gap: 8px;
 `;
 
-export const Icon = styled.img`
-  width: 24px;
-  height: 24px;
-`;

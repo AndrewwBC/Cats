@@ -1,57 +1,33 @@
-import React, { useEffect, useState, memo, useCallback, useMemo } from 'react'
-import Services from '../../../../api'
+import { memo, useCallback, useEffect } from 'react'
 import { Container, EachComment } from './styles'
-import useFakeComment from '../../../../hooks/useFakeComment'
+import { useQueryCommentsData } from '../../../../hooks/useMutationCommentsData'
 
 const Comments = ({ postCod }: any) => {
-  const [comments, setComments] = useState<boolean | any>(false)
-  const { fakeComment } = useFakeComment()
+  const {
+    data: comments,
+    isSuccess,
+    isLoading,
+  } = useQueryCommentsData(postCod, '1')
 
-  console.log(fakeComment)
+  console.log(comments)
 
-  useMemo(() => {
-    Services.GetComments(setComments, postCod)
-  }, [postCod])
-
-  if (fakeComment && fakeComment.postCod === postCod)
-    return (
-      <EachComment>
-        <div>
-          <p>{fakeComment.username}</p>
-        </div>
-        <div>
-          <p>{fakeComment.comment}</p>
-        </div>
-      </EachComment>
-    )
-  if (comments)
+  if (comments && isSuccess)
     return (
       <Container>
-        {fakeComment.postCod === postCod ? (
-          <EachComment>
-            <div>
-              <p>{fakeComment.username}</p>
-            </div>
-            <div>
-              <p>{fakeComment.comment}</p>
-            </div>
-          </EachComment>
-        ) : (
-          comments.map((item: any, index: number) => {
-            if (index === comments.length - 1)
-              return (
-                <EachComment key={Math.random()}>
-                  <div>
-                    <p>{item.UserName}</p>
-                  </div>
-                  <p>{item.Comment}</p>
-                </EachComment>
-              )
-          })
-        )}
+        {comments.data.map((item: any, index: number) => {
+          if (index === comments.data.length - 1 && item.Post_Cod == postCod)
+            return (
+              <EachComment key={item.Comment_Cod}>
+                <div>
+                  <p>{item.UserName}</p>
+                </div>
+                <p>{item.Comment}</p>
+              </EachComment>
+            )
+        })}
       </Container>
     )
-  else return <div>Insira um comentário</div>
+  else return <></>
 }
 
-export default memo(Comments)
+export default Comments

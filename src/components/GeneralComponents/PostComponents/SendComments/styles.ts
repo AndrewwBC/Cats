@@ -16,6 +16,11 @@ export const SendCommentButton = styled.button`
   &:hover{
     color: #e9e9e9;
   }
+  @media (max-width: 768px){
+    margin-top: 12px;
+    padding: 10px;
+    font-size: 12px;
+  }
 
 `
 
@@ -29,5 +34,13 @@ export const InputComment = styled.input`
   color: ${({ theme }) => theme.text};
   &::placeholder {
     color: ${({ theme }) => theme.text};
+  }
+  @media (max-width: 768px){
+    padding: 10px;
+    margin-top: 12px;
+    font-size: 12px;
+    &::placeholder {
+    font-size: 12px;
+  }
   }
 `;

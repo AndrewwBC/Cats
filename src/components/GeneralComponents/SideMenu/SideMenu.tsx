@@ -1,9 +1,8 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import {
   IconAndTitle,
   IconTitle,
   IconsContainer,
-  PostButton,
   SideContent,
   TitleButton,
 } from './styles'
@@ -13,12 +12,16 @@ import { SlHome } from 'react-icons/sl'
 import { BsChatDots } from 'react-icons/bs'
 import { IoMdLogOut } from 'react-icons/io'
 import { CgProfile } from 'react-icons/cg'
+import { BiPlusCircle } from 'react-icons/bi'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom'
 import useUser from '../../../hooks/useUser'
+import PostPhoto from '../PostPhoto/PostPhoto'
+import ThemeButton from '../ThemeButton/ThemeButton'
 
 const SideMenu = () => {
   const navigate = useNavigate()
   const { user, setUser } = useUser()
+  const [modal, setModal] = useState(false)
 
   function logOut() {
     localStorage.clear()
@@ -26,18 +29,23 @@ const SideMenu = () => {
     navigate('')
   }
 
-  if (!user.userData) return <div></div>
-  if (user.userData)
+  if (!user) return <div></div>
+  if (user)
     return (
       <>
         <SideContent>
           <TitleButton>
-            <Catgram style={{ fontSize: '18px' }}>
-              {user.userData.UserName}
-            </Catgram>
+            <Catgram style={{ fontSize: '18px' }}>{user.UserName}</Catgram>
           </TitleButton>
 
           <IconsContainer>
+            <li>
+              <NavLink to={'/generalfeed'}>
+                <IconAndTitle style={{ border: 'none' }}>
+                  <ThemeButton />
+                </IconAndTitle>
+              </NavLink>
+            </li>
             <li>
               <NavLink to={'/generalfeed'}>
                 <IconAndTitle>
@@ -81,6 +89,13 @@ const SideMenu = () => {
                   <IconTitle>Sair</IconTitle>
                 </IconAndTitle>
               </NavLink>
+            </li>
+            <li>
+              <IconAndTitle onClick={() => setModal(true)}>
+                <BiPlusCircle size={24} />
+                <IconTitle>Postar</IconTitle>
+              </IconAndTitle>
+              {modal && <PostPhoto setModal={setModal} />}
             </li>
           </IconsContainer>
         </SideContent>

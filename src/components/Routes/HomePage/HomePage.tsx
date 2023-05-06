@@ -15,7 +15,7 @@ import useUser from '../../../hooks/useUser'
 
 const HomePage = () => {
   const navigate = useNavigate()
-  const { user } = useUser()
+  const { user, setUser } = useUser()
 
   let Images = [
     'https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80',

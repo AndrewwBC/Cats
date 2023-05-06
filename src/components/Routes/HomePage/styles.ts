@@ -3,7 +3,7 @@ import {motion as m } from 'framer-motion'
 
 export const Main = styled(m.main)`
   background-color: ${({ theme }) => theme.background};
-  padding-bottom: 140px;
+  padding-bottom: 48px;
   padding-top: 60px;
   @media (max-width: 768px) {
     margin: 40px 0px 148px;

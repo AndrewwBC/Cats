@@ -35,10 +35,6 @@ const GeneralFeed = () => {
         transition={{ duration: 0.3 }}
       >
         <Content>
-          <button onClick={() => setModal(true)}>MODAL</button>
-          {modal && <PostPhoto setModal={setModal} />}
-
-          <SideMenu />
           <FeedPost />
           {/* <button onClick={envioMassa}>Envio em Massa</button> */}
         </Content>

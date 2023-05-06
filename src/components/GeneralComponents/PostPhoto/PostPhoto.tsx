@@ -21,13 +21,7 @@ const PostPhoto = ({ setModal }: any) => {
     formData.append('description', description)
     formData.append('user_cod', user.Cod)
     formData.append('username', user.UserName)
-    //Upload
-    await UserRequirements.PostFeedPhoto(formData)
-    //Download
-    // await UserRequirements.getURL(1, setURL);
-    //JSON PHP
-    // await UserRequirements.PHP(setURL).then((response) => url.push(response));
-    // console.log(url);
+    UserRequirements.PostFeedPhoto(formData)
   }
 
   function fileSelected(event: any) {

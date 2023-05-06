@@ -1,33 +1,33 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { PHP, UserRequirements } from '../../../api';
-import { Title } from '../../GeneralComponents/Titles';
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { PHP, UserRequirements } from '../../../api'
+import { Title } from '../../GeneralComponents/Titles'
 
-import { Content } from '../HomePage/styles';
-import { Container } from './styles';
+import { Content } from '../HomePage/styles'
+import { Container } from './styles'
 
 const ValidateEmail = () => {
-  const [reload, setReload] = useState();
-  const [response, setResponse] = useState<any>();
+  const [reload, setReload] = useState()
+  const [response, setResponse] = useState<any>()
 
-  let { token } = useParams();
-  const navigate = useNavigate();
-  console.log(token);
+  let { token } = useParams()
+  const navigate = useNavigate()
+  console.log(token)
 
   useEffect(() => {
-    checarEmail();
-  }, []);
+    checarEmail()
+  }, [])
 
   async function checarEmail() {
     //await UserRequirements.CheckHashEmail(token, setReload);
-    PHP.ValidaEmail(setResponse, setReload, token);
+    PHP.ValidaEmail(setResponse, setReload, token)
   }
 
   if (response) {
     setTimeout(() => {
-      navigate('/login');
-    }, 1000);
-    setResponse(false);
+      navigate('/login')
+    }, 1000)
+    setResponse(false)
   }
 
   return (
@@ -38,7 +38,7 @@ const ValidateEmail = () => {
         </Title>
       </Content>
     </Container>
-  );
-};
+  )
+}
 
-export default ValidateEmail;
+export default ValidateEmail

@@ -7,36 +7,43 @@ import Input from '../../FormComponents/Input'
 import { Catgram } from '../../GeneralComponents/Titles'
 import { Container, Content } from './styles'
 import useUser from '../../../hooks/useUser'
+import { UseMutateFunction, useMutation } from 'react-query'
+import { FunctionDeclaration } from 'typescript'
+import { useMutationUser } from '../../../hooks/useMutationUser'
 
 const isValidEmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const formData = new FormData()
 
 const Login = () => {
+  const { mutate, data, isSuccess } = useMutationUser()
+  const [load, setLoad] = useState()
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   })
-  const [response, setResponse] = useState<any>()
-  const [load, setLoad] = useState(false)
-  const { user, setUser } = useUser()
+  const { setUser } = useUser()
   const navigate = useNavigate()
+
+  console.log(data, isSuccess)
 
   async function handleSubmit(e: any) {
     e.preventDefault()
     let { email, password } = loginData
     formData.append('email', email)
     formData.append('password', password)
+    formData.append('functionKey', '1')
+
     if (isValidEmailRegex.test(email) && password) {
-      Services.UserLogin(email, password, setResponse, setLoad)
-      //PHP.Login(formData, setResponse, setLoad);
+      mutate(formData)
     } else {
       alert('Preencha os dados corretamente')
     }
   }
-  if (response) {
-    setUser({ userData: response })
-    localStorage.setItem('user', JSON.stringify({ userData: response }))
+
+  if (data?.status === 200) {
+    setUser(data.data)
+    localStorage.setItem('user', JSON.stringify(data.data))
     navigate('/userpage')
   }
   return (
@@ -86,6 +93,9 @@ const Login = () => {
           >
             Entrar
           </Button>
+          <p style={{ placeSelf: 'center' }}>
+            {/* {isSuccess && data.data.message} */}
+          </p>
           <h4 style={{ placeSelf: 'center', fontWeight: 400 }}>
             Não possui conta? <NavLink to="/register">Registre-se!</NavLink>
           </h4>

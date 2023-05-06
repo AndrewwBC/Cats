@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export const SideContent = styled.nav`
     position: fixed;
@@ -9,8 +9,19 @@ export const SideContent = styled.nav`
     z-index: 10;
     background-color: ${({ theme }) => theme.sideMenu};
     width: 48px;
-    &:hover{
+    @media (min-width: 769px){
+        &:hover{
         width: 280px;
+        }
+    }
+    @media (max-width:768px){
+        height: 60px;
+        width: 100%;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: 0;
+   
     }
 `
 
@@ -25,19 +36,13 @@ export const TitleButton = styled.div`
     margin-bottom: 60px;       
     transition: .2s;
     ${SideContent}:hover &{
-        margin-left: 120px;
+        margin-left: 40px;
         visibility: visible;   
         transition: .5s;
     }
-`
-
-export const PostButton = styled.button`
-    padding: 12px 24px;
-    background-color: #202020;
-    font-family: 'Poppins';
-    color: white;
-    border-radius: 6px;
-    width: 100%;
+    @media (max-width:768px){
+        display: none;
+    }
 `
 
 export const IconsContainer = styled.ul`
@@ -49,6 +54,16 @@ export const IconsContainer = styled.ul`
     flex-grow: 1;
     gap: 32px;
     overflow: hidden;
+    @media (max-width:768px){
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: -24px;
+        justify-content: center;
+    }
+    @media (max-width:500px){
+        gap: 12px;
+    }
 `
 
 export const IconAndTitle = styled.div`
@@ -67,6 +82,9 @@ export const IconAndTitle = styled.div`
 export const IconTitle = styled.p`
     font-family: 'Poppins';
     font-size: 16px;
+    @media (max-width:768px){
+        display: none;
+    }
 `
 
 export const Icon = styled.img`

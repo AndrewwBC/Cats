@@ -2,17 +2,28 @@ import styled from 'styled-components';
 import {motion as m } from 'framer-motion'
 
 export const Container = styled(m.section)`
-  max-width: 800px;
   height: 100%;
-  margin-top: 120px;
+  padding-top: 120px;
 `;
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 480px;
+  grid-template-columns: 560px;
   justify-content: center;
   margin-bottom: 24px;
+  @media (max-width:600px){
+    height: 90vh;
+    grid-template-columns: 500px;
+    grid-template-rows: 1fr auto;
+  }
+  @media (max-width:520px){
+    grid-template-columns: 400px;
+    grid-template-rows: 1fr auto;
+  }
+  @media (max-width:420px){
+    grid-template-columns: 360px;
+    grid-template-rows: 1fr auto;
+  }
 `;
 
 export const PostInteraction = styled.div`
@@ -23,15 +34,19 @@ export const PostInteraction = styled.div`
   border-bottom: 1px solid black;
   border-left: 1px solid rgba(0,0,0,.3);
   border-right: 1px solid rgba(0,0,0,.3);
-  padding: 16px;
+  padding: 18px;
   gap: 12px;
   background-color: ${({ theme }) => theme.feedBg};
+  @media (max-width:768px){
+    gap: 4px;
+    padding: 12px 18px;
+  }
 `;
 export const Image = styled.img`
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: fill;
+  max-height: 100%;
 `;
 
 export const UserNameDescription = styled.div`
@@ -46,7 +61,10 @@ export const UserNameDescription = styled.div`
 
 export const Description = styled.div`
   color: ${({ theme }) => theme.postInterText};
-  border-radius: 8px;
+  line-break: anywhere;
+  @media (max-width: 500px){
+    font-size: 14px;
+  }
 `;
 export const User = styled.p`
   font-family: 'Roboto';
@@ -54,6 +72,9 @@ export const User = styled.p`
   letter-spacing: 0.1px;
   opacity: 0.7;
   color: ${({ theme }) => theme.postInterText};
+  @media (max-width:500px){
+     font-size: 12px;
+  }
 `;
 
 export const LikeText= styled.p`
@@ -62,6 +83,10 @@ export const LikeText= styled.p`
   margin-top: 18px;
   margin-left: 4px;
   color: ${({theme}) => theme.text};
+  @media (max-width:500px){
+     font-size: 12px;
+     margin-top: 6px;
+  }
 `
 export const SendCommentDiv = styled.div`
   display: flex;

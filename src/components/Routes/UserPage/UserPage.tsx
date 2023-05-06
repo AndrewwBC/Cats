@@ -19,19 +19,18 @@ import useUser from '../../../hooks/useUser'
 
 const UserPage = () => {
   const { user } = useUser()
-  const [data, setData] = useState<any>(false)
+  /* tratar render do botao follow */
   const [follow, setFollow] = useState<any>(false)
 
   function handleFollow() {
     setFollow(!follow)
   }
 
-  if (!user.userData) return <div style={{ height: '100vh' }}>Loading</div>
+  if (!user) return <div style={{ height: '100vh' }}>Loading</div>
   else
     return (
       <Container>
         <Content>
-          <SideMenu />
           <UserData>
             <UserNamePhoto>
               <UserPhoto
@@ -40,29 +39,25 @@ const UserPage = () => {
                 src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                 alt=""
               />
-              <UserName>{user.userData.UserName}</UserName>
+              <UserName>{user.UserName}</UserName>
               {follow ? (
-                <Button onClick={handleFollow} style={{ padding: '4px 14px' }}>
-                  Seguindo
-                </Button>
+                <Button onClick={handleFollow}>Seguindo</Button>
               ) : (
-                <Button onClick={handleFollow} style={{ padding: '4px 14px' }}>
-                  Seguir
-                </Button>
+                <Button onClick={handleFollow}>Seguir</Button>
               )}
             </UserNamePhoto>
             <UserInfo>
               <NumbersContainer>
-                <Numbers>{user.userData.Publicações}</Numbers>
-                <NumbersButton>teste</NumbersButton>
+                <Numbers>{user.Publicações}</Numbers>
+                <NumbersButton>Publicações</NumbersButton>
               </NumbersContainer>
               <NumbersContainer>
-                <Numbers>{user.userData.Seguidores}</Numbers>
-                <NumbersButton>teste</NumbersButton>
+                <Numbers>{user.Seguidores}</Numbers>
+                <NumbersButton>Seguidores</NumbersButton>
               </NumbersContainer>
               <NumbersContainer>
-                <Numbers>{user.userData.Seguindo}</Numbers>
-                <NumbersButton>teste</NumbersButton>
+                <Numbers>{user.Seguindo}</Numbers>
+                <NumbersButton>Seguindo</NumbersButton>
               </NumbersContainer>
             </UserInfo>
           </UserData>

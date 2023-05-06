@@ -61,7 +61,7 @@ const Services = {
       console.log(err);
     }
   },
-  DeleteUser: async () => {},
+  DeleteUser: async () => { },
   S3GetAllFiles: async (setFiles: any, setLoad: any, setTeste: any) => {
     try {
       setLoad(true);
@@ -109,36 +109,21 @@ const Services = {
           userCod: userCod
         },
       }).then((response) =>
-        response.data.length >= 1 ? setLikes(true) : setLikes(false),
+        response.data.length >= 1 ? setLikes(response) : setLikes(false),
       );
     } catch (err) {
       console.log(err);
       setLikes(false);
     }
   },
-  GetHeart: async (setHeart: any, postCod: number, userCod: number | boolean) => {
-    try {
-      await Axios.get('http://localhost:3001/getHeart', {
-        params: {
-          postCod: postCod,
-          userCod: userCod
-        },
-      }).then((response) =>
-        response.data.length >= 1 ? setHeart(true) : setHeart(false) ,
-      );
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
-  },
-  GetUser: async (setData: any ,userCod: any) => {
+  GetUser: async (setData: any, userCod: any) => {
     try {
       await Axios.get('http://localhost:3001/getuser', {
         params: {
           userCod: userCod,
         },
       }).then((response) =>
-        response? setData(response.data[0]) : setData(false),
+        response ? setData(response.data[0]) : setData(false),
       );
     } catch (err) {
       console.log(err);
@@ -282,12 +267,11 @@ export const UserRequirements = {
       console.log(err);
     }
   },
-  PutLikes: async (postCod: any, userCod: any, userName: string, typeofChange: boolean) => {
+  PutLikes: async (postCod: any, userCod: any, typeofChange: boolean) => {
     try {
       Axios.post('http://localhost:3001/putlike', {
         postCod: postCod,
         userCod: userCod,
-        userName: userName,
         typeofchange: typeofChange,
       }).then((response) => console.log(response));
     } catch (err) {
@@ -309,15 +293,6 @@ export const PHP = {
   //   } finally {
   //   }
   // },
-  TESTE: async (formData: any) => {
-    try {
-      await Axios.post('http://localhost/ReactPHP/login.php').then((response) =>
-        console.log(response),
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  },
   EmailEntrada: async (formData: any) => {
     try {
       await Axios.post(
@@ -330,35 +305,11 @@ export const PHP = {
       console.log(err);
     }
   },
-  Login: async (formData: any, setResponse: any, setLoad: any) => {
-    try {
-      setLoad(true);
-      await Axios.post('http://localhost/ReactPHP/login.php', formData).then(
-        (response) => setResponse(response),
-      );
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoad(false);
-    }
-  },
   Promoção: async (setResponse: any, setLoad: any) => {
     try {
       setLoad(true);
       await Axios.post('http://localhost/ReactPHP/promoção.php').then(
         (response) => setResponse(response.data),
-      );
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoad(false);
-    }
-  },
-  Cadastro: async (formData: any, setResponse: any, setLoad: any) => {
-    try {
-      setLoad(true);
-      await Axios.post('http://localhost/ReactPHP/cadastro.php', formData).then(
-        (response) => setResponse(response.data[0]),
       );
     } catch (err) {
       console.log(err);
@@ -379,6 +330,97 @@ export const PHP = {
       setLoad(false);
     }
   },
+  confirmarCadastro: async (email: any) => {
+    try {
+      const response = await Axios.post('http://localhost/ReactPHP/Mailer/EmailsFunctions.php', email);
+    return response;
+    } catch (error) {
+      console.log(error);
+      throw error
+    }
+  },
+  GetPostsPHP: async (setPost: any) => {
+    try {
+      await Axios.get('http://localhost/ReactPHP/Funções/BancoDados.php', {
+      }).then((response) =>
+        setPost(response.data),
+      );
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  },
+  GetLikes: async (postCod: number, userCod: number | boolean, fk: number) => {
+    try {
+      await Axios.get('http://localhost/ReactPHP/Funções/PostsData.php', {
+        params: {
+          postCod: postCod,
+          userCod: userCod,
+          functionKey: fk
+        },
+      }).then((response) =>
+        console.log(response),
+      );
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  },
+  GetHeart: async (setHeart:any, postCod: number, userCod: number | boolean, fk: number) => {
+    try {
+      await Axios.get('http://localhost/ReactPHP/Funções/GetHeart.php', {
+        params: {
+          postCod: postCod,
+          userCod: userCod,
+          functionKey: fk
+        },
+      }).then((response) => setHeart(response.data)
+      );
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  },
+  PutDeleteLikes: async (formData: any) => {
+    try {
+      Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData).then((response) => console.log(response));
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  PutDeleteComment: async (formData: any) => {
+    try {
+      Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData
+      ).then((response) => console.log(response.data));
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  UserActions: async (formData: any) => {
+    try {
+      const request =  await Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData
+      ).then((response) => response.data);
+      const response = await request;
+      return response
+    } catch (err) {
+      console.log(err);
+      return err
+    }
+  },
+  GetPostDatas: async (setComments: any, formData: any) => {
+    try {
+      await Axios.post('http://localhost/ReactPHP/Funções/PostsData.php', formData).then((response) =>
+        response.data.length >= 1
+          ? setComments(response.data)
+          : setComments(false),
+      );
+    } catch (err) {
+      console.log(err);
+      setComments(false);
+      return err;
+    }
+  },
+
 };
 
 export default Services;

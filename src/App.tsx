@@ -8,7 +8,6 @@ import useTheme from './hooks/useTheme'
 import GlobalStyles from './styles/globalStyles'
 import AnimatedRoutes from './components/AnimatedRoutes/AnimatedRoutes'
 import SideMenu from './components/GeneralComponents/SideMenu/SideMenu'
-import { JsonObjectExpression } from 'typescript'
 
 const App = () => {
   const { user, setUser } = useUser()
@@ -23,8 +22,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-          {user && user.Cod ? <SideMenu /> : <Header />}
-
+          {user ? <SideMenu /> : <Header />}
           <GlobalStyles />
           <AnimatedRoutes />
           <Footer />

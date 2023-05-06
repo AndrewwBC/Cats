@@ -1,105 +1,81 @@
-import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import Services, { PHP, UserRequirements } from '../../../api';
-import { Button } from '../../FormComponents/Button/style';
-import Form from '../../FormComponents/Form';
-import Input from '../../FormComponents/Input';
-import {
-  BackLogin,
-  CatImg,
-  Container,
-  Content,
-  ErrorMSG,
-  TwoInputsInline,
-} from './styles';
+import { useState, useEffect, useCallback } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { Button } from '../../FormComponents/Button/style'
+import Form from '../../FormComponents/Form'
+import Input from '../../FormComponents/Input'
+import { BackLogin, CatImg, Container, Content } from './styles'
+import useUser from '../../../hooks/useUser'
+import { useMutationUser } from '../../../hooks/useMutationUser'
 
 const isValidEmailRegex =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const formData = new FormData();
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+const formData = new FormData()
 
 const Register = () => {
-  const nave = useNavigate();
+  const nave = useNavigate()
+
+  const { mutate, data, isSuccess, isLoading, isError } = useMutationUser()
+
   const [userData, setUserData] = useState({
     username: '',
-    name: '',
-    lastname: '',
     email: '',
     password: '',
-  });
-
+  })
   const [error, setError] = useState({
     errorEmail: false,
     passError: false,
     empty: false,
-  });
-
-  const [load, setLoad] = useState(false);
-  const [checkUser, setCheckUser] = useState<any>();
-  const [checkEmail, setCheckEmail] = useState<any>();
-  const [response, setResponse] = useState<any>();
+  })
 
   function handleSubmit(e: any) {
-    e.preventDefault();
-
-    let {username, name, lastname, email, password} =  userData;
-
-    formData.append('username', userData.username);
-    formData.append('name', userData.name);
-    formData.append('lastname', userData.lastname);
-    formData.append('email', userData.email);
-    formData.append('password', userData.password);
-
-    Services.RegisterUser({ username, name, lastname, email, password});
+    e.preventDefault()
+    formData.append('username', userData.username)
+    formData.append('email', userData.email)
+    formData.append('password', userData.password)
+    formData.append('functionKey', '2')
     if (
-      !checkUser &&
-      !checkEmail &&
       !error.errorEmail &&
       !error.passError &&
-      !error.empty
-    ) {
-      //PHP.Cadastro(formData, setResponse, setLoad);
-    } else {
-      alert('Preencha todos os campos corretamente!');
-    }
+      userData.email &&
+      userData.password &&
+      userData.username
+    )
+      mutate(formData)
   }
-  //if(response) nave('/login')
-  if (response) {
-    nave('/login');
-  }
-  useEffect(() => {
-    UserRequirements.CheckUserName(userData.username, setCheckUser);
-    UserRequirements.CheckEmail(userData.email, setCheckEmail, setLoad);
-  }, [userData.username, userData.email]);
 
   function handleBlur({ target }: any) {
-    UserRequirements.CheckUserName(userData.username, setCheckUser);
-    UserRequirements.CheckEmail(userData.email, setCheckEmail, setLoad);
     if (target.type === 'email' && userData.email.length > 1) {
       if (isValidEmailRegex.test(userData.email))
-        setError((prevState) => ({ ...prevState, errorEmail: false }));
+        setError((prevState) => ({ ...prevState, errorEmail: false }))
       if (!isValidEmailRegex.test(userData.email))
-        setError((prevState) => ({ ...prevState, errorEmail: true }));
+        setError((prevState) => ({ ...prevState, errorEmail: true }))
     }
     if (target.type === 'password' && target.value.length >= 1) {
       if (target.value.length < 6) {
-        setError((prevState) => ({ ...prevState, passError: true }));
+        setError((prevState) => ({ ...prevState, passError: true }))
       } else {
-        setError((prevState) => ({ ...prevState, passError: false }));
+        setError((prevState) => ({ ...prevState, passError: false }))
       }
-    }
-
-    if (
-      (target.name === 'name' && target.value.length === 0) ||
-      (target.name === 'lastname' && target.value.length === 0)
-    ) {
-      setError((prevState) => ({ ...prevState, vazio: true }));
-    } else {
-      setError((prevState) => ({ ...prevState, vazio: false }));
     }
   }
 
+  console.log(data, isSuccess, isError)
+
+  useEffect(() => {
+    if (isSuccess && data.status === 200) {
+      localStorage.setItem('emailValidate', userData.email)
+      nave('/welcome')
+    }
+  }, [isSuccess, data])
+
   return (
-    <Container initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity:0, y: -50}} transition={{duration: .3}} >
+    <Container
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.3 }}
+    >
       <Content>
         <Form itemProp={true}>
           <div
@@ -134,79 +110,72 @@ const Register = () => {
             </p>
             <div>
               <Input
-                label="Nome de usuário"
+                label={
+                  data?.userName === userData.username
+                    ? 'Nome de usuário em uso'
+                    : 'Nome de usuário'
+                }
                 type="text"
                 name="username"
                 placeholder="Escolha um nome de usuário."
                 value={userData.username}
                 onBlur={handleBlur}
                 onChange={({ target }: any) =>
-                  setUserData((prevState) => ({
+                  setUserData((prevState: any) => ({
                     ...prevState,
                     username: target.value,
                   }))
                 }
               />
 
-              {checkUser && <h4>Usuário já existente.</h4>}
-
               <Input
-                label="Nome completo"
-                type="text"
-                name="name"
-                placeholder="Insira seu nome."
-                value={userData.name}
-                onChange={({ target }: any) =>
-                  setUserData((prevState) => ({
-                    ...prevState,
-                    name: target.value,
-                  }))
+                label={
+                  data?.email === userData.email
+                    ? 'E-mail em uso'
+                    : error.errorEmail
+                    ? 'E-mail inválido!'
+                    : 'E-mail'
                 }
-                onBlur={handleBlur}
-              />
-
-              <Input
-                label="E-mail"
                 type="email"
                 name="email"
                 placeholder="josedasilva@gmail.com"
                 value={userData.email}
                 onBlur={handleBlur}
                 onChange={({ target }: any) =>
-                  setUserData((prevState) => ({
+                  setUserData((prevState: any) => ({
                     ...prevState,
                     email: target.value,
                   }))
                 }
               />
-              {checkEmail && <h4>Email já existente</h4>}
+
               <Input
-                label="Senha"
+                label={
+                  error.passError
+                    ? 'Senha deve ter ao menos 6 caractéres!'
+                    : 'Senha'
+                }
                 type="password"
                 name="password"
                 placeholder="Insira sua senha"
                 value={userData.password}
                 onChange={({ target }: any) =>
-                  setUserData((prevState) => ({
+                  setUserData((prevState: any) => ({
                     ...prevState,
                     password: target.value,
                   }))
                 }
                 onBlur={handleBlur}
               />
-              {error.passError && (
-                <ErrorMSG>Insira ao menos seis caractéres</ErrorMSG>
-              )}
-              {error.errorEmail && <ErrorMSG>Insira um Email válido</ErrorMSG>}
             </div>
 
             <Button
+              disabled={isLoading ? true : false}
               style={{ margin: '14px 0px' }}
-              onClick={(e) => handleSubmit(e)}
+              onClick={(e: any) => handleSubmit(e)}
             >
               Cadastrar
             </Button>
-
             <div
               style={{
                 fontSize: '18px',
@@ -237,7 +206,7 @@ const Register = () => {
         </Form>
       </Content>
     </Container>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
