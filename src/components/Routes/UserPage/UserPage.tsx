@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, useCallback } from 'react'
+import { useState, memo } from 'react'
 import {
   Container,
   Content,
@@ -14,7 +14,6 @@ import {
   UserPhoto,
 } from './styles'
 import { Button } from '../../FormComponents/Button/style'
-import SideMenu from '../../GeneralComponents/SideMenu/SideMenu'
 import useUser from '../../../hooks/useUser'
 
 const UserPage = () => {
@@ -26,8 +25,11 @@ const UserPage = () => {
     setFollow(!follow)
   }
 
+  let storage: any = localStorage.getItem('user')
+  let userVerify: any = JSON.parse(storage)
+
   if (!user) return <div style={{ height: '100vh' }}>Loading</div>
-  else
+  /*  <Button onClick={handleFollow}>Seguindo</Button>*/ else
     return (
       <Container>
         <Content>
@@ -40,11 +42,11 @@ const UserPage = () => {
                 alt=""
               />
               <UserName>{user.UserName}</UserName>
-              {follow ? (
-                <Button onClick={handleFollow}>Seguindo</Button>
-              ) : (
-                <Button onClick={handleFollow}>Seguir</Button>
-              )}
+              {user.UserName !== userVerify.UserName ? (
+                <Button onClick={handleFollow}>
+                  {follow ? 'Seguindo' : 'Seguir'}
+                </Button>
+              ) : null}
             </UserNamePhoto>
             <UserInfo>
               <NumbersContainer>

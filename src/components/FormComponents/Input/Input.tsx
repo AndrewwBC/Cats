@@ -1,16 +1,16 @@
-import { NavLink } from 'react-router-dom';
-import { ForgotPassword, Label, StyledInput } from './styles';
+import { NavLink } from 'react-router-dom'
+import { ForgotPass, Label, StyledInput } from './styles'
 
 interface InputInfo {
-  label: string;
-  name: string;
-  placeholder: string;
-  type: string;
-  forget?: boolean;
-  accept?: string;
-  onChange?: any;
-  value?: string;
-  onBlur?: any;
+  label: string
+  name: string
+  placeholder: string
+  type: string
+  forget?: boolean
+  accept?: string
+  onChange?: any
+  value?: string
+  onBlur?: any
 }
 
 const Input = ({
@@ -39,12 +39,12 @@ const Input = ({
         />
       </Label>
       {forget && (
-        <ForgotPassword>
+        <ForgotPass>
           <NavLink to="/forgotpassword">Esqueceu a senha?</NavLink>
-        </ForgotPassword>
+        </ForgotPass>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

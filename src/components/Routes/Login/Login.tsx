@@ -7,8 +7,6 @@ import Input from '../../FormComponents/Input'
 import { Catgram } from '../../GeneralComponents/Titles'
 import { Container, Content } from './styles'
 import useUser from '../../../hooks/useUser'
-import { UseMutateFunction, useMutation } from 'react-query'
-import { FunctionDeclaration } from 'typescript'
 import { useMutationUser } from '../../../hooks/useMutationUser'
 
 const isValidEmailRegex =
@@ -25,8 +23,6 @@ const Login = () => {
   const { setUser } = useUser()
   const navigate = useNavigate()
 
-  console.log(data, isSuccess)
-
   async function handleSubmit(e: any) {
     e.preventDefault()
     let { email, password } = loginData
@@ -41,11 +37,16 @@ const Login = () => {
     }
   }
 
-  if (data?.status === 200) {
+  console.log(data)
+
+  if (isSuccess && data?.status === 200) {
     setUser(data.data)
     localStorage.setItem('user', JSON.stringify(data.data))
     navigate('/userpage')
+  } else if (data?.status === 401) {
+    alert(data.message)
   }
+
   return (
     <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Content>

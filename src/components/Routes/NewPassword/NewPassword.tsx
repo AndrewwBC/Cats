@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '../../FormComponents/Button/style'
 import Form from '../../FormComponents/Form'
 import Input from '../../FormComponents/Input'
@@ -6,44 +6,40 @@ import { Paragraph } from '../../GeneralComponents/Paragraph'
 import { Title } from '../../GeneralComponents/Titles'
 import { Container } from './styles'
 import { useNavigate, useParams } from 'react-router-dom'
-import { UserRequirements } from '../../../api'
+import { PHP } from '../../../api'
+import { useMutation } from '@tanstack/react-query'
+
+const formData = new FormData()
 
 const NewPassword = () => {
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [pass, setPass] = useState({
+    newPass: '',
+    verifyPass: '',
+  })
   const [samePass, setSamePass] = useState(false)
-  const [response, setResponse] = useState()
-  const [error, setError] = useState()
-  const [load, setLoad] = useState(false)
+  const navigate = useNavigate()
 
-  let navigate = useNavigate()
+  let { emailHash }: any = useParams()
 
-  let { email } = useParams()
+  const { data, mutate, isLoading } = useMutation({
+    mutationKey: ['checkHashEmail'],
+    mutationFn: () => PHP.UserActions(formData),
+  })
+  console.log(data)
 
-  useEffect(() => {
-    UserRequirements.CheckEmail(email, setResponse, setLoad)
-    if (newPassword)
-      newPassword === confirmPassword ? setSamePass(true) : setSamePass(false)
-    if (newPassword === '') setSamePass(false)
-  }, [confirmPassword, newPassword, email])
-  // if (response === false && response !== undefined) navigate('/');
-
-  function handleSubmit(event: any) {
+  const handleSubmit = (event: any) => {
     event.preventDefault()
+    pass.newPass === pass.verifyPass ? setSamePass(true) : setSamePass(false)
+    if (pass.newPass === '' || pass.verifyPass === '') setSamePass(false)
 
-    UserRequirements.ResetPassword(
-      setLoad,
-      setError,
-      email,
-      confirmPassword,
-      setResponse,
-    )
+    if (samePass) {
+      formData.append('newPass', pass.newPass)
+      formData.append('emailHash', emailHash)
+      formData.append('functionKey', '5')
+      mutate()
+    }
   }
-  if (response === 1) {
-    setTimeout(() => {
-      navigate('/login')
-    }, 1000)
-  }
+
   return (
     <Container>
       <>
@@ -53,39 +49,41 @@ const NewPassword = () => {
           </Title>
 
           <Input
-            label="Digite uma nova senha"
+            label="Digite uma nova senha."
             name="newpass"
-            onChange={({ target }: any) => setNewPassword(target.value)}
-            placeholder=""
+            onChange={({ target }: any) =>
+              setPass((prevState: any) => ({
+                ...prevState,
+                newPass: target.value,
+              }))
+            }
+            placeholder="Digite uma senha segura"
             type="password"
-            value={newPassword}
+            value={pass.newPass}
           />
           <Input
             label="Confirme sua senha"
             name="confirmpass"
-            onChange={({ target }: any) => setConfirmPassword(target.value)}
-            placeholder=""
+            onChange={({ target }: any) =>
+              setPass((prevState: any) => ({
+                ...prevState,
+                verifyPass: target.value,
+              }))
+            }
+            placeholder="Igualzinho a anterior, hein!"
             type="password"
-            value={confirmPassword}
+            value={pass.verifyPass}
           />
 
-          {samePass && (
+          {!samePass && (
             <>
-              <Paragraph style={{ placeSelf: 'center', color: '#202020' }}>
-                Senhas iguais
+              <Paragraph style={{ placeSelf: 'center' }}>
+                As senhas devem ser iguais!
               </Paragraph>
             </>
           )}
-          {response === 1 && <p>Senha alterada com sucesso!</p>}
-          {load ? (
-            <Button disabled={true} type="submit" onClick={handleSubmit}>
-              Confirmar
-            </Button>
-          ) : (
-            <Button type="submit" onClick={handleSubmit}>
-              Confirmar
-            </Button>
-          )}
+
+          <Button onClick={handleSubmit}>Confirmar</Button>
         </Form>
       </>
     </Container>

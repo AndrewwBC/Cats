@@ -7,6 +7,7 @@ export const Container = styled.section`
   justify-items: center;
   background-color: ${({ theme }) => theme.background};
   margin-bottom: 54px;
+  height: 100vh;
 `;
 
 export const Content = styled.div`

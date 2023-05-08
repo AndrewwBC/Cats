@@ -3,12 +3,13 @@ import HomePage from '../Routes/HomePage'
 import Login from '../Routes/Login/Login'
 import Register from '../Routes/Register'
 import { AnimatePresence } from 'framer-motion'
-import { ForgotPassword } from '../FormComponents/Input/styles'
 import NewPassword from '../Routes/NewPassword'
 import ValidateEmail from '../Routes/ValidateEmail'
 import GeneralFeed from '../Routes/GeneralFeed'
 import UserPage from '../Routes/UserPage'
 import Welcome from '../Routes/Welcome'
+import UserSettings from '../Routes/UserSettings/UserSettings'
+import ForgotPassword from '../Routes/ForgotPassword/ForgotPassword'
 
 const AnimatedRoutes = () => {
   const location = useLocation()
@@ -19,12 +20,13 @@ const AnimatedRoutes = () => {
         <Route key={'homepage'} path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/Forgotpassword" element={<ForgotPassword />} />
-        <Route path="/newpassword/:email" element={<NewPassword />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/newpassword/:emailHash" element={<NewPassword />} />
         <Route path="/validateemail/:token" element={<ValidateEmail />} />
         <Route path="/generalfeed" element={<GeneralFeed />} />
         <Route path="/userpage" element={<UserPage />} />
         <Route path="/welcome" element={<Welcome />} />
+        <Route path="/usersettings" element={<UserSettings />} />
       </Routes>
     </AnimatePresence>
   )

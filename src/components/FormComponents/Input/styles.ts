@@ -10,7 +10,7 @@ export const Label = styled.label`
   font-family: 'Poppins';
 `;
 
-export const ForgotPassword = styled.a`
+export const ForgotPass = styled.div`
   margin-top: -12px;
   place-self: center;
   font-size: 1rem;

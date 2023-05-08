@@ -40,11 +40,9 @@ const SideMenu = () => {
 
           <IconsContainer>
             <li>
-              <NavLink to={'/generalfeed'}>
-                <IconAndTitle style={{ border: 'none' }}>
-                  <ThemeButton />
-                </IconAndTitle>
-              </NavLink>
+              <IconAndTitle style={{ border: 'none' }}>
+                <ThemeButton />
+              </IconAndTitle>
             </li>
             <li>
               <NavLink to={'/generalfeed'}>
@@ -74,7 +72,7 @@ const SideMenu = () => {
             </li>
 
             <li>
-              <NavLink to={'/generalfeed'}>
+              <NavLink to={'/usersettings'}>
                 <IconAndTitle>
                   <CiSettings size={26} />
                   <IconTitle>Configurações</IconTitle>

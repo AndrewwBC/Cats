@@ -21,17 +21,13 @@ export const Button = styled.button`
     cursor: not-allowed;
   }
   @media (max-width: 768px){
-    padding: 4px 18px;
+    padding: 6px 18px;
     }
-    @media (max-width: 640px){
-    padding: 2px 12px;
-    }
-    @media (max-width: 640px){
-    padding: 2px 8px;
-    font-size: 12px;
+    @media (max-width: 600px){
+    padding: 4px 12px;
     }
     @media (max-width: 400px){
-    padding: 2px 6px;
-    font-size: 10px;
+    padding: 4px 10px;
+    font-size: 12px;
     }
 `;

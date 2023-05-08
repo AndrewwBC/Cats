@@ -6,6 +6,7 @@ import Input from '../../FormComponents/Input'
 import { BackLogin, CatImg, Container, Content } from './styles'
 import useUser from '../../../hooks/useUser'
 import { useMutationUser } from '../../../hooks/useMutationUser'
+import { PHP } from '../../../api'
 
 const isValidEmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -14,9 +15,6 @@ const formData = new FormData()
 
 const Register = () => {
   const nave = useNavigate()
-
-  const { mutate, data, isSuccess, isLoading, isError } = useMutationUser()
-
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -27,6 +25,8 @@ const Register = () => {
     passError: false,
     empty: false,
   })
+
+  const { mutate, data, isSuccess, isLoading, isError } = useMutationUser()
 
   function handleSubmit(e: any) {
     e.preventDefault()
@@ -64,7 +64,6 @@ const Register = () => {
 
   useEffect(() => {
     if (isSuccess && data.status === 200) {
-      localStorage.setItem('emailValidate', userData.email)
       nave('/welcome')
     }
   }, [isSuccess, data])

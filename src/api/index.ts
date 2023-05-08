@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios, { AxiosError } from 'axios';
 
 // Create, Read, Update, Delete
 
@@ -133,48 +133,6 @@ const Services = {
 };
 
 export const UserRequirements = {
-  ForgotPassword: async (
-    setLoad: any,
-    setError: any,
-    email: string,
-    setResponse: any,
-  ) => {
-    try {
-      setLoad(true);
-      await Axios.get('http://localhost:3001/forgotpassword', {
-        params: { email: email },
-      }).then((response) =>
-        response.data.length === 1 ? setResponse(true) : setResponse(false),
-      );
-    } catch (error) {
-      setError(true);
-      setLoad(false);
-      console.log(error);
-    } finally {
-      setLoad(false);
-    }
-  },
-  ResetPassword: async (
-    setLoad: any,
-    setError: any,
-    email?: string,
-    password?: string,
-    setResponse?: any,
-  ) => {
-    try {
-      setLoad(true);
-      await Axios.post('http://localhost:3001/resetpassword', {
-        password: password,
-        email: email,
-      }).then((response) => setResponse(response.data.affectedRows));
-    } catch (error) {
-      setError(true);
-      setLoad(false);
-      console.log(error);
-    } finally {
-      setLoad(false);
-    }
-  },
   PostFeedPhoto: async (photoData: any) => {
     try {
       await Axios.post(`http://localhost:3001/upload`, photoData, {
@@ -293,28 +251,27 @@ export const PHP = {
   //   } finally {
   //   }
   // },
-  EmailEntrada: async (formData: any) => {
+
+  EmailFunctions: async (formData: any) => {
     try {
-      await Axios.post(
-        'http://localhost/ReactPHP/Funções/BancoDados.php',
-        formData,
-      ).then((response) => {
-        console.log(response);
-      });
-    } catch (err) {
-      console.log(err);
+      const request = await Axios.post('http://localhost/ReactPHP/Mailer/EmailsFunctions.php', formData)
+      return request
+    } catch (error) {
+      if(error instanceof AxiosError) 
+      return error
     }
   },
-  Promoção: async (setResponse: any, setLoad: any) => {
+  emailToChangePass: async (email: string) => {
     try {
-      setLoad(true);
-      await Axios.post('http://localhost/ReactPHP/promoção.php').then(
-        (response) => setResponse(response.data),
-      );
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoad(false);
+      const request = await Axios.get('http://localhost/ReactPHP/Mailer/ForgotPassword.php', {
+        params: { 
+          emailPassword: email,
+        },
+      })
+      return request
+    } catch (error) {
+      if(error instanceof AxiosError) 
+      return error.response?.status
     }
   },
   ValidaEmail: async (setResponse: any, setLoad: any, token: any) => {
@@ -328,15 +285,6 @@ export const PHP = {
       console.log(error);
     } finally {
       setLoad(false);
-    }
-  },
-  confirmarCadastro: async (email: any) => {
-    try {
-      const response = await Axios.post('http://localhost/ReactPHP/Mailer/EmailsFunctions.php', email);
-    return response;
-    } catch (error) {
-      console.log(error);
-      throw error
     }
   },
   GetPostsPHP: async (setPost: any) => {
