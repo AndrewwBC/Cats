@@ -14,8 +14,7 @@ const isValidEmailRegex =
 const formData = new FormData()
 
 const Login = () => {
-  const { mutate, data, isSuccess } = useMutationUser()
-  const [load, setLoad] = useState()
+  const { mutate, data, isSuccess, isLoading } = useMutationUser()
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
@@ -89,19 +88,19 @@ const Login = () => {
           />
           <Button
             style={{ marginTop: '12px' }}
-            disabled={load ? true : false}
+            disabled={isLoading ? true : false}
             onClick={(e) => handleSubmit(e)}
           >
-            Entrar
+            {isLoading ? 'Validando seus dados...' : 'Login'}
           </Button>
-          <p style={{ placeSelf: 'center' }}>
-            {/* {isSuccess && data.data.message} */}
+          <p style={{ placeSelf: 'center', color: 'red' }}>
+            {data && data.message}
           </p>
           <h4 style={{ placeSelf: 'center', fontWeight: 400 }}>
             Não possui conta? <NavLink to="/register">Registre-se!</NavLink>
           </h4>
           <NavLink style={{ placeSelf: 'center' }} to="/register">
-            <Button disabled={load ? true : false}>Cadastrar</Button>
+            <Button disabled={isLoading ? true : false}>Cadastrar</Button>
           </NavLink>
         </Form>
       </Content>

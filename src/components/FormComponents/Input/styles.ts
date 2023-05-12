@@ -6,23 +6,23 @@ export const Label = styled.label`
   color: ${({ theme }) => theme.text};
   font-size: 14px;
   margin-bottom: 8px;
-  gap: 2px;
+  gap: 8px;
   font-family: 'Poppins';
 `;
 
 export const ForgotPass = styled.div`
-  margin-top: -12px;
-  place-self: center;
+  margin-top: -8px;
+  place-self: end;
   font-size: 1rem;
   cursor: pointer;
   &:hover {
-    color: #ff551b;
+    color: #ff441b;
     transition: 0.3s;
   }
 `;
 
 export const StyledInput = styled.input`
-  padding: 7px 16px 5px 4px;
+  padding: 10px;
   margin-bottom: 4px;
   border: 2px solid transparent;
   border-radius: 4px;

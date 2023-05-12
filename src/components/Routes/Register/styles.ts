@@ -13,6 +13,19 @@ export const Container = styled(m.section)`
   }
 `;
 
+export const RegisterContent = styled.div`
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  gap: 12px;
+  @media (max-width: 768px){
+    padding: 32px;
+  }
+  @media (max-width: 768px){
+    padding: 12px;
+  }
+`
+
 export const Content = styled.article`
   max-width: 1000px;
   display: grid;

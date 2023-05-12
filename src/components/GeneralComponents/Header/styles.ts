@@ -28,7 +28,12 @@ export const Content = styled.div`
   @media (max-width: 768px){
     padding: 24px;
     padding-left: 48px;
+    gap: 32px;
     }
+    @media (max-width: 500px){
+    padding: 8px 16px;
+    }
+    
 `;
 
 export const Logo = styled.div`

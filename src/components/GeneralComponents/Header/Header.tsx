@@ -31,13 +31,9 @@ const Header = () => {
             <Menu>
               <NavLink
                 style={{ display: 'flex', alignItems: 'center' }}
-                to={user ? '/userpage' : '/login'}
+                to={'/login'}
               >
-                {user ? (
-                  <Paragraph itemProp="16px">{user}</Paragraph>
-                ) : (
-                  <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
-                )}
+                <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
               </NavLink>
               <AiOutlineUser size={28} />
             </Menu>

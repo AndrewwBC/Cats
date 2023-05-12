@@ -3,10 +3,19 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Button } from '../../FormComponents/Button/style'
 import Form from '../../FormComponents/Form'
 import Input from '../../FormComponents/Input'
-import { BackLogin, CatImg, Container, Content } from './styles'
+import {
+  BackLogin,
+  CatImg,
+  Container,
+  Content,
+  RegisterContent,
+} from './styles'
 import useUser from '../../../hooks/useUser'
 import { useMutationUser } from '../../../hooks/useMutationUser'
 import { PHP } from '../../../api'
+import { InputFile } from '../../GeneralComponents/PostPhoto/styles'
+import { Title } from '../../GeneralComponents/Titles'
+import { Paragraph } from '../../GeneralComponents/Paragraph'
 
 const isValidEmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -15,6 +24,7 @@ const formData = new FormData()
 
 const Register = () => {
   const nave = useNavigate()
+  const [file, setFile] = useState('')
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -27,12 +37,13 @@ const Register = () => {
   })
 
   const { mutate, data, isSuccess, isLoading, isError } = useMutationUser()
-
+  console.log(file)
   function handleSubmit(e: any) {
     e.preventDefault()
     formData.append('username', userData.username)
     formData.append('email', userData.email)
     formData.append('password', userData.password)
+    formData.append('profilePic', file)
     formData.append('functionKey', '2')
     if (
       !error.errorEmail &&
@@ -60,6 +71,11 @@ const Register = () => {
     }
   }
 
+  function fileSelected(event: any) {
+    const file = event.target.files[0]
+    setFile(file)
+  }
+
   console.log(data, isSuccess, isError)
 
   useEffect(() => {
@@ -77,129 +93,88 @@ const Register = () => {
     >
       <Content>
         <Form itemProp={true}>
-          <div
-            style={{
-              display: 'flex',
-              padding: '0px 64px',
-              flexDirection: 'column',
-            }}
-          >
-            <p
-              style={{
-                fontSize: '1.5rem',
-                fontFamily: 'Poppins',
-                margin: '24px 0 6px 0',
-                placeSelf: 'start',
-                fontWeight: '400',
-              }}
-            >
-              Cadastre-se!
-            </p>
-            <p
-              style={{
-                fontSize: '14px',
-                fontFamily: 'Poppins',
-                margin: '0px 0px 18px 0px',
-                placeSelf: 'start',
-                fontWeight: '400',
-              }}
-            >
+          <RegisterContent>
+            <Title style={{ fontSize: '1.6rem' }}>Cadastre-se!</Title>
+            <Paragraph>
               Junte-se a nossa comunidade felina, e aproveite para compartilhar
               o cotidiano do seu gato!
-            </p>
+            </Paragraph>
             <div>
-              <Input
-                label={
-                  data?.userName === userData.username
-                    ? 'Nome de usuário em uso'
-                    : 'Nome de usuário'
-                }
-                type="text"
-                name="username"
-                placeholder="Escolha um nome de usuário."
-                value={userData.username}
-                onBlur={handleBlur}
-                onChange={({ target }: any) =>
-                  setUserData((prevState: any) => ({
-                    ...prevState,
-                    username: target.value,
-                  }))
-                }
-              />
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                <Input
+                  label={
+                    data?.userName === userData.username
+                      ? 'Nome de usuário em uso'
+                      : 'Nome de usuário'
+                  }
+                  type="text"
+                  name="username"
+                  placeholder="Escolha um nome de usuário."
+                  value={userData.username}
+                  onBlur={handleBlur}
+                  onChange={({ target }: any) =>
+                    setUserData((prevState: any) => ({
+                      ...prevState,
+                      username: target.value,
+                    }))
+                  }
+                />
 
-              <Input
-                label={
-                  data?.email === userData.email
-                    ? 'E-mail em uso'
-                    : error.errorEmail
-                    ? 'E-mail inválido!'
-                    : 'E-mail'
-                }
-                type="email"
-                name="email"
-                placeholder="josedasilva@gmail.com"
-                value={userData.email}
-                onBlur={handleBlur}
-                onChange={({ target }: any) =>
-                  setUserData((prevState: any) => ({
-                    ...prevState,
-                    email: target.value,
-                  }))
-                }
-              />
+                <Input
+                  label={
+                    data?.email === userData.email
+                      ? 'E-mail em uso'
+                      : error.errorEmail
+                      ? 'E-mail inválido!'
+                      : 'E-mail'
+                  }
+                  type="email"
+                  name="email"
+                  placeholder="josedasilva@gmail.com"
+                  value={userData.email}
+                  onBlur={handleBlur}
+                  onChange={({ target }: any) =>
+                    setUserData((prevState: any) => ({
+                      ...prevState,
+                      email: target.value,
+                    }))
+                  }
+                />
 
-              <Input
-                label={
-                  error.passError
-                    ? 'Senha deve ter ao menos 6 caractéres!'
-                    : 'Senha'
-                }
-                type="password"
-                name="password"
-                placeholder="Insira sua senha"
-                value={userData.password}
-                onChange={({ target }: any) =>
-                  setUserData((prevState: any) => ({
-                    ...prevState,
-                    password: target.value,
-                  }))
-                }
-                onBlur={handleBlur}
-              />
+                <Input
+                  label={
+                    error.passError
+                      ? 'Senha deve ter ao menos 6 caractéres!'
+                      : 'Senha'
+                  }
+                  type="password"
+                  name="password"
+                  placeholder="Insira sua senha"
+                  value={userData.password}
+                  onChange={({ target }: any) =>
+                    setUserData((prevState: any) => ({
+                      ...prevState,
+                      password: target.value,
+                    }))
+                  }
+                  onBlur={handleBlur}
+                />
+              </div>
             </div>
 
             <Button
               disabled={isLoading ? true : false}
-              style={{ margin: '14px 0px' }}
+              style={{ margin: '14px 0px', maxWidth: '100%' }}
               onClick={(e: any) => handleSubmit(e)}
             >
               Cadastrar
             </Button>
-            <div
-              style={{
-                fontSize: '18px',
-                color: '#c9c9c9',
-                alignSelf: 'center',
-              }}
-            >
-              <BackLogin>
-                Já possui conta?{' '}
-                <NavLink to="/login" style={{ borderBottom: '2px solid #000' }}>
-                  {' '}
-                  Faça Login
-                </NavLink>
-              </BackLogin>
-            </div>
-            <NavLink
-              style={{
-                alignSelf: 'center',
-                margin: '16px 0px',
-              }}
-              to="/login"
-            >
-              <Button>Login</Button>
-            </NavLink>
-          </div>
+          </RegisterContent>
 
           <CatImg src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
         </Form>

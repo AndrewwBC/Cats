@@ -10,6 +10,7 @@ import UserPage from '../Routes/UserPage'
 import Welcome from '../Routes/Welcome'
 import UserSettings from '../Routes/UserSettings/UserSettings'
 import ForgotPassword from '../Routes/ForgotPassword/ForgotPassword'
+import Diseases from '../Routes/Deseases/Diseases'
 
 const AnimatedRoutes = () => {
   const location = useLocation()
@@ -27,6 +28,7 @@ const AnimatedRoutes = () => {
         <Route path="/userpage" element={<UserPage />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/usersettings" element={<UserSettings />} />
+        <Route path="/diseases" element={<Diseases />} />
       </Routes>
     </AnimatePresence>
   )

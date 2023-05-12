@@ -8,6 +8,9 @@ export const Container = styled(m.main)`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.background};
+  @media (max-width:500px){
+    height: calc(100vh - 122px);
+  }
 `;
 
 export const Content = styled.article`

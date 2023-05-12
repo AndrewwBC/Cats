@@ -10,6 +10,6 @@ export const Paragraph = styled.p`
     font-size: 1rem;
   }
   @media (max-width: 535px) {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 `;

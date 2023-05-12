@@ -29,7 +29,7 @@ const UserPage = () => {
   let userVerify: any = JSON.parse(storage)
 
   if (!user) return <div style={{ height: '100vh' }}>Loading</div>
-  /*  <Button onClick={handleFollow}>Seguindo</Button>*/ else
+  else
     return (
       <Container>
         <Content>

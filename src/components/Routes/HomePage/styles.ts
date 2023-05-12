@@ -5,9 +5,13 @@ export const Main = styled(m.main)`
   background-color: ${({ theme }) => theme.background};
   padding-bottom: 48px;
   padding-top: 60px;
+  height: 100vh;
   @media (max-width: 768px) {
     margin: 40px 0px 148px;
-  }
+    }
+  @media (max-width: 480px) {
+    margin: 32px;
+    }
 `;
 
 export const Content = styled.section`
@@ -109,14 +113,26 @@ export const ImgContainer = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  @media (max-width: 1000px) {
+    object-fit: cover;
+    width: 400px;
+    height: 100%;
+    margin-bottom: 32px;
+  }
   @media (max-width: 768px) {
     object-fit: cover;
     width: 400px;
     height: 340px;
+    margin-bottom: 32px;
   }
   @media (max-width: 535px) {
     object-fit: cover;
     width: 300px;
+    height: 260px;
+  }
+  @media (max-width: 450px) {
+    object-fit: cover;
+    width: 200px;
     height: 260px;
   }
 `;
