@@ -82,49 +82,63 @@ const Diseases = () => {
             )
           })}
         </ol>
+        <Title style={{ fontSize: '2.4rem', marginTop: '32px' }}>
+          Veterinários
+        </Title>
+        <Paragraph style={{ letterSpacing: '.5px' }}>
+          Aqui estão os veterinários mais próximos a sua casa.
+        </Paragraph>
         <MapContainer>
           <MapContent>
             <ImgMap
               width={480}
-              height={290}
+              height={240}
               src="https://i.stack.imgur.com/HILmr.png"
               alt=""
             />
             <MapInfos>
-              <h3 style={{ fontFamily: 'poppins' }}>Pelotas</h3>
+              <Title style={{ fontFamily: 'poppins', fontSize: '1.6rem' }}>
+                Pelotas
+              </Title>
               <PetShopAddress>
                 <div>
-                  <p>Rua Ali Perto, 25</p>
-                  <p>Pelotas - RS</p>
+                  <Paragraph>Rua Ali Perto, 25</Paragraph>
+                  <Paragraph>Pelotas - RS</Paragraph>
                 </div>
                 <div>
-                  <p>latidosemiados@gmail.com</p>
-                  <p>+55 53 9 9999-9999</p>
+                  <Paragraph>latidosemiados@gmail.com</Paragraph>
+                  <Paragraph>+55 53 9 9999-9999</Paragraph>
                 </div>
+                <Paragraph style={{ marginTop: '12px', gridColumn: '1/-1' }}>
+                  08 as 18 de seg à dom
+                </Paragraph>
               </PetShopAddress>
-              <p>08 as 18 de seg à dom</p>
             </MapInfos>
           </MapContent>
           <MapContent>
             <ImgMap
               width={480}
-              height={290}
+              height={240}
               src="https://i.stack.imgur.com/HILmr.png"
               alt=""
             />
             <MapInfos>
-              <h3 style={{ fontFamily: 'poppins' }}>Pelotas</h3>
+              <Title style={{ fontFamily: 'poppins', fontSize: '1.6rem' }}>
+                Pelotas
+              </Title>
               <PetShopAddress>
                 <div>
-                  <p>Rua Ali Perto, 25</p>
-                  <p>Pelotas - RS</p>
+                  <Paragraph>Rua Ali Perto, 25</Paragraph>
+                  <Paragraph>Pelotas - RS</Paragraph>
                 </div>
                 <div>
-                  <p>latidosemiados@gmail.com</p>
-                  <p>+55 53 9 9999-9999</p>
+                  <Paragraph>latidosemiados@gmail.com</Paragraph>
+                  <Paragraph>+55 53 9 9999-9999</Paragraph>
                 </div>
+                <Paragraph style={{ marginTop: '12px', gridColumn: '1/-1' }}>
+                  08 as 18 de seg à dom
+                </Paragraph>
               </PetShopAddress>
-              <p>08 as 18 de seg à dom</p>
             </MapInfos>
           </MapContent>
         </MapContainer>

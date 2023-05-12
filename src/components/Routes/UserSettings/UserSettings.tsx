@@ -24,8 +24,6 @@ const UserSettings = () => {
     verifyNewPass: '',
   })
 
-  console.log(newUsername, newPassword)
-
   return (
     <Container>
       <Content>

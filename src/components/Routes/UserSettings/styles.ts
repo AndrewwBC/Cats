@@ -27,7 +27,6 @@ export const AsideMenu = styled.nav`
 
 export const ResetContainer = styled.div`
     padding: 32px;
-    height: 400px;
     width: 400px;
     background-color: ${({theme}) => theme.form};
     border-bottom-left-radius: 12px;

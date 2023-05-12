@@ -13,6 +13,7 @@ import IconsData from '../PostComponents/IconsData/IconsData'
 import SendComments from '../PostComponents/SendComments/SendComments'
 import { useQuery } from '@tanstack/react-query'
 import { getPosts } from './queryPost'
+import Spinner from '../Spinner/Spinner'
 
 const FeedPost = () => {
   const {
@@ -25,8 +26,10 @@ const FeedPost = () => {
 
   console.log(posts)
 
-  if (isLoading) return <div style={{ height: '100vh' }}>Carregando</div>
-  else if (isSuccess)
+  if (isLoading) return <Spinner />
+  if (posts.length === 0)
+    return <div style={{ height: '100vh' }}>Ainda não há postagens</div>
+  else
     return (
       <>
         <Container
@@ -55,6 +58,5 @@ const FeedPost = () => {
         </Container>
       </>
     )
-  else return <></>
 }
 export default FeedPost
