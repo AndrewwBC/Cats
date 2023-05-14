@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/GeneralComponents/Header'
+import Footer from './components/GeneralComponents/Footer'
+import { BrowserRouter } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
+import { lightTheme, darkTheme } from './styles/theme'
+import useUser from './hooks/useUser'
+import useTheme from './hooks/useTheme'
+import GlobalStyles from './styles/globalStyles'
+import AnimatedRoutes from './components/AnimatedRoutes/AnimatedRoutes'
+import SideMenu from './components/GeneralComponents/SideMenu/SideMenu'
 
-function App() {
+const App = () => {
+  const { user, setUser } = useUser()
+  const { theme } = useTheme()
+
+  if (localStorage.getItem('user') && user === false) {
+    let userData: any = localStorage.getItem('user')
+    setUser(JSON.parse(userData))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <BrowserRouter>
+        <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+          {user ? <SideMenu /> : <Header />}
+          <GlobalStyles />
+          <AnimatedRoutes />
+          <Footer />
+        </ThemeProvider>
+      </BrowserRouter>
+    </>
+  )
 }
 
-export default App;
+export default App

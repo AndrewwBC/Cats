@@ -1,0 +1,29 @@
+{
+    "doencas": [
+      {
+        "nome": "Rinotraqueíte Felina",
+        "tratamento": "Administrar medicamentos antivirais e sintomáticos conforme indicado pelo veterinário.",
+        "prevencao": "Vacinação anual contra rinotraqueíte felina, evitar o contato com gatos doentes."
+      },
+      {
+        "nome": "Doença do trato urinário inferior felino (DTUIF)",
+        "tratamento": "Terapia medicamentosa, dieta especializada e aumento da ingestão de água.",
+        "prevencao": "Promover a hidratação adequada, oferecer uma dieta balanceada e rica em água."
+      },
+      {
+        "nome": "Gripe felina",
+        "tratamento": "Administrar medicamentos para aliviar os sintomas, manter o gato aquecido e oferecer alimentos palatáveis.",
+        "prevencao": "Vacinar contra a gripe felina e evitar o contato com gatos infectados."
+      },
+      {
+        "nome": "Doença renal crônica",
+        "tratamento": "Dieta renal especializada, administração de medicamentos prescritos pelo veterinário e monitoramento regular.",
+        "prevencao": "Manter uma hidratação adequada, oferecer uma dieta de qualidade e realizar check-ups veterinários regulares."
+      },
+      {
+        "nome": "Verminoses",
+        "tratamento": "Administrar vermífugos de acordo com a orientação veterinária e garantir higiene adequada.",
+        "prevencao": "Realizar vermifugação regularmente e manter o ambiente limpo."
+      }
+    ]
+  }
