@@ -1,22 +1,24 @@
-import { useState, memo } from 'react'
+import { useState, memo, useContext } from 'react'
 import { InputComment, SendCommentButton, SendCommentDiv } from './styles'
 import { PHP } from '../../../../api'
 import useUser from '../../../../hooks/useUser'
 import { useMutationCommentsData } from '../../../../hooks/useMutationCommentsData'
+import { UserContext } from '../../../../providers/userContext'
 
 const formData = new FormData()
 
 const SendComments = ({ postCod }: any) => {
   const [comment, setComment] = useState('')
-  const { user } = useUser()
+
+  const { userData } = useContext(UserContext)
 
   const { mutate } = useMutationCommentsData(postCod, '1')
 
   const sendComment = async (postCod: number) => {
     formData.append('comment', comment)
     formData.append('postCod', postCod.toString())
-    formData.append('userCod', user.Cod)
-    formData.append('userName', user.UserName)
+    formData.append('userCod', userData.userCod)
+    formData.append('userName', userData.userName)
     formData.append('command', '1')
     /* insere comentario no banco */
     formData.append('functionKey', '3')

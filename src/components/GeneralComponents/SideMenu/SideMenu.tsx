@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react'
+import React, { memo, useContext, useState } from 'react'
 import {
   IconAndTitle,
   IconTitle,
@@ -14,92 +14,90 @@ import { IoMdLogOut } from 'react-icons/io'
 import { CgProfile } from 'react-icons/cg'
 import { BiPlusCircle } from 'react-icons/bi'
 import { NavLink, Navigate, useNavigate } from 'react-router-dom'
-import useUser from '../../../hooks/useUser'
 import PostPhoto from '../PostPhoto/PostPhoto'
 import ThemeButton from '../ThemeButton/ThemeButton'
+import { UserContext } from '../../../providers/userContext'
+import Spinner from '../Spinner'
 
 const SideMenu = () => {
   const navigate = useNavigate()
-  const { user, setUser } = useUser()
   const [modal, setModal] = useState(false)
+
+  const { userData, isLoading } = useContext(UserContext)
 
   function logOut() {
     localStorage.clear()
-    setUser(false)
     navigate('')
   }
+  if (isLoading) return <Spinner />
+  return (
+    <>
+      <SideContent>
+        <TitleButton>
+          <Catgram style={{ fontSize: '18px' }}>{userData.userName}</Catgram>
+        </TitleButton>
 
-  if (!user) return <div></div>
-  if (user)
-    return (
-      <>
-        <SideContent>
-          <TitleButton>
-            <Catgram style={{ fontSize: '18px' }}>{user.UserName}</Catgram>
-          </TitleButton>
-
-          <IconsContainer>
-            <li>
-              <IconAndTitle style={{ border: 'none' }}>
-                <ThemeButton />
+        <IconsContainer>
+          <li>
+            <IconAndTitle style={{ border: 'none' }}>
+              <ThemeButton />
+            </IconAndTitle>
+          </li>
+          <li>
+            <NavLink to={'/generalfeed'}>
+              <IconAndTitle>
+                <SlHome size={24} />
+                <IconTitle>Homepage</IconTitle>
               </IconAndTitle>
-            </li>
-            <li>
-              <NavLink to={'/generalfeed'}>
-                <IconAndTitle>
-                  <SlHome size={24} />
-                  <IconTitle>Homepage</IconTitle>
-                </IconAndTitle>
-              </NavLink>
-            </li>
+            </NavLink>
+          </li>
 
-            <li>
-              <NavLink to={'/userpage'}>
-                <IconAndTitle>
-                  <CgProfile size={24} />
-                  <IconTitle>Perfil</IconTitle>
-                </IconAndTitle>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink to={'/generalfeed'}>
-                <IconAndTitle>
-                  <BsChatDots size={24} />
-                  <IconTitle>Mensagens</IconTitle>
-                </IconAndTitle>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink to={'/usersettings'}>
-                <IconAndTitle>
-                  <CiSettings size={26} />
-                  <IconTitle>Configurações</IconTitle>
-                </IconAndTitle>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink to={'/'}>
-                <IconAndTitle onClick={logOut}>
-                  <IoMdLogOut size={24} />
-                  <IconTitle>Sair</IconTitle>
-                </IconAndTitle>
-              </NavLink>
-            </li>
-            <li>
-              <IconAndTitle onClick={() => setModal(true)}>
-                <BiPlusCircle size={24} />
-                <IconTitle>Postar</IconTitle>
+          <li>
+            <NavLink to={'/userpage'}>
+              <IconAndTitle>
+                <CgProfile size={24} />
+                <IconTitle>Perfil</IconTitle>
               </IconAndTitle>
-              {modal && <PostPhoto setModal={setModal} />}
-            </li>
-          </IconsContainer>
-        </SideContent>
-      </>
-    )
-  else return <div></div>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={'/generalfeed'}>
+              <IconAndTitle>
+                <BsChatDots size={24} />
+                <IconTitle>Mensagens</IconTitle>
+              </IconAndTitle>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={'/usersettings'}>
+              <IconAndTitle>
+                <CiSettings size={26} />
+                <IconTitle>Configurações</IconTitle>
+              </IconAndTitle>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to={'/'}>
+              <IconAndTitle onClick={logOut}>
+                <IoMdLogOut size={24} />
+                <IconTitle>Sair</IconTitle>
+              </IconAndTitle>
+            </NavLink>
+          </li>
+          <li>
+            <IconAndTitle onClick={() => setModal(true)}>
+              <BiPlusCircle size={24} />
+              <IconTitle>Postar</IconTitle>
+            </IconAndTitle>
+            {modal && <PostPhoto setModal={setModal} />}
+          </li>
+        </IconsContainer>
+      </SideContent>
+    </>
+  )
 }
 
 export default memo(SideMenu)

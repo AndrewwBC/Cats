@@ -11,19 +11,11 @@ import { Paragraph } from '../../GeneralComponents/Paragraph'
 import { Catgram, Title } from '../../GeneralComponents/Titles'
 import { Button } from '../../FormComponents/Button/style'
 import { NavLink, useNavigate } from 'react-router-dom'
-import useUser from '../../../hooks/useUser'
 
 const HomePage = () => {
   const navigate = useNavigate()
-  const { user, setUser } = useUser()
 
-  let Images = [
-    'https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80',
-    'https://images.unsplash.com/photo-1516374348294-ce51573b0fb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    'https://images.unsplash.com/photo-1526673945462-bbebcd9f24f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-  ]
-
-  if (user) navigate('/generalfeed')
+  if (localStorage.getItem('token')) navigate('/generalfeed')
   return (
     <Main
       initial={{ opacity: 0 }}
@@ -32,7 +24,10 @@ const HomePage = () => {
       transition={{ duration: 0.3 }}
     >
       <Content>
-        <ImgContainer src={Images[0]} id="slide" />
+        <ImgContainer
+          src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80"
+          id="slide"
+        />
         <Intro>
           <div>
             <Title>

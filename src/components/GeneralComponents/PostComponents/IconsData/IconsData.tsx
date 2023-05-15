@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Content, Icons } from './styles'
 import {
   FaRegHeart,
@@ -9,7 +9,7 @@ import {
 import { PHP } from '../../../../api'
 import useUser from '../../../../hooks/useUser'
 import { LikeText } from '../../FeedPost/styles'
-import { useQueryCommentsData } from '../../../../hooks/useMutationCommentsData'
+import { UserContext } from '../../../../providers/userContext'
 
 const formData = new FormData()
 
@@ -18,14 +18,16 @@ const IconsData = ({ item }: any) => {
   const [heart, setHeart] = useState<any>(false)
   const [count, setCount] = useState(0)
 
+  const { userData } = useContext(UserContext)
+
   useEffect(() => {
-    PHP.GetHeart(setHeart, item.Post_Cod, user.Cod, 3)
+    PHP.GetHeart(setHeart, item.Post_Cod, userData.userCod, 3)
   }, [item.Post_Cod])
 
   const userLikes = async (command: boolean) => {
     formData.append('postCod', item.Post_Cod)
-    formData.append('userCod', user.Cod)
-    formData.append('userName', user.UserName)
+    formData.append('userCod', userData.UserCod)
+    formData.append('userName', userData.UserName)
     formData.append('typeOfChange', command ? '1' : '0')
     formData.append('functionKey', '4')
 

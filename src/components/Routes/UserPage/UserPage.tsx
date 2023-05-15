@@ -1,4 +1,4 @@
-import { useState, memo } from 'react'
+import { useState, memo, useContext } from 'react'
 import {
   Container,
   Content,
@@ -13,13 +13,13 @@ import {
   UserNamePhoto,
   UserPhoto,
 } from './styles'
-import useUser from '../../../hooks/useUser'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Spinner from '../../GeneralComponents/Spinner/Spinner'
+import { UserContext } from '../../../providers/userContext'
 
 const UserPage = () => {
-  const { user } = useUser()
+  const { userData, isLoading: isLoadUser } = useContext(UserContext)
 
   const getUserPosts = async () => {
     const req = await axios.get(
@@ -37,12 +37,10 @@ const UserPage = () => {
 
   const { data: eachPost, isLoading } = useQuery({
     queryKey: ['getUserPosts'],
-    queryFn: async () => getUserPosts(),
+    queryFn: () => getUserPosts(),
   })
 
-  console.log(eachPost, isLoading)
-
-  if (isLoading) return <Spinner />
+  if (isLoading && isLoadUser) return <Spinner />
   else
     return (
       <Container>
@@ -55,19 +53,19 @@ const UserPage = () => {
                 src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                 alt=""
               />
-              <UserName>{user.UserName}</UserName>
+              <UserName>{userData.userName}</UserName>
             </UserNamePhoto>
             <UserInfo>
               <NumbersContainer>
-                <Numbers>{user.Publicações}</Numbers>
+                <Numbers>{userData.Publicações}</Numbers>
                 <NumbersButton>Publicações</NumbersButton>
               </NumbersContainer>
               <NumbersContainer>
-                <Numbers>{user.Seguidores}</Numbers>
+                <Numbers>{userData.Seguidores}</Numbers>
                 <NumbersButton>Seguidores</NumbersButton>
               </NumbersContainer>
               <NumbersContainer>
-                <Numbers>{user.Seguindo}</Numbers>
+                <Numbers>{userData.Seguindo}</Numbers>
                 <NumbersButton>Seguindo</NumbersButton>
               </NumbersContainer>
             </UserInfo>
@@ -75,7 +73,7 @@ const UserPage = () => {
           <UserFeed>
             {eachPost &&
               eachPost.map((item: any) => (
-                <div>
+                <div key={item.Post_Cod}>
                   <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
                 </div>
               ))}

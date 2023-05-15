@@ -13,16 +13,13 @@ const App = () => {
   const { user, setUser } = useUser()
   const { theme } = useTheme()
 
-  if (localStorage.getItem('user') && !user) {
-    let userData: any = localStorage.getItem('user')
-    setUser(JSON.parse(userData))
-  }
-
+  let token = localStorage.getItem('token')
+  console.log(token)
   return (
     <>
       <BrowserRouter>
         <ThemeProvider theme={theme ? lightTheme : darkTheme}>
-          {user ? <SideMenu /> : <Header />}
+          {token ? <SideMenu /> : <Header />}
           <GlobalStyles />
           <AnimatedRoutes />
         </ThemeProvider>
