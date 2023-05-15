@@ -3,7 +3,7 @@ import {motion as m } from 'framer-motion'
 
 export const Container = styled(m.main)`
   height: 100%;
-  background-color: ${({ theme }) => theme.feedBg};
+  padding-top: 60px;
 `;
 
 export const Content = styled.section`
@@ -11,5 +11,5 @@ export const Content = styled.section`
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
-  background-color: ${({ theme }) => theme.feedBg};
+
 `;

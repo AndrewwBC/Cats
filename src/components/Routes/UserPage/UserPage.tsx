@@ -13,22 +13,36 @@ import {
   UserNamePhoto,
   UserPhoto,
 } from './styles'
-import { Button } from '../../FormComponents/Button/style'
 import useUser from '../../../hooks/useUser'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import Spinner from '../../GeneralComponents/Spinner/Spinner'
 
 const UserPage = () => {
   const { user } = useUser()
-  /* tratar render do botao follow */
-  const [follow, setFollow] = useState<any>(false)
 
-  function handleFollow() {
-    setFollow(!follow)
+  const getUserPosts = async () => {
+    const req = await axios.get(
+      'http://localhost/ReactPHP/Funções/PostsData.php',
+      {
+        params: {
+          token: localStorage.getItem('token'),
+          functionKey: '4',
+        },
+      },
+    )
+    const res = await req.data
+    return res
   }
 
-  let storage: any = localStorage.getItem('user')
-  let userVerify: any = JSON.parse(storage)
+  const { data: eachPost, isLoading } = useQuery({
+    queryKey: ['getUserPosts'],
+    queryFn: async () => getUserPosts(),
+  })
 
-  if (!user) return <div style={{ height: '100vh' }}>Loading</div>
+  console.log(eachPost, isLoading)
+
+  if (isLoading) return <Spinner />
   else
     return (
       <Container>
@@ -42,11 +56,6 @@ const UserPage = () => {
                 alt=""
               />
               <UserName>{user.UserName}</UserName>
-              {user.UserName !== userVerify.UserName ? (
-                <Button onClick={handleFollow}>
-                  {follow ? 'Seguindo' : 'Seguir'}
-                </Button>
-              ) : null}
             </UserNamePhoto>
             <UserInfo>
               <NumbersContainer>
@@ -64,9 +73,12 @@ const UserPage = () => {
             </UserInfo>
           </UserData>
           <UserFeed>
-            <FeedImg src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
-            <FeedImg src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
-            <FeedImg src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+            {eachPost &&
+              eachPost.map((item: any) => (
+                <div>
+                  <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
+                </div>
+              ))}
           </UserFeed>
         </Content>
       </Container>

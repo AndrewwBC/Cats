@@ -36,11 +36,9 @@ const Login = () => {
     }
   }
 
-  console.log(data)
-
   if (isSuccess && data?.status === 200) {
     setUser(data.data)
-    localStorage.setItem('user', JSON.stringify(data.data))
+    localStorage.setItem('token', data.data)
     navigate('/userpage')
   } else if (data?.status === 401) {
     alert(data.message)

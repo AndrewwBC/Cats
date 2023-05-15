@@ -6,9 +6,12 @@ export default createGlobalStyle`
         margin: 0px;
         outline: 0px;
         padding: 0px;
-        transition: .3s;
     } 
    
+    main, section, p, h1, h2, h3,h4, div {
+        transition: .3s;
+    }
+
     body {
         background: ${(props) => props.theme.background};
         color: ${(props) => props.theme.text};

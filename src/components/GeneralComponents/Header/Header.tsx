@@ -9,9 +9,8 @@ import { AiOutlineUser } from 'react-icons/ai'
 import ThemeButton from '../ThemeButton/ThemeButton'
 const Header = () => {
   const { theme, setTheme } = useTheme()
-  const { user } = useUser()
 
-  if (user) return <SideMenu />
+  if (localStorage.getItem('user')) return <SideMenu />
   else
     return (
       <>

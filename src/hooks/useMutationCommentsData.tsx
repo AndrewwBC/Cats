@@ -7,13 +7,17 @@ const getCommentsData = async (
   postCod: number,
   functionKey: string,
 ): Promise<ReturnType<ObjectConstructor>> => {
-  formData.append('postCod', postCod.toString())
-  formData.append('functionKey', functionKey)
-  console.log('Enter at Query')
+  // formData.append('postCod', postCod.toString())
+  // formData.append('functionKey', functionKey)
   try {
-    const request = await Axios.post(
+    const request = await Axios.get(
       'http://localhost/ReactPHP/Funções/PostsData.php',
-      formData,
+      {
+        params: {
+          postCod: postCod.toString(),
+          functionKey: functionKey,
+        },
+      },
     )
     return request
   } catch (err) {
@@ -32,10 +36,6 @@ export const useQueryCommentsData = (postCod: number, functionKey: string) => {
   })
 }
 
-/*formData passando pelo front foi o problema? */
-/* sempre providenciar uma chave única para as queryes*/
-/* */
-
 export const useMutationCommentsData = (
   postCod: number,
   functionKey: string,
@@ -48,3 +48,7 @@ export const useMutationCommentsData = (
     },
   })
 }
+
+/*formData passando pelo front foi o problema? */
+/* sempre providenciar uma chave única para as queryes*/
+/* */

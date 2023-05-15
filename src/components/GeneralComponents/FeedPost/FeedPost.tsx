@@ -14,8 +14,10 @@ import SendComments from '../PostComponents/SendComments/SendComments'
 import { useQuery } from '@tanstack/react-query'
 import { getPosts } from './queryPost'
 import Spinner from '../Spinner/Spinner'
+import useUser from '../../../hooks/useUser'
 
 const FeedPost = () => {
+  const { user } = useUser()
   const {
     data: posts,
     isLoading,
@@ -46,7 +48,7 @@ const FeedPost = () => {
                 <IconsData item={item} />
                 <UserNameDescription>
                   <div>
-                    <User>Drew123</User>
+                    <User>{item.UserName}</User>
                   </div>
                   <Description>{item.Description}</Description>
                 </UserNameDescription>
@@ -59,4 +61,4 @@ const FeedPost = () => {
       </>
     )
 }
-export default FeedPost
+export default memo(FeedPost)

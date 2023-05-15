@@ -8,9 +8,8 @@ const Comments = ({ postCod }: any) => {
     isSuccess,
     isLoading,
   } = useQueryCommentsData(postCod, '1')
-
-  console.log(comments)
-
+  if (isLoading) return <div></div>
+  if (!comments.data) return <div></div>
   if (comments && isSuccess)
     return (
       <Container>

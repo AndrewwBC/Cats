@@ -13,7 +13,7 @@ const App = () => {
   const { user, setUser } = useUser()
   const { theme } = useTheme()
 
-  if (localStorage.getItem('user') && user === false) {
+  if (localStorage.getItem('user') && !user) {
     let userData: any = localStorage.getItem('user')
     setUser(JSON.parse(userData))
   }
@@ -25,7 +25,6 @@ const App = () => {
           {user ? <SideMenu /> : <Header />}
           <GlobalStyles />
           <AnimatedRoutes />
-          <Footer />
         </ThemeProvider>
       </BrowserRouter>
     </>
