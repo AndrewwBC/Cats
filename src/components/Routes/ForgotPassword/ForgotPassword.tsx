@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { PHP, UserRequirements } from '../../../api'
 import { Button } from '../../FormComponents/Button/style'
-import Form from '../../FormComponents/Form'
 import Input from '../../FormComponents/Input'
 import { Container, Content } from './styles'
 import { useMutation } from '@tanstack/react-query'
@@ -29,7 +28,7 @@ const ForgotPassword = () => {
   return (
     <Container>
       <Content>
-        <Form>
+        <form>
           <Title>Recupere sua senha!</Title>
           <Paragraph style={{ marginBottom: '18px' }}>
             Enviaremos um e-mail para você!
@@ -50,7 +49,7 @@ const ForgotPassword = () => {
           >
             Recuperar senha
           </Button>
-        </Form>
+        </form>
       </Content>
     </Container>
   )

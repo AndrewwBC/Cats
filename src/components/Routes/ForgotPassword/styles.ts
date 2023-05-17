@@ -6,8 +6,7 @@ export const Container = styled.section`
   align-items: center;
   justify-items: center;
   background-color: ${({ theme }) => theme.background};
-  margin-bottom: 54px;
-  height: 100vh;
+  height: calc(100vh - 143px);
 `;
 
 export const Content = styled.div`

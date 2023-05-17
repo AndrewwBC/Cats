@@ -9,19 +9,17 @@ import styled from 'styled-components';
 // };
 
 export const Container = styled.header`
-  width: 100%;
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.header};
+  box-shadow: ${({ theme }) => theme.shadowHeader};
+  backdrop-filter: blur( 4.5px );
+  -webkit-backdrop-filter: blur( 4.5px );
 `;
 
 export const Content = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  display: grid;
-  padding: 12px;
+  padding: 18px 0px;
   gap: 128px;
-  align-items: center;
-  grid-template-columns: 1fr auto auto;
-  justify-content: center;
   @media (max-width: 1115px){
     padding-left: 24px;
     }
@@ -36,14 +34,17 @@ export const Content = styled.div`
     
 `;
 
-export const Logo = styled.div`
-  display: block;
-`;
-
 export const Menu = styled.nav`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding-right: 92px;
+  gap: 48px;
   align-items: center;
-  flex-shrink: 0;
-  justify-items: self-end;
+  justify-content: center;
 
 `;
+
+export const Buttons = styled.div`
+  display: flex;
+  gap: 24px;
+`

@@ -1,4 +1,4 @@
-import { useState, memo, useContext } from 'react'
+import { memo, useContext, useEffect } from 'react'
 import {
   Container,
   Content,
@@ -13,35 +13,34 @@ import {
   UserNamePhoto,
   UserPhoto,
 } from './styles'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 import Spinner from '../../GeneralComponents/Spinner/Spinner'
 import { UserContext } from '../../../providers/userContext'
+import useUser from '../../../hooks/useUser'
+import { useMutationUserData } from '../../../hooks/useMutationUserData'
+import { useNavigate } from 'react-router-dom'
+import useUserPost from '../../../hooks/useUserData'
 
 const UserPage = () => {
-  const { userData, isLoading: isLoadUser } = useContext(UserContext)
+  let nave = useNavigate()
+  const { setUser } = useUser()
+  const { setUserData } = useUserPost()
+  let token = localStorage.getItem('token')
+  if (!token) nave('/')
+  const {
+    mutate,
+    data: userData,
+    isLoading: isLoadUser,
+    isSuccess,
+  } = useMutationUserData()
 
-  const getUserPosts = async () => {
-    const req = await axios.get(
-      'http://localhost/ReactPHP/Funções/PostsData.php',
-      {
-        params: {
-          token: localStorage.getItem('token'),
-          functionKey: '4',
-        },
-      },
-    )
-    const res = await req.data
-    return res
-  }
+  useEffect(() => {
+    setUser(true)
+    mutate()
+  }, [token])
 
-  const { data: eachPost, isLoading } = useQuery({
-    queryKey: ['getUserPosts'],
-    queryFn: () => getUserPosts(),
-  })
-
-  if (isLoading && isLoadUser) return <Spinner />
-  else
+  if (isLoadUser) return <Spinner />
+  else if (isSuccess) {
+    setUserData(userData)
     return (
       <Container>
         <Content>
@@ -56,31 +55,25 @@ const UserPage = () => {
               <UserName>{userData.userName}</UserName>
             </UserNamePhoto>
             <UserInfo>
-              <NumbersContainer>
-                <Numbers>{userData.Publicações}</Numbers>
-                <NumbersButton>Publicações</NumbersButton>
-              </NumbersContainer>
-              <NumbersContainer>
-                <Numbers>{userData.Seguidores}</Numbers>
-                <NumbersButton>Seguidores</NumbersButton>
-              </NumbersContainer>
-              <NumbersContainer>
-                <Numbers>{userData.Seguindo}</Numbers>
-                <NumbersButton>Seguindo</NumbersButton>
-              </NumbersContainer>
+              {userData.userNumbers.map((item: any, index: number) => (
+                <NumbersContainer key={index}>
+                  <Numbers>{item[1]}</Numbers>
+                  <NumbersButton>{item[0]}</NumbersButton>
+                </NumbersContainer>
+              ))}
             </UserInfo>
           </UserData>
           <UserFeed>
-            {eachPost &&
-              eachPost.map((item: any) => (
-                <div key={item.Post_Cod}>
-                  <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
-                </div>
-              ))}
+            {userData.posts.map((item: any, index: number) => (
+              <div key={index}>
+                <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
+              </div>
+            ))}
           </UserFeed>
         </Content>
       </Container>
     )
+  } else return null
 }
 
-export default memo(UserPage)
+export default UserPage

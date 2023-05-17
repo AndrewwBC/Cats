@@ -11,9 +11,12 @@ import { Paragraph } from '../../GeneralComponents/Paragraph'
 import { Catgram, Title } from '../../GeneralComponents/Titles'
 import { Button } from '../../FormComponents/Button/style'
 import { NavLink, useNavigate } from 'react-router-dom'
+import useUser from '../../../hooks/useUser'
 
 const HomePage = () => {
   const navigate = useNavigate()
+  const {setUser} =  useUser() 
+  setUser(false)
 
   if (localStorage.getItem('token')) navigate('/generalfeed')
   return (
@@ -26,12 +29,11 @@ const HomePage = () => {
       <Content>
         <ImgContainer
           src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80"
-          id="slide"
         />
         <Intro>
           <div>
             <Title>
-              Bem vindo ao <Catgram>Catgram.</Catgram>
+              Bem vindo ao Catgram.
             </Title>
           </div>
 
@@ -44,7 +46,7 @@ const HomePage = () => {
               Aproveite para exibir toda a beleza do seu Pet!
             </Paragraph>
           </IntroText>
-
+          
           <IntroButtons>
             <Access>Acesse rapidamente</Access>
             <NavLink to={'/login'}>

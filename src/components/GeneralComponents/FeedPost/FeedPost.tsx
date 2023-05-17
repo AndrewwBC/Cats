@@ -14,10 +14,8 @@ import SendComments from '../PostComponents/SendComments/SendComments'
 import { useQuery } from '@tanstack/react-query'
 import { getPosts } from './queryPost'
 import Spinner from '../Spinner/Spinner'
-import useUser from '../../../hooks/useUser'
 
 const FeedPost = () => {
-  const { user } = useUser()
   const {
     data: posts,
     isLoading,
@@ -25,8 +23,6 @@ const FeedPost = () => {
   } = useQuery(['posts'], getPosts, {
     retry: false,
   })
-
-  console.log(posts)
 
   if (isLoading) return <Spinner />
   if (posts.length === 0)

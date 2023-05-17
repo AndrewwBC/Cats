@@ -287,17 +287,6 @@ export const PHP = {
       setLoad(false);
     }
   },
-  GetPostsPHP: async (setPost: any) => {
-    try {
-      await Axios.get('http://localhost/ReactPHP/Funções/BancoDados.php', {
-      }).then((response) =>
-        setPost(response.data),
-      );
-    } catch (err) {
-      console.log(err);
-    } finally {
-    }
-  },
   GetLikes: async (postCod: number, userCod: number | boolean, fk: number) => {
     try {
       await Axios.get('http://localhost/ReactPHP/Funções/PostsData.php', {

@@ -14,9 +14,9 @@ export const Container = styled(m.section)`
 `;
 
 export const RegisterContent = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 24px;
-  flex-direction: column;
   gap: 12px;
   @media (max-width: 768px){
     padding: 32px;
@@ -27,18 +27,17 @@ export const RegisterContent = styled.div`
 `
 
 export const Content = styled.article`
-  max-width: 1000px;
+  max-width: 800px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr auto;
   align-items: center;
   justify-content: center;
 `;
 
 export const CatImg = styled.img`
   display: block;
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+  height: 100%;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
   @media (max-width: 768px) {
@@ -46,15 +45,9 @@ export const CatImg = styled.img`
   }
 `;
 
-export const TwoInputsInline = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-`;
 
-export const OneInputInline = styled.div`
-  display: flex;
-  grid-column: 1/-1;
+export const InputGridPosition = styled.div`
+  grid-column: 1/1;
 `;
 
 export const ErrorMSG = styled.span`
@@ -67,3 +60,13 @@ export const ErrorMSG = styled.span`
 export const BackLogin = styled.p`
   color: ${({ theme }) => theme.text};
 `;
+
+export const Form = styled.form`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: ${({theme}) => theme.form};
+  padding: 24px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  gap: 12px;
+`

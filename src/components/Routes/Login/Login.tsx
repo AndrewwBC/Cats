@@ -1,11 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import Services, { PHP, UserRequirements } from '../../../api'
 import { Button } from '../../FormComponents/Button/style'
-import Form from '../../FormComponents/Form'
 import Input from '../../FormComponents/Input'
 import { Catgram } from '../../GeneralComponents/Titles'
-import { Container, Content } from './styles'
+import { Container, Content, Form } from './styles'
 import useUser from '../../../hooks/useUser'
 import { useMutationUser } from '../../../hooks/useMutationUser'
 
@@ -19,7 +17,6 @@ const Login = () => {
     email: '',
     password: '',
   })
-  const { setUser } = useUser()
   const navigate = useNavigate()
 
   async function handleSubmit(e: any) {
@@ -36,8 +33,7 @@ const Login = () => {
     }
   }
 
-  if (isSuccess && data?.status === 200) {
-    setUser(data.data)
+  if (isSuccess && data?.status === 200 && !localStorage.getItem('token')) {
     localStorage.setItem('token', data.data)
     navigate('/userpage')
   } else if (data?.status === 401) {
@@ -45,18 +41,17 @@ const Login = () => {
   }
 
   return (
-    <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <Container   
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.6 }}
+      >
       <Content>
+        <Catgram>
+          Sinta-se à vontade!
+        </Catgram>
         <Form>
-          <Catgram
-            style={{
-              marginBottom: '1.5rem',
-              placeSelf: 'center',
-              color: '#FF7F00',
-            }}
-          >
-            CatGram
-          </Catgram>
           <Input
             label="E-mail"
             type="text"
@@ -85,9 +80,9 @@ const Login = () => {
             forget={true}
           />
           <Button
-            style={{ marginTop: '12px' }}
+            style={{ margin: '24px 0px' }}
             disabled={isLoading ? true : false}
-            onClick={(e) => handleSubmit(e)}
+            onClick={(e: any) => handleSubmit(e)}
           >
             {isLoading ? 'Validando seus dados...' : 'Login'}
           </Button>
@@ -97,6 +92,7 @@ const Login = () => {
           <h4 style={{ placeSelf: 'center', fontWeight: 400 }}>
             Não possui conta? <NavLink to="/register">Registre-se!</NavLink>
           </h4>
+          <br/>
           <NavLink style={{ placeSelf: 'center' }} to="/register">
             <Button disabled={isLoading ? true : false}>Cadastrar</Button>
           </NavLink>

@@ -14,9 +14,11 @@ export const Title = styled.h1`
 `;
 
 export const Catgram = styled.h1`
-  font-size: 3rem;
+  font-size: 2.4rem;
+  grid-column: 1/-1;
+  padding-bottom: 32px;
   font-family: 'Poppins';
-  font-weight: bold;
+  font-weight: 500;
   color: ${({ theme }) => theme.text};
   @media (max-width: 768px) {
     font-size: 2rem;

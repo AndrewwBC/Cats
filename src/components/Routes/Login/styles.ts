@@ -2,11 +2,8 @@ import styled from 'styled-components';
 import {motion as m } from 'framer-motion'
 
 export const Container = styled(m.main)`
-  max-width: 100%;
-  display: flex;
-  height: calc(100vh - 132px);
-  align-items: center;
-  justify-content: center;
+  height: calc(100vh - 143px);
+  padding-top: 120px;
   background-color: ${({ theme }) => theme.background};
   @media (max-width:500px){
     height: calc(100vh - 122px);
@@ -14,10 +11,10 @@ export const Container = styled(m.main)`
 `;
 
 export const Content = styled.article`
-  max-width: 1000px;
-  display: flex;
-  align-items: center;
-  justify-items: center;
+  max-width: 460px;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
 `;
 
 export const TwoInputsInline = styled.div`
@@ -30,3 +27,9 @@ export const OneInputInline = styled.div`
   display: flex;
   grid-column: 1/-1;
 `;
+
+export const Form = styled.form`
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+`

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Button } from '../../FormComponents/Button/style'
-import Form from '../../FormComponents/Form'
 import Input from '../../FormComponents/Input'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
 import { Title } from '../../GeneralComponents/Titles'
@@ -43,7 +42,7 @@ const NewPassword = () => {
   return (
     <Container>
       <>
-        <Form>
+        <form>
           <Title style={{ placeSelf: 'center', marginBottom: '.6rem' }}>
             Mude sua senha!
           </Title>
@@ -84,7 +83,7 @@ const NewPassword = () => {
           )}
 
           <Button onClick={handleSubmit}>Confirmar</Button>
-        </Form>
+        </form>
       </>
     </Container>
   )

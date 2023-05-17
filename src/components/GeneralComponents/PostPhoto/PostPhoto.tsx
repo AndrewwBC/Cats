@@ -6,21 +6,22 @@ import { Title } from '../Titles'
 import Input from '../../FormComponents/Input/Input'
 import { Paragraph } from '../Paragraph'
 import useUser from '../../../hooks/useUser'
+import useUserData from '../../../hooks/useUserData'
 
 const PostPhoto = ({ setModal }: any) => {
   const [file, setFile] = useState<any>()
   const [description, setDescription] = useState('')
 
-  const { user } = useUser()
-
+  const {userData: user} = useUserData()
+  console.log(user)
   const formData = new FormData()
 
   async function handleSubmit(event: any) {
     event.preventDefault()
     formData.append('image', file)
     formData.append('description', description)
-    formData.append('user_cod', user.Cod)
-    formData.append('username', user.UserName)
+    formData.append('user_cod', user.userCod)
+    formData.append('username', user.userName)
     UserRequirements.PostFeedPhoto(formData)
   }
 

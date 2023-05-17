@@ -6,11 +6,10 @@ export default createGlobalStyle`
         margin: 0px;
         outline: 0px;
         padding: 0px;
-    } 
-   
-    main, section, p, h1, h2, h3,h4, div {
         transition: .3s;
-    }
+        -webkit-font-smoothing: subpixel-antialiased;
+    } 
+
 
     body {
         background: ${(props) => props.theme.background};

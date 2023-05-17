@@ -11,82 +11,74 @@ import {
 import { Title } from '../../GeneralComponents/Titles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
 
-const Diseases = () => {
+const About = () => {
   const diseases = [
     {
       id: 1,
-      nome: 'Rinotraqueíte Felina',
-      tratamento:
-        'Administrar medicamentos antivirais e sintomáticos conforme indicado pelo veterinário.',
-      prevencao:
-        'Vacinação anual contra rinotraqueíte felina, evitar o contato com gatos doentes.',
+      titulo: 'Adoção de Gatos',
+      descricao:
+        'Dicas e orientações sobre como adotar um gato, incluindo locais de adoção, cuidados pré e pós-adoção e informações sobre a importância da adoção responsável.',
     },
     {
       id: 2,
-      nome: 'Doença do trato urinário inferior felino (DTUIF)',
-      tratamento:
-        'Terapia medicamentosa, dieta especializada e aumento da ingestão de água.',
-      prevencao:
-        'Promover a hidratação adequada, oferecer uma dieta balanceada e rica em água.',
+      titulo: 'Doenças Comuns em Gatos',
+      descricao:
+        'Informações sobre doenças comuns em gatos, seus sintomas, tratamentos e medidas preventivas. Inclui conselhos sobre como manter a saúde do seu gato em dia.',
     },
     {
       id: 3,
-      nome: 'Gripe felina',
-      tratamento:
-        'Administrar medicamentos para aliviar os sintomas, manter o gato aquecido e oferecer alimentos palatáveis.',
-      prevencao:
-        'Vacinar contra a gripe felina e evitar o contato com gatos infectados.',
+      titulo: 'Encontrando Gatos Perdidos',
+      descricao:
+        'Dicas para ajudar a localizar gatos perdidos, incluindo a criação de cartazes, compartilhamento de informações em redes sociais e contato com abrigos de animais e clínicas veterinárias locais.',
     },
     {
       id: 4,
-      nome: 'Doença renal crônica',
-      tratamento:
-        'Dieta renal especializada, administração de medicamentos prescritos pelo veterinário e monitoramento regular.',
-      prevencao:
-        'Manter uma hidratação adequada, oferecer uma dieta de qualidade e realizar check-ups veterinários regulares.',
+      titulo: 'Cuidados Especiais para Gatos Idosos',
+      descricao:
+        'Informações sobre os cuidados especiais que os gatos idosos precisam, incluindo dieta adequada, exercícios, exames de saúde regulares e adaptação do ambiente para melhorar sua qualidade de vida.',
     },
     {
       id: 5,
-      nome: 'Verminoses',
-      tratamento:
-        'Administrar vermífugos de acordo com a orientação veterinária e garantir higiene adequada.',
-      prevencao:
-        'Realizar vermifugação regularmente e manter o ambiente limpo.',
+      titulo: 'Prevenção de Pulgas e Carrapatos',
+      descricao:
+        'Dicas sobre como prevenir infestações de pulgas e carrapatos em gatos, incluindo o uso de produtos adequados, higiene e limpeza do ambiente doméstico e cuidados com outros animais de estimação.',
     },
   ]
 
   return (
     <Container>
       <Content>
-        <Title style={{ fontSize: '2.4rem' }}>Doenças</Title>
-        <Paragraph style={{ letterSpacing: '.5px' }}>
-          Nossos gatinhos necessitam de cuidados especiais. <br />
-          Quando saem de casa e se aventuram na rua, podem voltar com uma
-          surpresinha. <br />
-          Pensando nisso, apresentaremos aqui uma lista das principais doenças e
-          como prevenir o seu felino.
-          <br />
+        <Title style={{ fontSize: '2.4rem' }}>Sobre nós</Title>
+        <Paragraph style={{ letterSpacing: '.5px', fontWeight: '400' }}>
+          Somos uma comunidade preocupada em unir pessoas apaixonadas por gatos.
+          Temos o intuíto de oferecer uma rede social divertida que também
+          contará com aspectos importantes.
         </Paragraph>
         <ol>
-          {diseases.map(({ id, nome, tratamento, prevencao }) => {
+          {diseases.map(({ id, titulo, descricao }) => {
             return (
-              <li>
-                <h3 style={{ fontFamily: 'poppins' }}>{nome}</h3>
-                <p style={{ paddingLeft: '18px', margin: '8px' }}>
-                  {tratamento}
-                </p>
-                <p style={{ paddingLeft: '18px', margin: '8px' }}>
-                  {prevencao}
+              <li key={id}>
+                <h3 style={{ fontFamily: 'poppins' }}>{titulo}</h3>
+                <p
+                  style={{
+                    paddingLeft: '18px',
+                    margin: '8px',
+                    fontWeight: '400',
+                    fontFamily: 'Poppins',
+                    letterSpacing: '0.3px',
+                  }}
+                >
+                  {descricao}
                 </p>
               </li>
             )
           })}
         </ol>
         <Title style={{ fontSize: '2.4rem', marginTop: '32px' }}>
-          Veterinários
+          Endereços
         </Title>
-        <Paragraph style={{ letterSpacing: '.5px' }}>
-          Aqui estão os veterinários mais próximos a sua casa.
+        <Paragraph style={{ letterSpacing: '.5px', fontWeight: '400' }}>
+          Nossas principais localizações e contatos.
         </Paragraph>
         <MapContainer>
           <MapContent>
@@ -147,4 +139,4 @@ const Diseases = () => {
   )
 }
 
-export default Diseases
+export default About

@@ -11,8 +11,13 @@ import {
 import { Title } from '../../GeneralComponents/Titles'
 import Input from '../../FormComponents/Input/Input'
 import { Button } from '../../FormComponents/Button/style'
+import axios from 'axios'
+import useUserData from '../../../hooks/useUserData'
+
+const formData = new FormData()
 
 const UserSettings = () => {
+  const {userData} = useUserData()
   const [changeContainer, setChangeContainer] = useState(true)
   const [newUsername, setNewUsername] = useState({
     newUsername: '',
@@ -23,6 +28,32 @@ const UserSettings = () => {
     newPass: '',
     verifyNewPass: '',
   })
+
+  const changeNick = async () => {
+    formData.append('newUsername', newUsername.newUsername);
+    formData.append('password', newUsername.password)
+    formData.append('userCod', userData.userCod)
+    formData.append('functionKey', '6')
+    try {
+        const req = await axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData)
+        console.log(req.data)
+    } catch (error){
+        return error
+    }
+}
+
+  const changePass = async () => {
+    formData.append('newPass', newPassword.newPass);
+    formData.append('currentPass', newPassword.currentPass)
+    formData.append('userCod', userData.userCod)
+    formData.append('functionKey', '7')
+    try {
+        const req = await axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData)
+        console.log(req.data)
+    } catch (error){
+        return error
+    }
+}
 
   return (
     <Container>
@@ -65,7 +96,7 @@ const UserSettings = () => {
                   }))
                 }
               />
-              <Button>Enviar</Button>
+              <Button onClick={changeNick}>Mudar Nick</Button>
             </ResetUserName>
           ) : (
             <ResetPassword>
@@ -75,7 +106,7 @@ const UserSettings = () => {
                 label="Digite sua senha atual"
                 placeholder="Shiii, é segredo!"
                 name="newusername"
-                type="text"
+                type="password"
                 onChange={({ target }: any) =>
                   setNewPassword((prevState: any) => ({
                     ...prevState,
@@ -107,7 +138,7 @@ const UserSettings = () => {
                   }))
                 }
               />
-              <Button>Enviar</Button>
+              <Button onClick={changePass}>Mudar senha</Button>
             </ResetPassword>
           )}
         </ResetContainer>

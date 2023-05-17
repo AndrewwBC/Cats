@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import {motion as m } from 'framer-motion'
 
 export const Main = styled(m.main)`
   background-color: ${({ theme }) => theme.background};
   padding-bottom: 48px;
   padding-top: 60px;
-  height: 100vh;
+  height: calc(100vh - 143px);
   @media (max-width: 768px) {
     margin: 40px 0px 148px;
     }
@@ -27,6 +27,14 @@ export const Content = styled.section`
   }
 `;
 
+const animate = keyframes`
+  from{
+    transform: translate3d(0,-6px,0);
+  } to {
+    transform: translate3d(0, 6px,0);
+  }
+`
+
 export const Intro = styled.article`
   display: grid;
   grid-template-columns: 1fr;
@@ -34,6 +42,8 @@ export const Intro = styled.article`
   flex-direction: column;
   gap: 24px;
   text-align: center;
+  animation: ${animate} 2s infinite alternate;
+  backface-visibility: hidden;
 `;
 
 export const IntroText = styled.div`
@@ -110,14 +120,13 @@ export const ImgContainer = styled.img`
   border-radius: 12px;
   justify-self: center;
   place-self: center;
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 600px;
   object-fit: cover;
   @media (max-width: 1000px) {
     object-fit: cover;
     width: 400px;
     height: 100%;
-    margin-bottom: 32px;
   }
   @media (max-width: 768px) {
     object-fit: cover;

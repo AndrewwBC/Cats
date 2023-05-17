@@ -4,14 +4,13 @@ import { PHP } from '../../../../api'
 import useUser from '../../../../hooks/useUser'
 import { useMutationCommentsData } from '../../../../hooks/useMutationCommentsData'
 import { UserContext } from '../../../../providers/userContext'
+import useUserData from '../../../../hooks/useUserData'
 
 const formData = new FormData()
 
 const SendComments = ({ postCod }: any) => {
   const [comment, setComment] = useState('')
-
-  const { userData } = useContext(UserContext)
-
+  const {userData} = useUserData()
   const { mutate } = useMutationCommentsData(postCod, '1')
 
   const sendComment = async (postCod: number) => {

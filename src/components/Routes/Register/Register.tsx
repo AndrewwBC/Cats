@@ -1,19 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Button } from '../../FormComponents/Button/style'
-import Form from '../../FormComponents/Form'
 import Input from '../../FormComponents/Input'
-import {
-  BackLogin,
-  CatImg,
-  Container,
-  Content,
-  RegisterContent,
-} from './styles'
-import useUser from '../../../hooks/useUser'
+import { CatImg, Container, Content, Form, InputGridPosition } from './styles'
 import { useMutationUser } from '../../../hooks/useMutationUser'
-import { PHP } from '../../../api'
-import { InputFile } from '../../GeneralComponents/PostPhoto/styles'
 import { Title } from '../../GeneralComponents/Titles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
 
@@ -89,23 +79,25 @@ const Register = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.6 }}
     >
       <Content>
-        <Form itemProp={true}>
-          <RegisterContent>
-            <Title style={{ fontSize: '1.6rem' }}>Cadastre-se!</Title>
-            <Paragraph>
-              Junte-se a nossa comunidade felina, e aproveite para compartilhar
-              o cotidiano do seu gato!
-            </Paragraph>
-            <div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
+        <Form>
+          <Title style={{ fontSize: '1.6rem', gridColumn: '1/-1' }}>
+            Cadastre-se!
+          </Title>
+          <Paragraph style={{ gridColumn: '1/-1' }}>
+            Junte-se a nossa comunidade felina, e aproveite para compartilhar o
+            cotidiano do seu gato!
+          </Paragraph>
+          <div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <InputGridPosition>
                 <Input
                   label={
                     data?.userName === userData.username
@@ -164,20 +156,39 @@ const Register = () => {
                   }
                   onBlur={handleBlur}
                 />
-              </div>
+                <label
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    fontSize: '14px',
+                    gap: '4px',
+                    marginTop: '12px',
+                  }}
+                >
+                  <input type="checkbox" />
+                  Eu aceito os termos de uso.
+                </label>
+              </InputGridPosition>
             </div>
+          </div>
 
-            <Button
-              disabled={isLoading ? true : false}
-              style={{ margin: '14px 0px', maxWidth: '100%' }}
-              onClick={(e: any) => handleSubmit(e)}
-            >
-              Cadastrar
-            </Button>
-          </RegisterContent>
-
-          <CatImg src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+          <Button
+            disabled={isLoading ? true : false}
+            style={{
+              margin: '14px 32px 14px 0',
+              maxWidth: '100%',
+              gridColumn: '1/-1',
+            }}
+            onClick={(e: any) => handleSubmit(e)}
+          >
+            {isLoading ? 'Cadastro em andamento...' : 'Cadastrar'}
+          </Button>
         </Form>
+
+        <CatImg
+          width={260}
+          src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+        />
       </Content>
     </Container>
   )

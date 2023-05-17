@@ -7,27 +7,24 @@ import {
   FaRegPaperPlane,
 } from 'react-icons/fa'
 import { PHP } from '../../../../api'
-import useUser from '../../../../hooks/useUser'
 import { LikeText } from '../../FeedPost/styles'
-import { UserContext } from '../../../../providers/userContext'
+import useUserData from '../../../../hooks/useUserData'
 
 const formData = new FormData()
 
 const IconsData = ({ item }: any) => {
-  const { user } = useUser()
+  const { userData } = useUserData()
   const [heart, setHeart] = useState<any>(false)
   const [count, setCount] = useState(0)
-
-  const { userData } = useContext(UserContext)
-
+  console.log(userData)
   useEffect(() => {
     PHP.GetHeart(setHeart, item.Post_Cod, userData.userCod, 3)
   }, [item.Post_Cod])
 
   const userLikes = async (command: boolean) => {
     formData.append('postCod', item.Post_Cod)
-    formData.append('userCod', userData.UserCod)
-    formData.append('userName', userData.UserName)
+    formData.append('userCod', userData.userCod)
+    formData.append('userName', userData.userName)
     formData.append('typeOfChange', command ? '1' : '0')
     formData.append('functionKey', '4')
 

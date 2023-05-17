@@ -1,4 +1,4 @@
-import React, { memo, useContext, useState } from 'react'
+import React, { memo, useContext, useState, useEffect } from 'react'
 import {
   IconAndTitle,
   IconTitle,
@@ -6,30 +6,40 @@ import {
   SideContent,
   TitleButton,
 } from './styles'
-import { Catgram, Title } from '../Titles'
+import { Catgram } from '../Titles'
 import { CiSettings } from 'react-icons/ci'
 import { SlHome } from 'react-icons/sl'
 import { BsChatDots } from 'react-icons/bs'
 import { IoMdLogOut } from 'react-icons/io'
 import { CgProfile } from 'react-icons/cg'
 import { BiPlusCircle } from 'react-icons/bi'
-import { NavLink, Navigate, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import PostPhoto from '../PostPhoto/PostPhoto'
 import ThemeButton from '../ThemeButton/ThemeButton'
 import { UserContext } from '../../../providers/userContext'
 import Spinner from '../Spinner'
+import useUser from '../../../hooks/useUser'
+import { useMutationUserData } from '../../../hooks/useMutationUserData'
 
 const SideMenu = () => {
   const navigate = useNavigate()
   const [modal, setModal] = useState(false)
+  const {setUser} = useUser()
 
-  const { userData, isLoading } = useContext(UserContext)
+  let token = localStorage.getItem('token')
+
+  const {mutate, data: userData, isLoading: isLoadUser, isSuccess} = useMutationUserData()
+  
+  useEffect(() => {
+    mutate()
+  }, [token])
 
   function logOut() {
     localStorage.clear()
     navigate('')
   }
-  if (isLoading) return <Spinner />
+  if(isLoadUser) return <div></div>
+  else if(isSuccess)
   return (
     <>
       <SideContent>
@@ -98,6 +108,7 @@ const SideMenu = () => {
       </SideContent>
     </>
   )
+  else return null
 }
 
 export default memo(SideMenu)

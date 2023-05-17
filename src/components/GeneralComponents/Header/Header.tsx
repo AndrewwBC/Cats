@@ -1,46 +1,57 @@
 import { Paragraph } from '../Paragraph'
-import { Container, Content, Logo, Menu } from './styles'
+import { Buttons, Container, Content, Menu } from './styles'
 import { NavLink } from 'react-router-dom'
 import useTheme from '../../../hooks/useTheme'
 import SideMenu from '../SideMenu/SideMenu'
-import useUser from '../../../hooks/useUser'
-import { BsSun, BsMoon } from 'react-icons/bs'
-import { AiOutlineUser } from 'react-icons/ai'
 import ThemeButton from '../ThemeButton/ThemeButton'
 const Header = () => {
   const { theme, setTheme } = useTheme()
 
-  if (localStorage.getItem('user')) return <SideMenu />
-  else
-    return (
-      <>
-        <Container>
-          <Content>
-            <NavLink to="/">
-              <Logo>
-                <img
-                  height={36}
-                  width={36}
-                  src="https://iconsplace.com/wp-content/uploads/_icons/ffa500/256/png/cat-icon-11-256.png"
-                  alt="Icon"
-                />
-              </Logo>
-            </NavLink>
+  const linkTitles = [
+    {
+      title: 'Sobre',
+      path: '/about',
+    },
+    {
+      title: 'Contato',
+      path: '/contact',
+    },
+    {
+      title: 'FeedBack',
+      path: '/feedback',
+    },
+    {
+      title: 'Acessar',
+      path: '/login',
+    },
+  ]
 
-            <Menu>
-              <NavLink
-                style={{ display: 'flex', alignItems: 'center' }}
-                to={'/login'}
-              >
-                <Paragraph itemProp="16px">Entrar / Cadastrar</Paragraph>
-              </NavLink>
-              <AiOutlineUser size={28} />
-            </Menu>
+  return (
+    <>
+      <Container>
+        <Content>
+          <Menu>
+            <NavLink to="/">
+              <img
+                height={36}
+                width={36}
+                src="https://iconsplace.com/wp-content/uploads/_icons/ffa500/256/png/cat-icon-11-256.png"
+                alt="Icon"
+              />
+            </NavLink>
+            <Buttons>
+              {linkTitles.map(({ title, path }) => (
+                <NavLink to={path}>
+                  <Paragraph itemProp="16px">{title}</Paragraph>
+                </NavLink>
+              ))}
+            </Buttons>
             <ThemeButton />
-          </Content>
-        </Container>
-      </>
-    )
+          </Menu>
+        </Content>
+      </Container>
+    </>
+  )
 }
 
 export default Header

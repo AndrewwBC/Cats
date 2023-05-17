@@ -6,8 +6,10 @@ export const Label = styled.label`
   color: ${({ theme }) => theme.text};
   font-size: 14px;
   margin-bottom: 8px;
+  letter-spacing: .4px;
   gap: 8px;
-  font-family: 'Poppins';
+  font-family: 'Roboto';
+  font-weight: 400;
 `;
 
 export const ForgotPass = styled.div`

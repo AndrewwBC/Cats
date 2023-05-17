@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles/globalStyles'
-import { UserContext, UserStorage } from './providers/userContext'
+import { UserStorage } from './providers/userContext'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

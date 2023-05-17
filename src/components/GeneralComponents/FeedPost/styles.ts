@@ -3,18 +3,19 @@ import {motion as m } from 'framer-motion'
 
 export const Container = styled(m.section)`
   height: 100%;
+  @media (max-width: 600px){
+    padding-bottom: 48px;
+  }
 `;
 
 export const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
-  margin-bottom: 24px;
-  @media (max-width:600px){
-    height: 90vh;
-    grid-template-rows: 1fr auto;
+  margin-bottom: 32px;
+  @media (max-width: 600px){
+    padding: 12px;
   }
- 
 `;
 
 export const PostInteraction = styled.div`
@@ -35,6 +36,10 @@ export const Image = styled.img`
   object-fit: cover;
   object-position: 50%;
   max-height: 100%;
+  @media (max-width:768px){
+  max-width: 100%;
+  height: 500px;
+  }
 `;
 
 export const UserNameDescription = styled.div`
@@ -73,7 +78,7 @@ export const LikeText= styled.p`
   color: ${({theme}) => theme.text};
   @media (max-width:500px){
      font-size: 12px;
-     margin-top: 6px;
+     margin-top: 14px;
   }
 `
 export const SendCommentDiv = styled.div`
