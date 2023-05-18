@@ -64,10 +64,7 @@ export const UserName = styled.p`
         font-size: 16px;
     }
     @media (max-width: 550px){
-        font-size: 12px;
-    }
-    @media (max-width: 440px){
-        font-size: 10px;
+        font-size: 14px;
     }
 `
 
@@ -77,8 +74,8 @@ export const UserPhoto = styled.img`
     border-radius: 99999px;
     object-fit: cover;
       @media (max-width: 640px){
-        height: 52px;
-        width: 52px;
+        height: 64px;
+        width: 64px;
     }
 
 `
@@ -101,7 +98,6 @@ export const NumbersContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
 `   
 
 export const Numbers = styled.p`
@@ -109,9 +105,6 @@ export const Numbers = styled.p`
     font-family: 'Poppins';
       @media (max-width: 768px){
         font-size: 14px;
-    }
-    @media (max-width: 550px){
-        font-size: 12px;
     }
 `
 
@@ -122,9 +115,6 @@ export const NumbersButton = styled.button`
     color: ${({theme}) => theme.text};
     @media (max-width: 768px){
         font-size: 14px;
-    }
-    @media (max-width: 550px){
-        font-size: 12px;
     }
 `
 

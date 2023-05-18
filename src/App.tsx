@@ -15,7 +15,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-          <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+        <ThemeProvider theme={theme ? lightTheme : darkTheme}>
           {localStorage.getItem('token') ? <SideMenu /> : <Header />}
           <GlobalStyles />
           <AnimatedRoutes />

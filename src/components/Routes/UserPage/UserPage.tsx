@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import {
   Container,
   Content,
@@ -14,33 +14,21 @@ import {
   UserPhoto,
 } from './styles'
 import Spinner from '../../GeneralComponents/Spinner/Spinner'
-import { UserContext } from '../../../providers/userContext'
-import useUser from '../../../hooks/useUser'
-import { useMutationUserData } from '../../../hooks/useMutationUserData'
 import { useNavigate } from 'react-router-dom'
-import useUserPost from '../../../hooks/useUserData'
+import { useGetDatas } from '../../../hooks/useMutationUserData'
 
 const UserPage = () => {
   let nave = useNavigate()
-  const { setUser } = useUser()
-  const { setUserData } = useUserPost()
-  let token = localStorage.getItem('token')
-  if (!token) nave('/')
-  const {
-    mutate,
-    data: userData,
-    isLoading: isLoadUser,
-    isSuccess,
-  } = useMutationUserData()
 
   useEffect(() => {
-    setUser(true)
-    mutate()
-  }, [token])
+    let token = localStorage.getItem('token')
+    if (!token) nave('/')
+  }, [])
+
+  const { data: userData, isLoading: isLoadUser, isSuccess } = useGetDatas()
 
   if (isLoadUser) return <Spinner />
   else if (isSuccess) {
-    setUserData(userData)
     return (
       <Container>
         <Content>
@@ -64,11 +52,13 @@ const UserPage = () => {
             </UserInfo>
           </UserData>
           <UserFeed>
-            {userData.posts.map((item: any, index: number) => (
-              <div key={index}>
-                <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
-              </div>
-            ))}
+            {userData.posts.map((item: any, index: number) =>
+              item === null ? null : (
+                <div key={index}>
+                  <FeedImg src={`http://localhost:3001/images/${item}`} />
+                </div>
+              ),
+            )}
           </UserFeed>
         </Content>
       </Container>
@@ -76,4 +66,4 @@ const UserPage = () => {
   } else return null
 }
 
-export default UserPage
+export default memo(UserPage)

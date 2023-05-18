@@ -5,7 +5,7 @@ export const SideContent = styled.nav`
     height: 100%;
     left: 0;
     top: 0;
-    transition: .5s;
+    : .3s;
     z-index: 10;
     background-color: ${({ theme }) => theme.sideMenu};
     width: 48px;
@@ -34,11 +34,10 @@ export const TitleButton = styled.div`
     gap: 18px;
     margin-top: 44px;
     margin-bottom: 60px;       
-    transition: .2s;
     ${SideContent}:hover &{
         margin-left: 40px;
         visibility: visible;   
-        transition: .5s;
+        : .5s;
     }
     @media (max-width:768px){
         display: none;
@@ -54,15 +53,16 @@ export const IconsContainer = styled.ul`
     flex-grow: 1;
     gap: 32px;
     overflow: hidden;
+    margin: 0 auto;
     @media (max-width:768px){
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-left: -24px;
         justify-content: center;
     }
     @media (max-width:500px){
-        gap: 12px;
+        gap: 18px;
+        padding: 0px 18px;
     }
 `
 
@@ -75,7 +75,7 @@ export const IconAndTitle = styled.div`
     border-bottom: 1px solid rgba(0,0,0,0);
     &:hover{
         border-bottom: 1px solid #fb1;
-        transition: 1s;
+        : 1s;
     }
 `
 
@@ -88,6 +88,12 @@ export const IconTitle = styled.p`
 `
 
 export const Icon = styled.img`
+`
+export const Modal = styled.div`
+    display: none;
+    @media (max-width:500px){
+        display: block;
+    }
 `
 
 

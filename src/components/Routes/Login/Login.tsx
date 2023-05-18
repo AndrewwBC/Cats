@@ -17,7 +17,6 @@ const Login = () => {
     email: '',
     password: '',
   })
-  const navigate = useNavigate()
 
   async function handleSubmit(e: any) {
     e.preventDefault()
@@ -35,22 +34,20 @@ const Login = () => {
 
   if (isSuccess && data?.status === 200 && !localStorage.getItem('token')) {
     localStorage.setItem('token', data.data)
-    navigate('/userpage')
+    window.location.href = 'generalfeed'
   } else if (data?.status === 401) {
     alert(data.message)
   }
 
   return (
-    <Container   
+    <Container
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.6 }}
-      >
+    >
       <Content>
-        <Catgram>
-          Sinta-se à vontade!
-        </Catgram>
+        <Catgram>Sinta-se à vontade!</Catgram>
         <Form>
           <Input
             label="E-mail"
@@ -92,7 +89,7 @@ const Login = () => {
           <h4 style={{ placeSelf: 'center', fontWeight: 400 }}>
             Não possui conta? <NavLink to="/register">Registre-se!</NavLink>
           </h4>
-          <br/>
+          <br />
           <NavLink style={{ placeSelf: 'center' }} to="/register">
             <Button disabled={isLoading ? true : false}>Cadastrar</Button>
           </NavLink>

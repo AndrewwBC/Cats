@@ -21,19 +21,16 @@ import {
 } from '../../hooks/useMutationUserData'
 import useUserData from '../../hooks/useUserData'
 import Spinner from '../GeneralComponents/Spinner/Spinner'
-import Footer from '../GeneralComponents/Footer/Footer'
 import About from '../Routes/About/About'
 
 const AnimatedRoutes = () => {
   const { user, setUser } = useUser()
-  const { userData, setUserData } = useUserData()
   const location = useLocation()
 
-  const { data, isSuccess, isLoading } = useGetDatas()
-  if (!userData && isSuccess) setUserData(data)
-  console.log(data)
+  // const { data, isSuccess, isLoading } = useGetDatas()
+  // if (!userData && isSuccess) setUserData(data)
+  // console.log(data)
 
-  if (isLoading) return <Spinner />
   return (
     <>
       <AnimatePresence mode="wait">

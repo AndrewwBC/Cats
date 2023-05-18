@@ -1,4 +1,4 @@
-import { useContext, memo } from 'react'
+import { useContext } from 'react'
 import { UserContext } from '../providers/userContext'
 
 function useUser() {

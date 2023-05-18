@@ -7,6 +7,8 @@ import {
   MapContent,
   MapInfos,
   PetShopAddress,
+  Text,
+  Titles,
 } from './styles'
 import { Title } from '../../GeneralComponents/Titles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
@@ -58,8 +60,8 @@ const About = () => {
           {diseases.map(({ id, titulo, descricao }) => {
             return (
               <li key={id}>
-                <h3 style={{ fontFamily: 'poppins' }}>{titulo}</h3>
-                <p
+                <Titles style={{ fontFamily: 'poppins' }}>{titulo}</Titles>
+                <Text
                   style={{
                     paddingLeft: '18px',
                     margin: '8px',
@@ -69,7 +71,7 @@ const About = () => {
                   }}
                 >
                   {descricao}
-                </p>
+                </Text>
               </li>
             )
           })}

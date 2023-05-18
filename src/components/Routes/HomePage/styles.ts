@@ -123,10 +123,15 @@ export const ImgContainer = styled.img`
   width: 500px;
   height: 600px;
   object-fit: cover;
+    @media (max-width: 1440px) {
+    object-fit: cover;
+    width: 500px;
+    height: 400px;
+  }
   @media (max-width: 1000px) {
     object-fit: cover;
     width: 400px;
-    height: 100%;
+    height: 360px;
   }
   @media (max-width: 768px) {
     object-fit: cover;

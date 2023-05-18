@@ -37,7 +37,7 @@ export const InputFile = styled.input`
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  : background 0.2s ease-in-out;
   grid-column: 1/-1;
 `;
 
@@ -54,7 +54,7 @@ export const DropFiles = styled.div`
   border: 2px dashed #555;
   color: #444;
   cursor: pointer;
-  transition: background 0.2s ease-in-out, border 0.2s ease-in-out;
+  : background 0.2s ease-in-out, border 0.2s ease-in-out;
   &:hover {
     background: #eee;
     border-color: #111;

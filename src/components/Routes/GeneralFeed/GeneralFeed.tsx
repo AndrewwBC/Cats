@@ -1,30 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PHP } from '../../../api'
 import { Container, Content } from './styles'
 import FeedPost from '../../GeneralComponents/FeedPost'
-import PostPhoto from '../../GeneralComponents/PostPhoto'
-import SideMenu from '../../GeneralComponents/SideMenu/SideMenu'
+import { useNavigate } from 'react-router-dom'
 
 const GeneralFeed = () => {
-  //const [files, setFiles] = useState<any>();
-  //const [load, setLoad] = useState(true);
-  //const [response, setResponse] = useState(true);
-  //const [teste, setTeste] = useState(false);
-  const [modal, setModal] = useState(false)
+  const nave = useNavigate()
 
-  // function envioMassa() {
-  //   PHP.Promoção(setResponse, setLoad);
-  // }
-
-  //console.log(response);
-
-  // useEffect(() => {
-  //   getFiles();
-  // }, []);
-
-  // async function getFiles() {
-  //   await Services.S3GetAllFiles(setFiles, setLoad, setTeste);
-  // }
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (!token) nave('/')
+  }, [])
 
   return (
     <>

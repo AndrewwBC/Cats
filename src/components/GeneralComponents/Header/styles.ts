@@ -18,20 +18,8 @@ export const Container = styled.header`
 export const Content = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 18px 0px;
-  gap: 128px;
-  @media (max-width: 1115px){
-    padding-left: 24px;
-    }
-  @media (max-width: 768px){
-    padding: 24px;
-    padding-left: 48px;
-    gap: 32px;
-    }
-    @media (max-width: 500px){
-    padding: 8px 16px;
-    }
-    
+  padding: 16px 0px;
+  padding-left: 48px;
 `;
 
 export const Menu = styled.nav`

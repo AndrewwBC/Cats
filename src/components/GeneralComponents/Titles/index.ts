@@ -8,8 +8,8 @@ export const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 1.5rem;
   }
-  @media (max-width: 535px) {
-    font-size: 1.2rem;
+   @media (max-width: 400px) {
+    font-size: 1.3rem !important;
   }
 `;
 

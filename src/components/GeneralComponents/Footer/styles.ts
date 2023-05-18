@@ -16,4 +16,10 @@ export const CopyRights = styled.p`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.footerText};
   font-family: 'Poppins';
+  @media (max-width: 768px){
+    font-size: 1rem;
+  }
+  @media (max-width: 535px){
+    font-size: 0.8rem;
+  }
 `;

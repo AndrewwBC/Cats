@@ -1,8 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Axios, { AxiosError } from 'axios'
 
-const formData = new FormData()
-
 const getCommentsData = async (
   postCod: number,
   functionKey: string,

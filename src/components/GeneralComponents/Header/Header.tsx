@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import useTheme from '../../../hooks/useTheme'
 import SideMenu from '../SideMenu/SideMenu'
 import ThemeButton from '../ThemeButton/ThemeButton'
+import Hamburguer from '../Hamburguer/Hamburguer'
 const Header = () => {
   const { theme, setTheme } = useTheme()
 
@@ -41,7 +42,7 @@ const Header = () => {
             </NavLink>
             <Buttons>
               {linkTitles.map(({ title, path }) => (
-                <NavLink to={path}>
+                <NavLink key={title} to={path}>
                   <Paragraph itemProp="16px">{title}</Paragraph>
                 </NavLink>
               ))}

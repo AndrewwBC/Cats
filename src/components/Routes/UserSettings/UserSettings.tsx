@@ -17,7 +17,8 @@ import useUserData from '../../../hooks/useUserData'
 const formData = new FormData()
 
 const UserSettings = () => {
-  const {userData} = useUserData()
+  const { userData } = useUserData()
+  console.log(userData)
   const [changeContainer, setChangeContainer] = useState(true)
   const [newUsername, setNewUsername] = useState({
     newUsername: '',
@@ -30,30 +31,36 @@ const UserSettings = () => {
   })
 
   const changeNick = async () => {
-    formData.append('newUsername', newUsername.newUsername);
+    formData.append('newUsername', newUsername.newUsername)
     formData.append('password', newUsername.password)
     formData.append('userCod', userData.userCod)
     formData.append('functionKey', '6')
     try {
-        const req = await axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData)
-        console.log(req.data)
-    } catch (error){
-        return error
+      const req = await axios.post(
+        'http://localhost/ReactPHP/Funções/UserActions.php',
+        formData,
+      )
+      console.log(req.data)
+    } catch (error) {
+      return error
     }
-}
+  }
 
   const changePass = async () => {
-    formData.append('newPass', newPassword.newPass);
+    formData.append('newPass', newPassword.newPass)
     formData.append('currentPass', newPassword.currentPass)
     formData.append('userCod', userData.userCod)
     formData.append('functionKey', '7')
     try {
-        const req = await axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData)
-        console.log(req.data)
-    } catch (error){
-        return error
+      const req = await axios.post(
+        'http://localhost/ReactPHP/Funções/UserActions.php',
+        formData,
+      )
+      console.log(req.data)
+    } catch (error) {
+      return error
     }
-}
+  }
 
   return (
     <Container>

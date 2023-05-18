@@ -303,21 +303,21 @@ export const PHP = {
       return false;
     }
   },
-  GetHeart: async (setHeart:any, postCod: number, userCod: number | boolean, fk: number) => {
-    try {
-      await Axios.get('http://localhost/ReactPHP/Funções/GetHeart.php', {
-        params: {
-          postCod: postCod,
-          userCod: userCod,
-          functionKey: fk
-        },
-      }).then((response) => setHeart(response.data)
-      );
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
-  },
+  // GetHeart: async (setHeart:any, postCod: number, userCod: number | boolean, fk: number) => {
+  //   try {
+  //     await Axios.get('http://localhost/ReactPHP/Funções/GetHeart.php', {
+  //       params: {
+  //         postCod: postCod,
+  //         userCod: userCod,
+  //         functionKey: fk
+  //       },
+  //     }).then((response) => response.status === 200? setHeart(response.data) : setHeart(false)
+  //     );
+  //   } catch (err) {
+  //     console.log(err);
+  //     return false;
+  //   }
+  // },
   PutDeleteLikes: async (formData: any) => {
     try {
       Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData).then((response) => console.log(response));
@@ -338,6 +338,7 @@ export const PHP = {
       const request =  await Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData
       ).then((response) => response.data);
       const response = await request;
+      console.log(response)
       return response
     } catch (err) {
       console.log(err);

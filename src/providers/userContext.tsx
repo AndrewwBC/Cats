@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import { useGetDatas } from '../hooks/useMutationUserData'
 
 const UserContext = createContext<any>(null)
 
@@ -6,6 +7,10 @@ const UserStorage = ({ children }: any) => {
   const [user, setUser] = useState<any>(false)
   const [userData, setUserData] = useState<any>(false)
   const [theme, setTheme] = useState<any>(false)
+
+  const { data, isSuccess } = useGetDatas()
+  console.log('Context')
+  if (!userData && isSuccess) setUserData(data)
 
   return (
     <UserContext.Provider

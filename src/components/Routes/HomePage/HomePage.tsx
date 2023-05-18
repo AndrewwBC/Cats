@@ -8,17 +8,15 @@ import {
   Access,
 } from './styles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
-import { Catgram, Title } from '../../GeneralComponents/Titles'
+import { Title } from '../../GeneralComponents/Titles'
 import { Button } from '../../FormComponents/Button/style'
 import { NavLink, useNavigate } from 'react-router-dom'
-import useUser from '../../../hooks/useUser'
 
 const HomePage = () => {
   const navigate = useNavigate()
-  const {setUser} =  useUser() 
-  setUser(false)
 
   if (localStorage.getItem('token')) navigate('/generalfeed')
+
   return (
     <Main
       initial={{ opacity: 0 }}
@@ -27,14 +25,10 @@ const HomePage = () => {
       transition={{ duration: 0.3 }}
     >
       <Content>
-        <ImgContainer
-          src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80"
-        />
+        <ImgContainer src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80" />
         <Intro>
           <div>
-            <Title>
-              Bem vindo ao Catgram.
-            </Title>
+            <Title>Bem vindo ao Catgram.</Title>
           </div>
 
           <IntroText>
@@ -46,7 +40,7 @@ const HomePage = () => {
               Aproveite para exibir toda a beleza do seu Pet!
             </Paragraph>
           </IntroText>
-          
+
           <IntroButtons>
             <Access>Acesse rapidamente</Access>
             <NavLink to={'/login'}>

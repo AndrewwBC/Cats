@@ -8,8 +8,12 @@ export const Container = styled(m.section)`
   justify-content: center;
   background-color: ${({ theme }) => theme.background};
   @media (max-width: 768px) {
-    height: 100vh;
-    margin: 24px;
+    height: calc(100vh - 156px);
+    margin: 0px 24px;
+  }
+  @media (max-width: 500px) {
+    height: calc(100vh - 120px);
+    margin: 0px 12px;
   }
 `;
 
