@@ -26,7 +26,6 @@ const UserPage = () => {
   }, [])
 
   const { data: userData, isLoading: isLoadUser, isSuccess } = useGetDatas()
-
   if (isLoadUser) return <Spinner />
   else if (isSuccess) {
     return (
@@ -55,7 +54,7 @@ const UserPage = () => {
             {userData.posts.map((item: any, index: number) =>
               item === null ? null : (
                 <div key={index}>
-                  <FeedImg src={`http://localhost:3001/images/${item}`} />
+                  <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
                 </div>
               ),
             )}

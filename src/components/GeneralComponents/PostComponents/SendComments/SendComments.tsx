@@ -17,7 +17,6 @@ const SendComments = ({ postCod }: any) => {
     formData.append('comment', comment)
     formData.append('postCod', postCod.toString())
     formData.append('userCod', userData.userCod)
-    formData.append('userName', userData.userName)
     formData.append('command', '1')
     /* insere comentario no banco */
     formData.append('functionKey', '3')

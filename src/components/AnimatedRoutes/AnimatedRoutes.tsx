@@ -1,4 +1,3 @@
-import { useEffect, useCallback } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import HomePage from '../Routes/HomePage'
 import Login from '../Routes/Login/Login'
@@ -12,16 +11,9 @@ import Welcome from '../Routes/Welcome'
 import UserSettings from '../Routes/UserSettings/'
 import ForgotPassword from '../Routes/ForgotPassword/'
 import Diseases from '../Routes/Diseases'
-import SideMenu from '../GeneralComponents/SideMenu/'
-import Header from '../GeneralComponents/Header/'
 import useUser from '../../hooks/useUser'
-import {
-  useGetDatas,
-  useMutationUserData,
-} from '../../hooks/useMutationUserData'
-import useUserData from '../../hooks/useUserData'
-import Spinner from '../GeneralComponents/Spinner/Spinner'
 import About from '../Routes/About/About'
+import Contact from '../Routes/Contact/Contact'
 
 const AnimatedRoutes = () => {
   const { user, setUser } = useUser()
@@ -38,6 +30,7 @@ const AnimatedRoutes = () => {
           <Route key={'/homepage'} path="/" element={<HomePage />} />
           <Route key={'/login'} path="/login" element={<Login />} />
           <Route key={'/register'} path="/register" element={<Register />} />
+          <Route key={'/register'} path="/contact" element={<Contact />} />
           <Route
             key={'/forgotpassword'}
             path="/forgotpassword"

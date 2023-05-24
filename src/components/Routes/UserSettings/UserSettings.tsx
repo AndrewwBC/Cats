@@ -17,6 +17,9 @@ import useUserData from '../../../hooks/useUserData'
 const formData = new FormData()
 
 const UserSettings = () => {
+  const [result, setResult] = useState(false);
+  const [resultNick, setResultNick] = useState(false);
+
   const { userData } = useUserData()
   console.log(userData)
   const [changeContainer, setChangeContainer] = useState(true)
@@ -40,7 +43,7 @@ const UserSettings = () => {
         'http://localhost/ReactPHP/Funções/UserActions.php',
         formData,
       )
-      console.log(req.data)
+      setResultNick(req.data)
     } catch (error) {
       return error
     }
@@ -56,7 +59,8 @@ const UserSettings = () => {
         'http://localhost/ReactPHP/Funções/UserActions.php',
         formData,
       )
-      console.log(req.data)
+      console.log(req)
+      setResult(req.data.message)
     } catch (error) {
       return error
     }
@@ -103,6 +107,7 @@ const UserSettings = () => {
                   }))
                 }
               />
+              {resultNick}
               <Button onClick={changeNick}>Mudar Nick</Button>
             </ResetUserName>
           ) : (
@@ -145,6 +150,7 @@ const UserSettings = () => {
                   }))
                 }
               />
+              <p>{result}</p>
               <Button onClick={changePass}>Mudar senha</Button>
             </ResetPassword>
           )}

@@ -12,6 +12,7 @@ const isValidEmailRegex =
 const formData = new FormData()
 
 const Login = () => {
+  const nave = useNavigate()
   const { mutate, data, isSuccess, isLoading } = useMutationUser()
   const [loginData, setLoginData] = useState({
     email: '',
@@ -30,6 +31,10 @@ const Login = () => {
     } else {
       alert('Preencha os dados corretamente')
     }
+  }
+
+  if(localStorage.getItem('token')){
+    window.location.href = 'generalfeed'
   }
 
   if (isSuccess && data?.status === 200 && !localStorage.getItem('token')) {

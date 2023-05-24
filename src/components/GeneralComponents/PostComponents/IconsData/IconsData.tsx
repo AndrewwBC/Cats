@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react'
+import React, { useState } from 'react'
 import { Content, Icons } from './styles'
 import {
   FaRegHeart,
@@ -9,8 +9,7 @@ import {
 import { PHP } from '../../../../api'
 import { LikeText } from '../../FeedPost/styles'
 import useUserData from '../../../../hooks/useUserData'
-import { useQuery } from '@tanstack/react-query'
-import { getHeart, QueryGetHeart, useMutationHeart } from './queryHeart'
+import { QueryGetHeart, useMutationHeart } from './queryHeart'
 
 const formData = new FormData()
 
@@ -26,7 +25,11 @@ const IconsData = ({ item }: any) => {
     isSuccess,
   } = QueryGetHeart(item.Post_Cod, token, 3)
   console.log(heartData)
-  const { mutate } = useMutationHeart(item.Post_Cod, token, 3)
+  const { mutate, isLoading: loadMutate } = useMutationHeart(
+    item.Post_Cod,
+    token,
+    3,
+  )
 
   const userLikes = async (command: boolean) => {
     mutate()
@@ -39,7 +42,7 @@ const IconsData = ({ item }: any) => {
     await PHP.UserActions(formData)
   }
 
-  if (isLoading) return <div></div>
+  if (isLoading && loadMutate) return <div></div>
   if (isSuccess)
     return (
       <Content>

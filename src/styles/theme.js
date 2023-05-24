@@ -13,13 +13,16 @@ export const lightTheme = {
   postInterText: '#202020',
   link: '#35281E',
   sideMenu: '#f9f9f9',
+  input: '#e9e9e9',
   map: '#f9f9f9',
   shadowHeader: '0 1px 2px 0 rgba( 31, 38, 135, 0.50 )'
 };
 
 export const darkTheme = {
-  background: '#222',
+  background: '#111',
   map: '#333',
+  input: '#fff',
+  header: '#000',
   sideMenu: '#111',
   titles: '#f9f9f9',
   petInfo: '#f9f9f9',
@@ -29,9 +32,9 @@ export const darkTheme = {
   form: '#202020',
   link: '#cc7722',
   button: '#ffa368',
-  footer: '#111',
+  footer: '#000',
   footerText: '#f9f9f9',
   postInteraction: '#202020',
   postInterText: '#f5f5f5',
-  shadowHeader: '0 1px 2px 0 rgba( 255, 255, 255, 0.20 )'
+  shadowHeader: '0 1px 2px 0 rgba( 255, 255, 255, 0 )'
 };

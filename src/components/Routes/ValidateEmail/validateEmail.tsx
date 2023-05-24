@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { PHP, UserRequirements } from '../../../api'
+import { PHP } from '../../../api'
 import { Title } from '../../GeneralComponents/Titles'
 
 import { Content } from '../HomePage/styles'

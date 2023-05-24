@@ -7,6 +7,7 @@ const userAction = async (formData: object): Promise<any> => {
       'http://localhost/ReactPHP/Funções/UserActions.php',
       formData,
     )
+    console.log(request)
     return request
   } catch (error) {
     if (error instanceof AxiosError) {

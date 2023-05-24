@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
-import useUserData from './useUserData'
 const getUserData = async () => {
   try {
     const req = await axios.get(
@@ -12,6 +11,7 @@ const getUserData = async () => {
       },
     )
     const res = req.data
+    console.log(res)
     return res
   } catch (error) {
     return error

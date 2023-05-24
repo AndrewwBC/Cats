@@ -17,7 +17,7 @@ export const getHeart = async (
         },
       },
     )
-    console.log(req)
+
     if (req.data) {
       return true
     } else if (!req.data) {
@@ -35,19 +35,6 @@ export const QueryGetHeart = (postCod: number, token: string, fk: number) => {
   })
 }
 
-// export const useMutationCommentsData = (
-//   postCod: number,
-//   functionKey: string,
-// ) => {
-//   const queryClient = useQueryClient()
-//   return useMutation([postCod], {
-//     mutationFn: () => getCommentsData(postCod, functionKey),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries(['comments'])
-//     },
-//   })
-// }
-
 export const useMutationHeart = (
   postCod: number,
   token: string,
@@ -59,5 +46,6 @@ export const useMutationHeart = (
     onSuccess: () => {
       queryClient.invalidateQueries(['getHeart'])
     },
+    cacheTime: 1000,
   })
 }

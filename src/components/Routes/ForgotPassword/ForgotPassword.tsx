@@ -28,9 +28,9 @@ const ForgotPassword = () => {
   return (
     <Container>
       <Content>
-        <form>
+        <form style={{ display: 'grid' }}>
           <Title>Recupere sua senha!</Title>
-          <Paragraph style={{ marginBottom: '18px' }}>
+          <Paragraph style={{ margin: '18px 0px' }}>
             Enviaremos um e-mail para você!
           </Paragraph>
           <Input

@@ -13,7 +13,6 @@ export default createGlobalStyle`
 
     body {
         background: ${(props) => props.theme.background};
-        color: ${(props) => props.theme.text};
         font-family: 'Roboto';  
     }
 
@@ -31,6 +30,7 @@ export default createGlobalStyle`
 
     h1,h2,h3,h4 {
         color: ${(props) => props.theme.titles};     
+        font-family: 'Poppins';
     }
     a{
         text-decoration: none;

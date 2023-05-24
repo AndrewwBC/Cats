@@ -1,4 +1,3 @@
-import { memo, useCallback, useEffect } from 'react'
 import { Container, EachComment } from './styles'
 import { useQueryCommentsData } from '../../../../hooks/useMutationCommentsData'
 

@@ -19,7 +19,7 @@ export const ForgotPass = styled.div`
   cursor: pointer;
   &:hover {
     color: #ff441b;
-    : 0.3s;
+    transition: 0.3s;
   }
 `;
 
@@ -28,8 +28,8 @@ export const StyledInput = styled.input`
   margin-bottom: 4px;
   border: 2px solid transparent;
   border-radius: 4px;
-  background-color: #fff;
-  : 0.3s;
+  background-color: ${({theme}) => theme.input};
+  transition: 0.3s;
   &:hover {
     background-color: #fff;
   }
