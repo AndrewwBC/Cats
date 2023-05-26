@@ -30,12 +30,7 @@ const FeedPost = () => {
   else
     return (
       <>
-        <Container
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.6 }}
-        >
+        <Container>
           {posts.map((item: any) => (
             <Content key={item.Post_Cod}>
               <Image src={`http://localhost:3001/images/${item.Img}`} />

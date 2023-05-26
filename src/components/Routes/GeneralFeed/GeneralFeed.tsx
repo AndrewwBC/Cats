@@ -14,12 +14,7 @@ const GeneralFeed = () => {
 
   return (
     <>
-      <Container
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.3 }}
-      >
+      <Container>
         <Content>
           <FeedPost />
           {/* <button onClick={envioMassa}>Envio em Massa</button> */}

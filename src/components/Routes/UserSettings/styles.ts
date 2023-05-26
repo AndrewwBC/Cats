@@ -7,6 +7,9 @@ export const Container = styled.main`
     justify-content: center;
     height: calc(100vh - 65px);
     margin: 0 auto;
+    @media (max-width: 620px){
+        padding: 12px;
+    }
     
 `
 
@@ -27,10 +30,10 @@ export const AsideMenu = styled.nav`
 
 export const ResetContainer = styled.div`
     padding: 32px;
-    width: 400px;
     background-color: ${({theme}) => theme.form};
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
+   
 `
 
 export const ResetUserName = styled.div`

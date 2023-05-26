@@ -33,24 +33,19 @@ const Login = () => {
     }
   }
 
-  if(localStorage.getItem('token')){
-    window.location.href = 'generalfeed'
+  if (localStorage.getItem('token') && !data) {
+    window.location.href = 'userpage'
   }
 
   if (isSuccess && data?.status === 200 && !localStorage.getItem('token')) {
     localStorage.setItem('token', data.data)
-    window.location.href = 'generalfeed'
+    window.location.href = 'userpage'
   } else if (data?.status === 401) {
     alert(data.message)
   }
 
   return (
-    <Container
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.6 }}
-    >
+    <Container>
       <Content>
         <Catgram>Sinta-se à vontade!</Catgram>
         <Form>

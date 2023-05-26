@@ -5,8 +5,9 @@ export const lightTheme = {
   text: '#101010',
   accent: '#0880AE',
   footer: '#303030',
+  mobileButton: '#f9f9f9',
   form: '#F4F2F1',
-  button: '#ffa368',
+  button: '#fa1',
   petInfo: '#202020',
   footerText: '#f9f9f9',
   postInteraction: '#F7E2C7',
@@ -19,8 +20,9 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  background: '#111',
-  map: '#333',
+  background: '#080808',
+  map: '#000',
+  mobileButton: '#202020',
   input: '#fff',
   header: '#000',
   sideMenu: '#111',
@@ -31,7 +33,7 @@ export const darkTheme = {
   feedBg: '#202020',
   form: '#202020',
   link: '#cc7722',
-  button: '#ffa368',
+  button: '#ffa310',
   footer: '#000',
   footerText: '#f9f9f9',
   postInteraction: '#202020',

@@ -5,7 +5,7 @@ export const Main = styled(m.main)`
   background-color: ${({ theme }) => theme.background};
   padding-bottom: 48px;
   padding-top: 60px;
-  height: calc(100vh - 143px);
+  height: calc(100vh - 139px);
   @media (max-width: 768px) {
     margin: 40px 0px 148px;
     }
@@ -27,14 +27,6 @@ export const Content = styled.section`
   }
 `;
 
-const animate = keyframes`
-  from{
-    transform: translate3d(0,-6px,0);
-  } to {
-    transform: translate3d(0, 6px,0);
-  }
-`
-
 export const Intro = styled.article`
   display: grid;
   grid-template-columns: 1fr;
@@ -42,8 +34,6 @@ export const Intro = styled.article`
   flex-direction: column;
   gap: 24px;
   text-align: center;
-  animation: ${animate} 2s infinite alternate;
-  backface-visibility: hidden;
 `;
 
 export const IntroText = styled.div`
@@ -121,7 +111,7 @@ export const ImgContainer = styled.img`
   justify-self: center;
   place-self: center;
   width: 500px;
-  height: 600px;
+  height: 620px;
   object-fit: cover;
     @media (max-width: 1440px) {
     object-fit: cover;

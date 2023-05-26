@@ -5,7 +5,8 @@ export const Container = styled(m.main)`
   height: calc(100vh - 143px);
   padding-top: 120px;
   background-color: ${({ theme }) => theme.background};
-  @media (max-width:500px){
+  @media (max-width:768px){
+    padding: 120px 24px;
     height: calc(100vh - 122px);
   }
 `;

@@ -1,12 +1,20 @@
 import { Paragraph } from '../Paragraph'
-import { Buttons, Container, Content, Menu } from './styles'
+import {
+  Buttons,
+  Container,
+  Content,
+  Menu,
+  MobileLogo,
+  MobileMenuButton,
+  MobileMenuList,
+  MobileMenuNav,
+  MobileMenuOptions,
+} from './styles'
 import { NavLink } from 'react-router-dom'
-import useTheme from '../../../hooks/useTheme'
-import SideMenu from '../SideMenu/SideMenu'
 import ThemeButton from '../ThemeButton/ThemeButton'
-import Hamburguer from '../Hamburguer/Hamburguer'
+import { useState } from 'react'
 const Header = () => {
-  const { theme, setTheme } = useTheme()
+  const [burg, setBurg] = useState<boolean>(false)
 
   const linkTitles = [
     {
@@ -49,6 +57,29 @@ const Header = () => {
             </Buttons>
             <ThemeButton />
           </Menu>
+          <MobileLogo>
+            <NavLink to="/">
+              <img
+                height={36}
+                width={36}
+                src="https://iconsplace.com/wp-content/uploads/_icons/ffa500/256/png/cat-icon-11-256.png"
+                alt="Icon"
+              />
+            </NavLink>
+          </MobileLogo>
+          <MobileMenuButton itemScope={burg} onClick={() => setBurg(!burg)} />
+          <MobileMenuNav itemScope={burg}>
+            <MobileMenuList>
+              {linkTitles.map(({ title, path }) => (
+                <MobileMenuOptions>
+                  <NavLink key={title} to={path}>
+                    <Paragraph itemProp="16px">{title}</Paragraph>
+                  </NavLink>
+                </MobileMenuOptions>
+              ))}
+              <ThemeButton />
+            </MobileMenuList>
+          </MobileMenuNav>
         </Content>
       </Container>
     </>

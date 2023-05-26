@@ -32,7 +32,7 @@ const HomePage = () => {
           </div>
 
           <IntroText>
-            <Paragraph style={{}} itemProp="18px">
+            <Paragraph itemProp="18px">
               A melhor rede social para o seu felino!!
             </Paragraph>
 

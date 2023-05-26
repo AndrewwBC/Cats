@@ -3,11 +3,14 @@ import styled from "styled-components";
 export const Container = styled.main`
     max-width: 800px;
     display: flex;
-    height: calc(100vh - 143px);
+    height: calc(100vh - 139px);
     align-items: center;
     justify-content: center;
     margin: 0 auto;
     background-color: ${({ theme }) => theme.background};
+    @media (max-width: 768px){
+        height: calc(100vh - 120px);
+    }
 `
 
 export const Content= styled.section`

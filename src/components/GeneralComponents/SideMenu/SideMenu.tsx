@@ -65,7 +65,7 @@ const SideMenu = () => {
             <li>
               <NavLink to={'/generalfeed'}>
                 <IconAndTitle>
-                  <SlHome size={24} />
+                  <SlHome color="orange" size={24} />
                   <IconTitle>Homepage</IconTitle>
                 </IconAndTitle>
               </NavLink>
@@ -74,13 +74,14 @@ const SideMenu = () => {
             <li>
               <NavLink to={'/userpage'}>
                 <IconAndTitle>
-                  <CgProfile size={24} />
+                  <CgProfile color="orange" size={24} />
                   <IconTitle>Perfil</IconTitle>
                 </IconAndTitle>
               </NavLink>
             </li>
             <Modal>
               <RiUserSettingsLine
+                color="orange"
                 onClick={() => setUtilities(!utilities)}
                 size={24}
               />
@@ -89,7 +90,7 @@ const SideMenu = () => {
             <li className="list">
               <NavLink to={'/generalfeed'}>
                 <IconAndTitle>
-                  <BsChatDots size={24} />
+                  <BsChatDots color="orange" size={24} />
                   <IconTitle>Mensagens</IconTitle>
                 </IconAndTitle>
               </NavLink>
@@ -98,14 +99,14 @@ const SideMenu = () => {
             <li className="list">
               <NavLink to={'/usersettings'}>
                 <IconAndTitle>
-                  <CiSettings size={26} />
+                  <CiSettings color="orange" size={26} />
                   <IconTitle>Configurações</IconTitle>
                 </IconAndTitle>
               </NavLink>
             </li>
             <li className="list">
               <NavLink to={'/'}>
-                <IconAndTitle onClick={logOut}>
+                <IconAndTitle color="orange" onClick={logOut}>
                   <IoMdLogOut size={24} />
                   <IconTitle>Sair</IconTitle>
                 </IconAndTitle>
@@ -114,7 +115,7 @@ const SideMenu = () => {
 
             <li>
               <IconAndTitle onClick={() => setModal(true)}>
-                <BiPlusCircle size={24} />
+                <BiPlusCircle color="orange" size={24} />
                 <IconTitle>Postar</IconTitle>
               </IconAndTitle>
               {modal && <PostPhoto setModal={setModal} />}

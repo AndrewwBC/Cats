@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Container,
   Content,
@@ -9,9 +8,7 @@ import {
   MapInfos,
   Names,
   PetShopAddress,
-  Text,
   TextArea,
-  Titles,
 } from './styles'
 import { Title } from '../../GeneralComponents/Titles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
@@ -20,39 +17,6 @@ import { Label } from '../../FormComponents/Input/styles'
 import { Button } from '../../FormComponents/Button/style'
 
 const Contact = () => {
-  const diseases = [
-    {
-      id: 1,
-      titulo: 'Adoção de Gatos',
-      descricao:
-        'Dicas e orientações sobre como adotar um gato, incluindo locais de adoção, cuidados pré e pós-adoção e informações sobre a importância da adoção responsável.',
-    },
-    {
-      id: 2,
-      titulo: 'Doenças Comuns em Gatos',
-      descricao:
-        'Informações sobre doenças comuns em gatos, seus sintomas, tratamentos e medidas preventivas. Inclui conselhos sobre como manter a saúde do seu gato em dia.',
-    },
-    {
-      id: 3,
-      titulo: 'Encontrando Gatos Perdidos',
-      descricao:
-        'Dicas para ajudar a localizar gatos perdidos, incluindo a criação de cartazes, compartilhamento de informações em redes sociais e contato com abrigos de animais e clínicas veterinárias locais.',
-    },
-    {
-      id: 4,
-      titulo: 'Cuidados Especiais para Gatos Idosos',
-      descricao:
-        'Informações sobre os cuidados especiais que os gatos idosos precisam, incluindo dieta adequada, exercícios, exames de saúde regulares e adaptação do ambiente para melhorar sua qualidade de vida.',
-    },
-    {
-      id: 5,
-      titulo: 'Prevenção de Pulgas e Carrapatos',
-      descricao:
-        'Dicas sobre como prevenir infestações de pulgas e carrapatos em gatos, incluindo o uso de produtos adequados, higiene e limpeza do ambiente doméstico e cuidados com outros animais de estimação.',
-    },
-  ]
-
   return (
     <Container>
       <Content>
@@ -132,13 +96,13 @@ const Contact = () => {
               <Input
                 label="Nome"
                 type="text"
-                placeholder="Seu nome aqui"
+                placeholder="Seu nome aqui."
                 name="nomeContact"
               />
               <Input
                 label="Sobrenome"
                 type="text"
-                placeholder="Silva ou Silveira?"
+                placeholder="Seu sobrenome também."
                 name="sobrenomeContact"
               />
             </Names>

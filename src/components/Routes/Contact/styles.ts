@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 `
 
@@ -9,9 +9,15 @@ export const Content = styled.section`
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;
-    padding: 80px 48px;
+    padding: 80px 0px;
     gap: 18px;
     justify-content: center;
+    @media (max-width: 1000px){
+        padding: 80px 16px;
+    }
+    @media (max-width: 768px){
+        padding: 40px 16px;
+    }
 `
 export const Titles = styled.h2`
     font-family: 'Poppins';
@@ -19,6 +25,9 @@ export const Titles = styled.h2`
     font-size: 1.4rem;
     @media (max-width: 768px){
         font-size: 1.2rem;
+    }
+    @media (max-width: 620px){
+        font-size: 1rem;
     }
 `
 
@@ -55,6 +64,11 @@ export const Names = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
+    @media (max-width:768px){
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
 `
 
 
@@ -62,6 +76,7 @@ export const MapContainer = styled.div`
     display: flex;
     justify-content: center;
     gap: 0px 64px;
+    margin-bottom: 64px;
     @media (max-width: 768px){
         flex-direction: column;
         gap: 12px;
@@ -91,7 +106,6 @@ export const MapInfos = styled.div`
 export const PetShopAddress = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0px 12px;
     @media (max-width: 500px){
         grid-template-columns: 1fr;
         gap: 16px;
