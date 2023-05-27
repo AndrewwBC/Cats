@@ -5,7 +5,7 @@ export const SideContent = styled.nav`
     height: 100%;
     left: 0;
     top: 0;
-    : .3s;
+    transition: .3s;
     z-index: 10;
     background-color: ${({ theme }) => theme.sideMenu};
     width: 48px;

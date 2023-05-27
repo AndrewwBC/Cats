@@ -8,7 +8,7 @@ const UserStorage = ({ children }: any) => {
   const [userData, setUserData] = useState<any>(false)
   const [theme, setTheme] = useState<any>(false)
 
-  const { data, isSuccess,isLoading } = useGetDatas()
+  const { data, isSuccess, isLoading } = useGetDatas()
   console.log('Context')
   if (!userData && isSuccess && localStorage.getItem('token')) setUserData(data)
 

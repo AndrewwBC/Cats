@@ -16,7 +16,12 @@ const Welcome = () => {
       </Container>
       <Confetti
         gravity={0.2}
-        style={{ overflow: 'hidden', maxWidth: '100%', height: '100vh' }}
+        style={{
+          overflow: 'hidden',
+          maxWidth: '100%',
+          height: '100vh',
+          position: 'absolute',
+        }}
       />
     </>
   )

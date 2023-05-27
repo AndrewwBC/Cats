@@ -12,7 +12,7 @@ const PostPhoto = ({ setModal }: any) => {
   const [file, setFile] = useState<any>()
   const [description, setDescription] = useState('')
 
-  const {userData: user} = useUserData()
+  const { userData: user } = useUserData()
   console.log(user)
   const formData = new FormData()
 

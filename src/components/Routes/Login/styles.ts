@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {motion as m } from 'framer-motion'
 
 export const Container = styled(m.main)`
-  height: calc(100vh - 143px);
+  height: calc(100vh - 139px);
   padding-top: 120px;
   background-color: ${({ theme }) => theme.background};
   @media (max-width:768px){

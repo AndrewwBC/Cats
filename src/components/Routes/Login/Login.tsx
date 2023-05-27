@@ -4,7 +4,6 @@ import { Button } from '../../FormComponents/Button/style'
 import Input from '../../FormComponents/Input'
 import { Catgram } from '../../GeneralComponents/Titles'
 import { Container, Content, Form } from './styles'
-import useUser from '../../../hooks/useUser'
 import { useMutationUser } from '../../../hooks/useMutationUser'
 
 const isValidEmailRegex =

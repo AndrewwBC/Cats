@@ -3,7 +3,7 @@ import { Button } from '../../FormComponents/Button/style'
 import Input from '../../FormComponents/Input'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
 import { Title } from '../../GeneralComponents/Titles'
-import { Container } from './styles'
+import { Container, Form } from './styles'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PHP } from '../../../api'
 import { useMutation } from '@tanstack/react-query'
@@ -15,37 +15,46 @@ const NewPassword = () => {
     newPass: '',
     verifyPass: '',
   })
-  const [samePass, setSamePass] = useState(false)
+  const [samePass, setSamePass] = useState(true)
   const navigate = useNavigate()
 
   let { emailHash }: any = useParams()
 
-  const { data, mutate, isLoading } = useMutation({
+  const { data, mutate, isLoading, isSuccess } = useMutation({
     mutationKey: ['checkHashEmail'],
-    mutationFn: () => PHP.UserActions(formData),
+    mutationFn: async () => await PHP.UserActions(formData),
   })
-  console.log(data)
+
+  if (isSuccess && data) {
+    navigate('/login')
+  }
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
     pass.newPass === pass.verifyPass ? setSamePass(true) : setSamePass(false)
-    if (pass.newPass === '' || pass.verifyPass === '') setSamePass(false)
+    if (pass.newPass === '' || pass.verifyPass === '') setSamePass(true)
 
-    if (samePass) {
+    if (samePass && pass.newPass.length >= 6) {
       formData.append('newPass', pass.newPass)
       formData.append('emailHash', emailHash)
       formData.append('functionKey', '5')
       mutate()
+    } else {
+      alert('A senha deve ter ao menos seis caractéres')
     }
   }
 
   return (
     <Container>
       <>
-        <form>
+        <Form>
           <Title style={{ placeSelf: 'center', marginBottom: '.6rem' }}>
             Mude sua senha!
           </Title>
+
+          <Paragraph>
+            Em caso de sucesso, iremos redirecionar você para a página de login.
+          </Paragraph>
 
           <Input
             label="Digite uma nova senha."
@@ -61,7 +70,7 @@ const NewPassword = () => {
             value={pass.newPass}
           />
           <Input
-            label="Confirme sua senha"
+            label="Confirme sua senha."
             name="confirmpass"
             onChange={({ target }: any) =>
               setPass((prevState: any) => ({
@@ -83,7 +92,7 @@ const NewPassword = () => {
           )}
 
           <Button onClick={handleSubmit}>Confirmar</Button>
-        </form>
+        </Form>
       </>
     </Container>
   )

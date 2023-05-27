@@ -17,8 +17,8 @@ import useUserData from '../../../hooks/useUserData'
 const formData = new FormData()
 
 const UserSettings = () => {
-  const [result, setResult] = useState(false);
-  const [resultNick, setResultNick] = useState(false);
+  const [result, setResult] = useState(false)
+  const [resultNick, setResultNick] = useState(false)
 
   const { userData } = useUserData()
   console.log(userData)
@@ -107,7 +107,7 @@ const UserSettings = () => {
                   }))
                 }
               />
-              {resultNick}
+
               <Button onClick={changeNick}>Mudar Nick</Button>
             </ResetUserName>
           ) : (
