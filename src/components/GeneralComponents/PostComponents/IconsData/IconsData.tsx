@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Content, Icons } from './styles'
 import {
   FaRegHeart,
@@ -18,21 +18,20 @@ const IconsData = ({ item }: any) => {
   const [count, setCount] = useState(0)
 
   const token: any = localStorage.getItem('token')
-
+  console.log('Oi')
   const {
     data: heartData,
     isLoading,
     isSuccess,
   } = QueryGetHeart(item.Post_Cod, token, 3)
-  console.log(heartData)
+
   const { mutate, isLoading: loadMutate } = useMutationHeart(
     item.Post_Cod,
     token,
     3,
   )
-
+  console.log(heartData)
   const userLikes = async (command: boolean) => {
-    mutate()
     formData.append('postCod', item.Post_Cod)
     formData.append('userCod', userData.userCod)
     formData.append('userName', userData.userName)
@@ -40,6 +39,7 @@ const IconsData = ({ item }: any) => {
     formData.append('functionKey', '4')
     command ? setCount(count + 1) : setCount(count - 1)
     await PHP.UserActions(formData)
+    mutate()
   }
 
   if (isLoading && loadMutate) return <div></div>

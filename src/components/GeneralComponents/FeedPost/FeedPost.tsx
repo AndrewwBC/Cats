@@ -16,11 +16,7 @@ import { getPosts } from './queryPost'
 import Spinner from '../Spinner/Spinner'
 
 const FeedPost = () => {
-  const {
-    data: posts,
-    isLoading,
-    isSuccess,
-  } = useQuery(['posts'], getPosts, {
+  const { data: posts, isLoading } = useQuery(['posts'], getPosts, {
     retry: false,
   })
 

@@ -8,7 +8,7 @@ export const Container = styled(m.section)`
   justify-content: center;
   background-color: ${({ theme }) => theme.background};
   @media (max-width: 768px) {
-    height: calc(100vh - 156px);
+    height: calc(100vh - 130px);
     margin: 0px 24px;
   }
   @media (max-width: 500px) {

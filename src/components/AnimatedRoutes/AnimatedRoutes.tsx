@@ -14,6 +14,7 @@ import Diseases from '../Routes/Diseases'
 import useUser from '../../hooks/useUser'
 import About from '../Routes/About/About'
 import Contact from '../Routes/Contact/Contact'
+import Feedback from '../Routes/Feedback/Feedback'
 
 const AnimatedRoutes = () => {
   const { user, setUser } = useUser()
@@ -60,6 +61,7 @@ const AnimatedRoutes = () => {
           />
           <Route key={'/diseases'} path="/diseases" element={<Diseases />} />
           <Route key={'/diseases'} path="/about" element={<About />} />
+          <Route key={'/feedback'} path="/feedback" element={<Feedback />} />
         </Routes>
       </AnimatePresence>
     </>
