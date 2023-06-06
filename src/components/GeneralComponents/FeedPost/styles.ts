@@ -101,7 +101,7 @@ export const SendCommentButton = styled.button`
 `
 
 export const InputComment = styled.input`
-  background-color: ${({ theme }) => theme.background};
+  background-color: ${({ theme }) => theme.input};
   padding: 12px;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;

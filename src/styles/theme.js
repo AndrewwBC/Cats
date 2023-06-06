@@ -16,10 +16,12 @@ export const lightTheme = {
   sideMenu: '#f9f9f9',
   input: '#e9e9e9',
   map: '#f9f9f9',
-  shadowHeader: '0 1px 2px 0 rgba( 31, 38, 135, 0.50 )'
-};
+  eachUser: '#c9c9c9',
+  shadowHeader: '0 1px 2px 0 rgba( 31, 38, 135, 0.50 )',
+}
 
 export const darkTheme = {
+  eachUser: '#404040',
   background: '#080808',
   map: '#000',
   mobileButton: '#202020',
@@ -38,5 +40,5 @@ export const darkTheme = {
   footerText: '#f9f9f9',
   postInteraction: '#202020',
   postInterText: '#f5f5f5',
-  shadowHeader: '0 1px 2px 0 rgba( 255, 255, 255, 0 )'
-};
+  shadowHeader: '0 1px 2px 0 rgba( 255, 255, 255, 0 )',
+}

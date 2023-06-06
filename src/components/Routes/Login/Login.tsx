@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <Container>
       <Content>
-        <Catgram>Sinta-se à vontade!</Catgram>
+        <Catgram style={{ placeSelf: 'center' }}>Sinta-se à vontade!</Catgram>
         <Form>
           <Input
             label="E-mail"

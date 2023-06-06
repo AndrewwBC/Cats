@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { PHP } from '../../../api'
+import React, { useEffect } from 'react'
 import { Container, Content } from './styles'
 import FeedPost from '../../GeneralComponents/FeedPost'
 import { useNavigate } from 'react-router-dom'

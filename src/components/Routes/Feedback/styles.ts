@@ -51,11 +51,11 @@ export const Name = styled.p`
     &::before {
         content: " ";
         position: absolute;
-        width: 2px;
+        width: 4px;
         height: 20px;
-        left: -8px;
+        left: -10px;
         background-color: #fb1;
-        border-radius: 2px;
+        border-radius: 4px;
     }
 
 `

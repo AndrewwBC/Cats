@@ -11,7 +11,6 @@ const getUserData = async () => {
       },
     )
     const res = req.data
-    console.log(res)
     return res
   } catch (error) {
     return error

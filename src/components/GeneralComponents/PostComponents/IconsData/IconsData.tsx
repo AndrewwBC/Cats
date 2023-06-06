@@ -18,7 +18,6 @@ const IconsData = ({ item }: any) => {
   const [count, setCount] = useState(0)
 
   const token: any = localStorage.getItem('token')
-  console.log('Oi')
   const {
     data: heartData,
     isLoading,
@@ -30,7 +29,6 @@ const IconsData = ({ item }: any) => {
     token,
     3,
   )
-  console.log(heartData)
   const userLikes = async (command: boolean) => {
     formData.append('postCod', item.Post_Cod)
     formData.append('userCod', userData.userCod)
