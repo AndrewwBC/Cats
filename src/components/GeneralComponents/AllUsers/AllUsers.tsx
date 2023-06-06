@@ -1,15 +1,15 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import React, { useCallback, useState } from 'react'
+import React, { useState } from 'react'
 import { Container, Content, EachUser, Filter, UserList } from './styles'
-import { UserPhoto } from '../../Routes/UserPage/styles'
-import { Paragraph } from '../Paragraph'
-import { NavLink } from 'react-router-dom'
-import Input from '../../FormComponents/Input/Input'
 import SearchUser from '../SearchUser/SearchUser'
+import { useGetDatas } from '../../../hooks/useMutationUserData'
 
 const AllUsers = () => {
   const [filter, setFilter] = useState('')
+
+  const { data: userLoggedIn, isLoading: loadUser } = useGetDatas()
+
   const {
     data: users,
     isLoading,
@@ -23,6 +23,8 @@ const AllUsers = () => {
     },
   })
 
+  if (loadUser) return <></>
+
   return (
     <>
       <Container>
@@ -34,7 +36,14 @@ const AllUsers = () => {
           type="text"
         />
         <Content>
-          {users && <SearchUser isLoading={isLoading} users={users.data} />}
+          {users && (
+            <SearchUser
+              isLoading={isLoading}
+              loadUser={loadUser}
+              users={users.data}
+              userLogged={userLoggedIn.userName}
+            />
+          )}
         </Content>
       </Container>
     </>

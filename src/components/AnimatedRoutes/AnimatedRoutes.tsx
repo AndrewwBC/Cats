@@ -15,6 +15,7 @@ import useUser from '../../hooks/useUser'
 import About from '../Routes/About/About'
 import Contact from '../Routes/Contact/Contact'
 import Feedback from '../Routes/Feedback/Feedback'
+import OtherUserPage from '../Routes/OtherUserPage/OtherUserPage'
 
 const AnimatedRoutes = () => {
   const { user, setUser } = useUser()
@@ -62,6 +63,11 @@ const AnimatedRoutes = () => {
           <Route key={'/diseases'} path="/diseases" element={<Diseases />} />
           <Route key={'/diseases'} path="/about" element={<About />} />
           <Route key={'/feedback'} path="/feedback" element={<Feedback />} />
+          <Route
+            key={'/user/:username'}
+            path="/user/:username"
+            element={<OtherUserPage />}
+          />
         </Routes>
       </AnimatePresence>
     </>
