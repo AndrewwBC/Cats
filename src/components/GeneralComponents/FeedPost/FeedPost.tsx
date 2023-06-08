@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import {
   Container,
   Content,
@@ -15,6 +15,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getPosts } from './queryPost'
 import Spinner from '../Spinner/Spinner'
 import AllUsers from '../AllUsers/AllUsers'
+import UsersLikeModal from '../UsersLikeModal/UsersLikeModal'
 
 const FeedPost = () => {
   const { data: posts, isLoading } = useQuery(['posts'], getPosts, {
@@ -28,11 +29,11 @@ const FeedPost = () => {
     return (
       <>
         <Container>
-          <AllUsers />
+          <AllUsers />  
           {posts.map((item: any) => (
             <Content key={item.Post_Cod}>
               <Image src={`http://localhost:3001/images/${item.Img}`} />
-
+             
               <PostInteraction>
                 <IconsData item={item} />
                 <UserNameDescription>

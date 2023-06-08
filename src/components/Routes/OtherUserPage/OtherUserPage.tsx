@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState, useEffect } from 'react'
 import {
   Container,
   Content,
@@ -14,18 +14,17 @@ import {
   UserPhoto,
 } from './styles'
 import Spinner from '../../GeneralComponents/Spinner/Spinner'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { Button } from '../../FormComponents/Button/style'
+import FollowButton from '../../GeneralComponents/FollowButton/FollowButton'
 
-const UserPage = () => {
-  let nave = useNavigate()
-
+const OtherUserPage = () => {
   const { username } = useParams()
 
   const {
-    data: userData,
+    refetch,
+    data: userProfileData,
     isLoading,
     isSuccess,
   } = useQuery({
@@ -36,7 +35,7 @@ const UserPage = () => {
         .then((res) => res)
     },
   })
-  console.log(userData?.data)
+
   if (isLoading) return <Spinner />
   else if (isSuccess) {
     return (
@@ -50,28 +49,28 @@ const UserPage = () => {
                 src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                 alt=""
               />
-              <UserName>{userData && userData.data.userName}</UserName>
-              <Button>Seguir</Button>
+              <UserName>{userProfileData.data.userName}</UserName>
+              <FollowButton otherUsercod={userProfileData.data.userCod} />
             </UserNamePhoto>
             <UserInfo>
-              {userData &&
-                userData.data.userNumbers.map((item: any, index: number) => (
+              {userProfileData.data.userNumbers.map(
+                (item: any, index: number) => (
                   <NumbersContainer key={index}>
                     <Numbers>{item[1]}</Numbers>
                     <NumbersButton>{item[0]}</NumbersButton>
                   </NumbersContainer>
-                ))}
+                ),
+              )}
             </UserInfo>
           </UserData>
           <UserFeed>
-            {userData &&
-              userData.data.posts.map((item: any, index: number) =>
-                item === null ? null : (
-                  <div key={index}>
-                    <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
-                  </div>
-                ),
-              )}
+            {userProfileData.data.posts.map((item: any, index: number) =>
+              item === null ? null : (
+                <div key={index}>
+                  <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
+                </div>
+              ),
+            )}
           </UserFeed>
         </Content>
       </Container>
@@ -79,4 +78,4 @@ const UserPage = () => {
   } else return null
 }
 
-export default memo(UserPage)
+export default OtherUserPage
