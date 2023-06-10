@@ -10,6 +10,8 @@ const AllUsers = () => {
 
   const { data: userLoggedIn, isLoading: loadUser } = useGetDatas()
 
+  localStorage.setItem('username', userLoggedIn.userName)
+
   const {
     data: users,
     isLoading,

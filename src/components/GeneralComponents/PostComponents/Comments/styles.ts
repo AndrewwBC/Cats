@@ -6,6 +6,7 @@ export const Container = styled.div`
   color: black;
 `;
 
+
 export const EachComment = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;

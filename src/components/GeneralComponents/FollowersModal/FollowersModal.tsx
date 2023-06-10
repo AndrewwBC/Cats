@@ -7,48 +7,48 @@ import { EachUser } from '../AllUsers/styles'
 import { UserPhoto } from '../../Routes/UserPage/styles'
 import { Paragraph } from '../Paragraph'
 
-export const UsersLikeModal = ({
-  postCod,
-  setModalLikes,
-  userLoggedIn,
-}: any) => {
+export const FollowersModal = ({ username, setModal }: any) => {
   const {
-    data: likeList,
+    data: followersList,
     isLoading,
     isSuccess,
   } = useQuery({
-    queryKey: ['modalLikes'],
+    queryKey: ['followers'],
     queryFn: () => {
       return axios
-        .get(
-          `http://localhost/ReactPHP/modalLikes.php?postCodModalLikes=${postCod}`,
-        )
+        .get(`http://localhost/ReactPHP/followers.php?username=${username}`)
         .then((res) => res)
     },
   })
-
+  console.log(followersList)
   window.addEventListener('click', ({ target }: any) => {
-    if (target.id === 'outModal') setModalLikes(false)
+    if (target.id === 'outModal') setModal(false)
   })
 
-  likeList && console.log(likeList.data)
+  followersList && console.log(followersList)
 
   if (isLoading) return <></>
+  if (followersList?.status === 204) {
+    return (
+      <Container id="outModal">
+        <Content>
+          <Paragraph style={{ placeSelf: 'center' }}>
+            Não possui seguidores
+          </Paragraph>
+        </Content>
+      </Container>
+    )
+  }
   if (isSuccess)
     return (
       <Container id="outModal">
         <Content>
-          <Paragraph>Quem curtiu</Paragraph>
-          {likeList &&
-            likeList.data.map((item: any) => {
+          <Paragraph>Seguidores</Paragraph>
+
+          {followersList &&
+            followersList.data.map((item: any) => {
               return (
-                <NavLink
-                  to={
-                    item.UserName !== userLoggedIn
-                      ? '/user/' + item.UserName
-                      : '/userpage'
-                  }
-                >
+                <NavLink to={'/user/' + item.UserName}>
                   <EachUser>
                     <UserPhoto
                       height={54}
@@ -69,4 +69,4 @@ export const UsersLikeModal = ({
   }
 }
 
-export default UsersLikeModal
+export default FollowersModal

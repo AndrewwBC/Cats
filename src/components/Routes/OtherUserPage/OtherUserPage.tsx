@@ -18,8 +18,11 @@ import { useParams } from 'react-router-dom'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import FollowButton from '../../GeneralComponents/FollowButton/FollowButton'
+import FollowersModal from '../../GeneralComponents/FollowersModal/FollowersModal'
+import FollowingModal from '../../GeneralComponents/FollowingModal/FollowingModal'
 
 const OtherUserPage = () => {
+  const [modal, setModal] = useState<boolean | string>(false)
   const { username } = useParams()
   const [query, setQuery] = useState(false)
 
@@ -36,6 +39,9 @@ const OtherUserPage = () => {
         .then((res) => res)
     },
   })
+  useEffect(() => {
+    refetch()
+  }, [])
 
   useEffect(() => {
     refetch()
@@ -65,7 +71,13 @@ const OtherUserPage = () => {
                 (item: any, index: number) => (
                   <NumbersContainer key={index}>
                     <Numbers>{item[1]}</Numbers>
-                    <NumbersButton>{item[0]}</NumbersButton>
+                    <NumbersButton
+                      id={item[0]}
+                      onClick={({ target }: any) => setModal(target.id)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {item[0]}
+                    </NumbersButton>
                   </NumbersContainer>
                 ),
               )}
@@ -80,10 +92,22 @@ const OtherUserPage = () => {
               ),
             )}
           </UserFeed>
+          {modal === 'Seguidores' && (
+            <FollowersModal
+              username={userProfileData.data.userName}
+              setModal={setModal}
+            />
+          )}
+          {modal === 'Seguindo' && (
+            <FollowingModal
+              username={userProfileData.data.userName}
+              setModal={setModal}
+            />
+          )}
         </Content>
       </Container>
     )
-  } else return null
+  } else return <></>
 }
 
 export default OtherUserPage

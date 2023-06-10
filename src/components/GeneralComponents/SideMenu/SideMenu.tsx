@@ -107,7 +107,7 @@ const SideMenu = () => {
             <li className="list">
               <NavLink to={'/'}>
                 <IconAndTitle color="orange" onClick={logOut}>
-                  <IoMdLogOut size={24} />
+                  <IoMdLogOut color="orange" size={24} />
                   <IconTitle>Sair</IconTitle>
                 </IconAndTitle>
               </NavLink>

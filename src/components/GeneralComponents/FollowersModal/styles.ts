@@ -19,13 +19,13 @@ export const Container = styled.section`
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
   width: 320px;
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding: 32px 12px;
   align-items: center;
   justify-content: center;
-  background-color: #202020;
+  background-color: ${({theme}) => theme.form};
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 4px;
 `;

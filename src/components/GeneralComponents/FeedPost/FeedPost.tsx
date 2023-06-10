@@ -15,9 +15,11 @@ import { useQuery } from '@tanstack/react-query'
 import { getPosts } from './queryPost'
 import Spinner from '../Spinner/Spinner'
 import AllUsers from '../AllUsers/AllUsers'
-import UsersLikeModal from '../UsersLikeModal/UsersLikeModal'
+import ModalPhoto from '../ModalPhoto/ModalPhoto'
+import { NavLink } from 'react-router-dom'
 
 const FeedPost = () => {
+  const [modal, setModal] = useState(false)
   const { data: posts, isLoading } = useQuery(['posts'], getPosts, {
     retry: false,
   })
@@ -29,22 +31,32 @@ const FeedPost = () => {
     return (
       <>
         <Container>
-          <AllUsers />  
+          <AllUsers />
           {posts.map((item: any) => (
             <Content key={item.Post_Cod}>
-              <Image src={`http://localhost:3001/images/${item.Img}`} />
-             
+              <Image
+                onClick={() => setModal(item.Post_Cod)}
+                style={{ cursor: 'pointer' }}
+                src={`http://localhost:3001/images/${item.Img}`}
+              />
               <PostInteraction>
                 <IconsData item={item} />
                 <UserNameDescription>
-                  <div>
+                  <NavLink
+                    to={
+                      item.UserName === localStorage.getItem('username')
+                        ? '/userpage'
+                        : `/user/${item.UserName}`
+                    }
+                  >
                     <User>{item.UserName}</User>
-                  </div>
+                  </NavLink>
                   <Description>{item.Description}</Description>
                 </UserNameDescription>
                 <Comments postCod={item.Post_Cod} />
                 <SendComments postCod={item.Post_Cod} />
               </PostInteraction>
+              {modal && <ModalPhoto postCod={modal} setModal={setModal} />}
             </Content>
           ))}
         </Container>
