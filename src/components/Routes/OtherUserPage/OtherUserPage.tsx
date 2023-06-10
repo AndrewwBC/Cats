@@ -15,18 +15,19 @@ import {
 } from './styles'
 import Spinner from '../../GeneralComponents/Spinner/Spinner'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import FollowButton from '../../GeneralComponents/FollowButton/FollowButton'
 
 const OtherUserPage = () => {
   const { username } = useParams()
+  const [query, setQuery] = useState(false)
 
   const {
-    refetch,
     data: userProfileData,
     isLoading,
     isSuccess,
+    refetch,
   } = useQuery({
     queryKey: ['user'],
     queryFn: () => {
@@ -35,6 +36,10 @@ const OtherUserPage = () => {
         .then((res) => res)
     },
   })
+
+  useEffect(() => {
+    refetch()
+  }, [query])
 
   if (isLoading) return <Spinner />
   else if (isSuccess) {
@@ -50,7 +55,10 @@ const OtherUserPage = () => {
                 alt=""
               />
               <UserName>{userProfileData.data.userName}</UserName>
-              <FollowButton otherUsercod={userProfileData.data.userCod} />
+              <FollowButton
+                fakeMutate={setQuery}
+                otherUsercod={userProfileData.data.userCod}
+              />
             </UserNamePhoto>
             <UserInfo>
               {userProfileData.data.userNumbers.map(

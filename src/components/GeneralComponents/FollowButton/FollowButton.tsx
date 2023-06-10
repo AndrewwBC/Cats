@@ -3,7 +3,7 @@ import { Button } from '../../FormComponents/Button/style'
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 
-const FollowButton = ({ otherUsercod }: any) => {
+const FollowButton = ({ otherUsercod, fakeMutate }: any) => {
   const [follow, setFollow] = useState(false)
 
   const myToken = localStorage.getItem('token')
@@ -34,6 +34,8 @@ const FollowButton = ({ otherUsercod }: any) => {
     } catch (err) {
       console.log(err)
       return err
+    } finally {
+      fakeMutate(Math.random())
     }
   }
 
@@ -47,6 +49,8 @@ const FollowButton = ({ otherUsercod }: any) => {
     } catch (err) {
       console.log(err)
       return err
+    } finally {
+      fakeMutate(Math.random())
     }
   }
 

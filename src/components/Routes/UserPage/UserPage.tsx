@@ -14,7 +14,7 @@ import {
   UserPhoto,
 } from './styles'
 import Spinner from '../../GeneralComponents/Spinner/Spinner'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useGetDatas } from '../../../hooks/useMutationUserData'
 
 const UserPage = () => {
@@ -43,10 +43,12 @@ const UserPage = () => {
             </UserNamePhoto>
             <UserInfo>
               {userData.userNumbers.map((item: any, index: number) => (
-                <NumbersContainer key={index}>
-                  <Numbers>{item[1]}</Numbers>
-                  <NumbersButton>{item[0]}</NumbersButton>
-                </NumbersContainer>
+                <NavLink to={item[0].toLowerCase()}>
+                  <NumbersContainer key={index}>
+                    <Numbers>{item[1]}</Numbers>
+                    <NumbersButton>{item[0]}</NumbersButton>
+                  </NumbersContainer>
+                </NavLink>
               ))}
             </UserInfo>
           </UserData>
