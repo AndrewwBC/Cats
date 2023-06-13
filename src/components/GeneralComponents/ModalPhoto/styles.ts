@@ -29,6 +29,10 @@ export const Content = styled.div`
   @media (max-width: 768px){
     padding: 12px;
   }
+  @media (max-width: 600px){
+    flex-direction: column;
+    max-height: 330px;
+  }
 `;
 
 export const PostInteraction = styled.div`
@@ -44,6 +48,9 @@ export const PostInteraction = styled.div`
     padding: 12px 18px;
     height: 500px;
   }
+  @media (max-width:600px){
+    gap: 4px;
+  }
 `;
 export const Image = styled.img`
   max-width: 100%;
@@ -51,8 +58,12 @@ export const Image = styled.img`
   display: block;
   object-fit: contain;
   @media (max-width:768px){
-  max-width: 100%;
   height: 500px;
+  }
+  @media (max-width: 600px){
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 

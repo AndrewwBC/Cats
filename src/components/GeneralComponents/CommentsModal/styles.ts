@@ -12,6 +12,8 @@ export const Container = styled.div`
   overflow-y: scroll;
    @media (max-width: 768px){
     gap: 16px;
+    height: 132px;
+    margin-bottom: 12px;
   }
 `;
 

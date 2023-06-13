@@ -98,7 +98,10 @@ export const MobileMenuList = styled.ul`
   display: flex;
   justify-content: center;
   gap: 12px;
-
+  display: none;
+  @media (max-width: 620px){
+    display: flex;
+  }
 `
 
 export const MobileMenuOptions = styled.li`
