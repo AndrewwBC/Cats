@@ -39,7 +39,7 @@ const Header = () => {
     <>
       <Container>
         <Content>
-          <Menu>
+          <Menu aria-aria-label="nav">
             <NavLink to="/">
               <img
                 height={36}

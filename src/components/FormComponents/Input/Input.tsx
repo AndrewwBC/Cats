@@ -2,9 +2,10 @@ import { NavLink } from 'react-router-dom'
 import { ForgotPass, Label, StyledInput } from './styles'
 
 interface InputInfo {
-  label: string
+  label?: string
   name: string
   placeholder: string
+  id?: string
   type: string
   forget?: boolean
   accept?: string
@@ -14,6 +15,7 @@ interface InputInfo {
 }
 
 const Input = ({
+  id,
   name,
   label,
   placeholder,
@@ -26,7 +28,7 @@ const Input = ({
 }: InputInfo): JSX.Element => {
   return (
     <>
-      <Label>
+      <Label aria-labelledby={id} htmlFor={id}>
         {label}
         <StyledInput
           type={type}
@@ -36,6 +38,7 @@ const Input = ({
           accept={accept}
           value={value}
           onBlur={onBlur}
+          id={id}
         />
       </Label>
       {forget && (

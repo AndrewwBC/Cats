@@ -87,7 +87,7 @@ const Contact = () => {
             </MapInfos>
           </MapContent>
         </MapContainer>
-        <form action="">
+        <form aria-labelledby="form" action="">
           <FormContainer>
             <Title style={{ margin: '48px 0' }}>
               Gostaria de mandar uma mensagem?
@@ -98,12 +98,17 @@ const Contact = () => {
                 type="text"
                 placeholder="Seu nome aqui."
                 name="nomeContact"
+                id="nome"
+                value="Algo"
               />
+
               <Input
                 label="Sobrenome"
                 type="text"
                 placeholder="Seu sobrenome também."
                 name="sobrenomeContact"
+                id="sobrenome"
+                value="Algo"
               />
             </Names>
             <div>
@@ -112,12 +117,16 @@ const Contact = () => {
                 type="email"
                 placeholder="Seu melhor email!"
                 name="emailContact"
+                id="email"
+                value="Algo"
               />
             </div>
 
             <Label>Mande uma mensagem!</Label>
             <TextArea />
-            <Button style={{ marginTop: '16px' }}>Enviar</Button>
+            <Button role="button" type="submit" style={{ marginTop: '16px' }}>
+              Enviar
+            </Button>
           </FormContainer>
         </form>
       </Content>

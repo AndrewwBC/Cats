@@ -43,12 +43,9 @@ const HomePage = () => {
 
           <IntroButtons>
             <Access>Acesse rapidamente</Access>
-            <NavLink to={'/login'}>
-              <Button>Login</Button>
-            </NavLink>
-            <NavLink to={'/register'}>
-              <Button>Cadastro</Button>
-            </NavLink>
+
+            <Button onClick={() => navigate('/login')}>Login</Button>
+            <Button onClick={() => navigate('/register')}>Cadastro</Button>
           </IntroButtons>
         </Intro>
       </Content>
