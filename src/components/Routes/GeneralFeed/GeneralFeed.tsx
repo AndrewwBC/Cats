@@ -11,6 +11,8 @@ const GeneralFeed = () => {
     if (!token) nave('/')
   }, [])
 
+  document.title = 'Feed'
+
   return (
     <>
       <Container>

@@ -61,12 +61,7 @@ const Register = () => {
     }
   }
 
-  function fileSelected(event: any) {
-    const file = event.target.files[0]
-    setFile(file)
-  }
-
-  console.log(data, isSuccess, isError)
+  document.title = 'Cadastro'
 
   useEffect(() => {
     if (isSuccess && data.status === 200) {
@@ -156,18 +151,6 @@ const Register = () => {
                   }
                   onBlur={handleBlur}
                 />
-                <label
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    fontSize: '14px',
-                    gap: '4px',
-                    marginTop: '12px',
-                  }}
-                >
-                  <input type="checkbox" />
-                  Eu aceito os termos de uso.
-                </label>
               </InputGridPosition>
             </div>
           </div>

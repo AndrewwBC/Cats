@@ -33,7 +33,7 @@ export const FollowingModal = ({ username, setModal }: any) => {
       <Container id="outModal">
         <Content>
           <Paragraph style={{ placeSelf: 'center' }}>
-            Não possui seguidores
+            Não segue ninguém
           </Paragraph>
         </Content>
       </Container>

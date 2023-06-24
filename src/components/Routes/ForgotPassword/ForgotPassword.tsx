@@ -18,7 +18,7 @@ const ForgotPassword = () => {
     mutationFn: () => PHP.emailToChangePass(email),
   })
 
-  console.log(data)
+  document.title = 'Recuperar Senha'
 
   function handleSubmit(e: any) {
     e.preventDefault()

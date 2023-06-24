@@ -17,6 +17,7 @@ const ValidateEmail = () => {
   useEffect(() => {
     checarEmail()
   }, [])
+  document.title = 'Validando Email'
 
   async function checarEmail() {
     //await UserRequirements.CheckHashEmail(token, setReload);

@@ -4,6 +4,8 @@ import { Paragraph } from '../../GeneralComponents/Paragraph'
 import Confetti from 'react-confetti'
 
 const Welcome = () => {
+  document.title = 'Boas vindaaaas!'
+
   return (
     <>
       <Container>

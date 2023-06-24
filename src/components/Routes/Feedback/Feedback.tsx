@@ -11,6 +11,8 @@ import {
 import { Title } from '../../GeneralComponents/Titles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
 
+document.title = 'Feedback'
+
 const Feedback = () => {
   const pessoas = [
     {

@@ -6,6 +6,7 @@ import { fireEvent, screen, render } from '@testing-library/react'
 import HomePage from './components/Routes/HomePage/HomePage'
 import { BrowserRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
+import SendComments from './components/GeneralComponents/PostComponents/SendComments/SendComments'
 
 const mockNavigate = jest.fn()
 jest.mock('react-router', () => ({
@@ -63,5 +64,15 @@ describe('Contato title test', () => {
     })
     const header = container.querySelector('h1')!
     expect(header.textContent).toBe('Contato')
+  })
+})
+
+describe('Comment test', () => {
+  it('Should insert comment after blick', () => {
+    render(
+      <BrowserRouter>
+        <SendComments />
+      </BrowserRouter>,
+    )
   })
 })

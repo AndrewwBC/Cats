@@ -18,6 +18,8 @@ const Login = () => {
     password: '',
   })
 
+  document.title = 'Login'
+
   async function handleSubmit(e: any) {
     e.preventDefault()
     let { email, password } = loginData

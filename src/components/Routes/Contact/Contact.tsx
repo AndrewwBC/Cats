@@ -17,6 +17,8 @@ import { Label } from '../../FormComponents/Input/styles'
 import { Button } from '../../FormComponents/Button/style'
 
 const Contact = () => {
+  document.title = `Contato`
+
   return (
     <Container>
       <Content>

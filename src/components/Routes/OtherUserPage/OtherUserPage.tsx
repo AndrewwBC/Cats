@@ -47,6 +47,8 @@ const OtherUserPage = () => {
     refetch()
   }, [query])
 
+  document.title = `${username}`
+
   if (isLoading) return <Spinner />
   else if (isSuccess) {
     return (

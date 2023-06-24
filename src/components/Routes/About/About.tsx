@@ -13,6 +13,8 @@ import {
 import { Title } from '../../GeneralComponents/Titles'
 import { Paragraph } from '../../GeneralComponents/Paragraph'
 
+document.title = 'Sobre'
+
 const About = () => {
   const diseases = [
     {

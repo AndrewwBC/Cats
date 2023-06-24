@@ -4,13 +4,14 @@ import React, { useState } from 'react'
 import { Container, Content, EachUser, Filter, UserList } from './styles'
 import SearchUser from '../SearchUser/SearchUser'
 import { useGetDatas } from '../../../hooks/useMutationUserData'
+import { Paragraph } from '../Paragraph'
 
 const AllUsers = () => {
   const [filter, setFilter] = useState('')
 
   const { data: userLoggedIn, isLoading: loadUser } = useGetDatas()
 
-  localStorage.setItem('username', userLoggedIn.userName)
+  !loadUser && localStorage.setItem('username', userLoggedIn.userName)
 
   const {
     data: users,
@@ -30,6 +31,9 @@ const AllUsers = () => {
   return (
     <>
       <Container>
+        <Paragraph style={{ marginBottom: '1rem' }}>
+          Procure usuários!
+        </Paragraph>
         <Filter
           value={filter}
           onChange={({ target }) => setFilter(target.value)}

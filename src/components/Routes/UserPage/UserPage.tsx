@@ -23,6 +23,7 @@ const UserPage = () => {
   const [modal, setModal] = useState<boolean | string>(false)
   let nave = useNavigate()
   console.log(modal)
+  document.title = 'Seu Perfil'
 
   useEffect(() => {
     let token = localStorage.getItem('token')
