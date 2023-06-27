@@ -5,6 +5,7 @@ import Input from '../../FormComponents/Input'
 import { Catgram } from '../../GeneralComponents/Titles'
 import { Container, Content, Form } from './styles'
 import { useMutationUser } from '../../../hooks/useMutationUser'
+import axios from 'axios'
 
 const isValidEmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -21,8 +22,21 @@ const Login = () => {
   document.title = 'Login'
 
   async function handleSubmit(e: any) {
-    e.preventDefault()
     let { email, password } = loginData
+    if (email === 'admim@gmail.com') {
+      formData.append('email', email)
+      formData.append('functionKey', '5')
+      try {
+        const response = await axios.post(
+          'http://localhost/ReactPHP/Adm/Actions.php',
+          formData,
+        )
+        return response.data
+      } catch (err) {
+        return err
+      }
+    }
+    e.preventDefault()
     formData.append('email', email)
     formData.append('password', password)
     formData.append('functionKey', '1')

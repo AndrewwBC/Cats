@@ -10,7 +10,10 @@ export const Content = styled.section`
   grid-template-columns: 1fr 1fr;
   align-items: start;
   gap: 24px;
-  margin: 60px 0px;
+  margin: 60px 12px;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
 `
 export const Users = styled.div`
   display: grid;

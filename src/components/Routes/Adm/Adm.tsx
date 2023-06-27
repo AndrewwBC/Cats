@@ -110,7 +110,7 @@ const Adm = () => {
   function modalPhoto(cod: string) {
     setModal(cod)
   }
-
+  document.title = 'Dashboard'
   if (load) return <Spinner />
   return (
     <Container>

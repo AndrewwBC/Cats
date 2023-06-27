@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.section`
   position: fixed;
@@ -10,12 +10,12 @@ export const Container = styled.section`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  background-color: ${({theme}) => theme.background};
+  background-color: ${({ theme }) => theme.background};
   padding: 1rem 2rem;
   justify-content: center;
   border-radius: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
-`;
+`
 
 export const Content = styled.div`
   display: grid;
@@ -24,11 +24,9 @@ export const Content = styled.div`
   padding: 32px 12px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(0,0,0,.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
   border-radius: 4px;
-`;
-
-
+`
 
 export const InputFile = styled.input`
   margin-right: 20px;
@@ -37,9 +35,8 @@ export const InputFile = styled.input`
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
-  : background 0.2s ease-in-out;
   grid-column: 1/-1;
-`;
+`
 
 export const DropFiles = styled.div`
   position: relative;
@@ -54,10 +51,9 @@ export const DropFiles = styled.div`
   border: 2px dashed #555;
   color: #444;
   cursor: pointer;
-  : background 0.2s ease-in-out, border 0.2s ease-in-out;
   &:hover {
     background: #eee;
     border-color: #111;
     color: #111;
   }
-`;
+`

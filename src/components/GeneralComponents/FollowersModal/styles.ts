@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.section`
   position: fixed;
@@ -10,12 +10,12 @@ export const Container = styled.section`
   margin: 0 auto;
   display: flex;
   align-items: center;
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 1rem 2rem;
   justify-content: center;
   border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, .1);
-`;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+`
 
 export const Content = styled.div`
   display: grid;
@@ -25,7 +25,7 @@ export const Content = styled.div`
   padding: 32px 12px;
   align-items: center;
   justify-content: center;
-  background-color: ${({theme}) => theme.form};
-  border: 1px solid rgba(0,0,0,.1);
+  background-color: ${({ theme }) => theme.form};
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-`;
+`
