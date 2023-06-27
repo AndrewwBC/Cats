@@ -3,8 +3,11 @@ import { motion as m } from 'framer-motion'
 
 export const Container = styled(m.section)`
   height: 100%;
+  @media (max-width: 768px) {
+    padding-bottom: 80px;
+  }
   @media (max-width: 600px) {
-    padding-bottom: 48px;
+    padding-bottom: 56px;
   }
 `
 
@@ -61,7 +64,7 @@ export const Description = styled.div`
   }
 `
 export const User = styled.p`
-  font-family: 'Roboto';
+  font-family: 'Poppins';
   font-size: 14px;
   letter-spacing: 0.1px;
   opacity: 0.7;
@@ -80,6 +83,7 @@ export const LikeText = styled.p`
   @media (max-width: 500px) {
     font-size: 12px;
     margin-top: 14px;
+    font-weight: 500;
   }
 `
 export const SendCommentDiv = styled.div`

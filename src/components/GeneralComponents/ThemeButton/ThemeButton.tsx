@@ -5,6 +5,8 @@ import { BsSun, BsMoon } from 'react-icons/bs'
 const ThemeButton = () => {
   const { theme, setTheme } = useTheme()
 
+  localStorage.setItem('theme', theme)
+
   return (
     <div>
       <button

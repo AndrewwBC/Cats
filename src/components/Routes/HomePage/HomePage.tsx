@@ -14,7 +14,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
   const navigate = useNavigate()
-  document.title = 'Catgram ;)'
+  document.title = 'Catgram'
 
   if (localStorage.getItem('token')) navigate('/generalfeed')
 

@@ -16,6 +16,7 @@ import About from '../Routes/About/About'
 import Contact from '../Routes/Contact/Contact'
 import Feedback from '../Routes/Feedback/Feedback'
 import OtherUserPage from '../Routes/OtherUserPage/OtherUserPage'
+import Adm from '../Routes/Adm/Adm'
 
 const AnimatedRoutes = () => {
   const { user, setUser } = useUser()
@@ -68,6 +69,7 @@ const AnimatedRoutes = () => {
             path="/user/:username"
             element={<OtherUserPage />}
           />
+          <Route key={'/user/:username'} path="/dashboard" element={<Adm />} />
         </Routes>
       </AnimatePresence>
     </>

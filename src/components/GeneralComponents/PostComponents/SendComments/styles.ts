@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SendCommentDiv = styled.div`
   display: flex;
@@ -13,15 +13,14 @@ export const SendCommentButton = styled.button`
   border: none;
   color: ${({ theme }) => theme.text};
   cursor: pointer;
-  &:hover{
+  &:hover {
     color: #e9e9e9;
   }
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     margin-top: 12px;
     padding: 10px;
     font-size: 12px;
   }
-
 `
 
 export const InputComment = styled.input`
@@ -34,13 +33,14 @@ export const InputComment = styled.input`
   color: ${({ theme }) => theme.text};
   &::placeholder {
     color: ${({ theme }) => theme.text};
+    font-family: 'Poppins';
   }
-  @media (max-width: 768px){
+  @media (max-width: 768px) {
     padding: 10px;
     margin-top: 12px;
     font-size: 12px;
     &::placeholder {
-    font-size: 12px;
+      font-size: 12px;
+    }
   }
-  }
-`;
+`

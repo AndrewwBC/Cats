@@ -101,7 +101,6 @@ const Contact = () => {
                 placeholder="Seu nome aqui."
                 name="nomeContact"
                 id="nome"
-                value="Algo"
               />
 
               <Input
@@ -110,7 +109,6 @@ const Contact = () => {
                 placeholder="Seu sobrenome também."
                 name="sobrenomeContact"
                 id="sobrenome"
-                value="Algo"
               />
             </Names>
             <div>
@@ -120,7 +118,6 @@ const Contact = () => {
                 placeholder="Seu melhor email!"
                 name="emailContact"
                 id="email"
-                value="Algo"
               />
             </div>
 

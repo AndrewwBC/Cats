@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Paragraph = styled.p`
   font-size: ${(props) => props.itemProp};
@@ -12,5 +12,4 @@ export const Paragraph = styled.p`
   @media (max-width: 535px) {
     font-size: 0.8rem;
   }
-  
-`;
+`

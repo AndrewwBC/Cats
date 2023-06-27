@@ -15,7 +15,7 @@ import UsersLikeModal from '../../UsersLikeModal/UsersLikeModal'
 const formData = new FormData()
 
 const IconsData = ({ item }: any) => {
-  const [modalLikes, setModalLikes] = useState(false);
+  const [modalLikes, setModalLikes] = useState(false)
   const { userData } = useUserData()
   const [count, setCount] = useState(0)
 
@@ -47,7 +47,13 @@ const IconsData = ({ item }: any) => {
     return (
       <Content>
         <div>
-        {modalLikes && <UsersLikeModal userLoggedIn={userData.userName} postCod={item.Post_Cod} setModalLikes={setModalLikes}/>}
+          {modalLikes && (
+            <UsersLikeModal
+              userLoggedIn={userData.userName}
+              postCod={item.Post_Cod}
+              setModalLikes={setModalLikes}
+            />
+          )}
           <Icons>
             {heartData ? (
               <FaHeart
@@ -76,12 +82,20 @@ const IconsData = ({ item }: any) => {
             {item.Likes + count === 0 ? (
               <LikeText>Seja o primeiro a curtir</LikeText>
             ) : item.Likes + count === 1 ? (
-              <LikeText style={{cursor: 'pointer'}} onClick={() => setModalLikes(!modalLikes)}>
+              <LikeText
+                style={{ cursor: 'pointer' }}
+                onClick={() => setModalLikes(!modalLikes)}
+              >
                 {item.Likes + count}{' '}
                 {item.Likes + count > 1 ? 'curtidas' : 'curtida'}
               </LikeText>
             ) : (
-              <LikeText style={{cursor: 'pointer'}} onClick={() => setModalLikes(!modalLikes)}>{item.Likes + count} curtidas</LikeText>
+              <LikeText
+                style={{ cursor: 'pointer' }}
+                onClick={() => setModalLikes(!modalLikes)}
+              >
+                {item.Likes + count} curtidas
+              </LikeText>
             )}
           </div>
         </div>

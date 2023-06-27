@@ -13,13 +13,11 @@ import Input from '../../FormComponents/Input/Input'
 import { Button } from '../../FormComponents/Button/style'
 import axios from 'axios'
 import useUserData from '../../../hooks/useUserData'
+import { Paragraph } from '../../GeneralComponents/Paragraph'
 
 const formData = new FormData()
 
 const UserSettings = () => {
-  const [result, setResult] = useState(false)
-  const [resultNick, setResultNick] = useState(false)
-
   const { userData } = useUserData()
   console.log(userData)
   const [changeContainer, setChangeContainer] = useState(true)
@@ -34,6 +32,11 @@ const UserSettings = () => {
   })
 
   const changeNick = async () => {
+    if (!newUsername.newUsername || !newUsername.password) {
+      alert('Preencha os dados corretamente!')
+      return
+    }
+
     formData.append('newUsername', newUsername.newUsername)
     formData.append('password', newUsername.password)
     formData.append('userCod', userData.userCod)
@@ -43,13 +46,17 @@ const UserSettings = () => {
         'http://localhost/ReactPHP/Funções/UserActions.php',
         formData,
       )
-      setResultNick(req.data)
+      alert(req.data.msg)
     } catch (error) {
       return error
     }
   }
 
   const changePass = async () => {
+    if (!newUsername.newUsername || !newUsername.password) {
+      alert('Preencha os dados corretamente!')
+      return
+    }
     formData.append('newPass', newPassword.newPass)
     formData.append('currentPass', newPassword.currentPass)
     formData.append('userCod', userData.userCod)
@@ -60,7 +67,7 @@ const UserSettings = () => {
         formData,
       )
       console.log(req)
-      setResult(req.data.message)
+      alert(req.data.message)
     } catch (error) {
       return error
     }
@@ -107,7 +114,6 @@ const UserSettings = () => {
                   }))
                 }
               />
-
               <Button onClick={changeNick}>Mudar Nick</Button>
             </ResetUserName>
           ) : (
@@ -150,7 +156,6 @@ const UserSettings = () => {
                   }))
                 }
               />
-              <p>{result}</p>
               <Button onClick={changePass}>Mudar senha</Button>
             </ResetPassword>
           )}

@@ -18,7 +18,7 @@ import axios from 'axios'
 import CommentsModal from '../CommentsModal/CommentsModal'
 import { NavLink } from 'react-router-dom'
 
-const ModalPhoto = ({ postCod, setModal }: any) => {
+const ModalPhoto = ({ adm, postCod, setModal }: any) => {
   const {
     data: post,
     isLoading,
@@ -58,8 +58,8 @@ const ModalPhoto = ({ postCod, setModal }: any) => {
               <Description>{post.Description}</Description>
             </UserNameDescription>
             <CommentsModal postCod={post.Post_Cod} />
-            <IconsData item={post} />
-            <SendComments postCod={post.Post_Cod} />
+            {!adm && <IconsData item={post} />}
+            {!adm && <SendComments postCod={post.Post_Cod} />}
           </PostInteraction>
         </Content>
       </Container>

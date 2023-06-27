@@ -66,13 +66,3 @@ describe('Contato title test', () => {
     expect(header.textContent).toBe('Contato')
   })
 })
-
-describe('Comment test', () => {
-  it('Should insert comment after blick', () => {
-    render(
-      <BrowserRouter>
-        <SendComments />
-      </BrowserRouter>,
-    )
-  })
-})

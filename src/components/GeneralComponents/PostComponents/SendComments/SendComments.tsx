@@ -10,7 +10,7 @@ const formData = new FormData()
 
 const SendComments = ({ postCod }: any) => {
   const [comment, setComment] = useState('')
-  const {userData} = useUserData()
+  const { userData } = useUserData()
   const { mutate } = useMutationCommentsData(postCod, '1')
 
   const sendComment = async (postCod: number) => {

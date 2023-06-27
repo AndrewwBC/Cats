@@ -26,6 +26,8 @@ const OtherUserPage = () => {
   const { username } = useParams()
   const [query, setQuery] = useState(false)
 
+  const token = localStorage.getItem('token')
+
   const {
     data: userProfileData,
     isLoading,
@@ -63,10 +65,12 @@ const OtherUserPage = () => {
                 alt=""
               />
               <UserName>{userProfileData.data.userName}</UserName>
-              <FollowButton
-                fakeMutate={setQuery}
-                otherUsercod={userProfileData.data.userCod}
-              />
+              {token && (
+                <FollowButton
+                  fakeMutate={setQuery}
+                  otherUsercod={userProfileData.data.userCod}
+                />
+              )}
             </UserNamePhoto>
             <UserInfo>
               {userProfileData.data.userNumbers.map(

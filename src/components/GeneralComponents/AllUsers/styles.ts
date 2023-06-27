@@ -6,12 +6,18 @@ export const Container = styled.div`
   margin-bottom: 24px;
   position: relative;
   border-radius: 6px;
+  @media (max-width: 768px) {
+    margin: 0px 12px;
+  }
 `
 export const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   height: 216px;
   overflow-y: scroll;
+  @media (max-width: 768px) {
+    height: 60px;
+  }
   ::-webkit-scrollbar {
     background-color: #000;
     border-radius: 12px;
@@ -30,6 +36,9 @@ export const Filter = styled.input`
   border: 2px solid transparent;
   background-color: ${({ theme }) => theme.input};
   transition: 0.3s;
+  @media (max-width: 768px) {
+    padding: 6px;
+  }
   &:hover {
     background-color: #fff;
   }
