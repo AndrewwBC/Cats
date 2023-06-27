@@ -31,9 +31,16 @@ const Login = () => {
           'http://localhost/ReactPHP/Adm/Actions.php',
           formData,
         )
+        if (response.status === 200) {
+          nave('/dashboard')
+          return
+        }
+        localStorage.setItem('admAuth', response.data.admAuhorization)
         return response.data
       } catch (err) {
         return err
+      } finally {
+        return
       }
     }
     e.preventDefault()

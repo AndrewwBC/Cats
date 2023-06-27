@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom'
 const formData = new FormData()
 
 const Adm = () => {
+  const nave = useNavigate()
   const [codUserToDelete, setCodUserToDelete] = useState('')
   const [codPostToDelete, setCodPostToDelete] = useState('')
   const [data, setData] = useState([])
@@ -25,8 +26,6 @@ const Adm = () => {
   const [load, setLoad] = useState(false)
   const [render, setRender] = useState(false)
   const [modal, setModal] = useState('')
-
-  const nave = useNavigate()
 
   useEffect(() => {
     //Pode usar o promise all

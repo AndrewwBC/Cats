@@ -69,7 +69,7 @@ const AnimatedRoutes = () => {
             path="/user/:username"
             element={<OtherUserPage />}
           />
-          <Route key={'/user/:username'} path="/dashboard" element={<Adm />} />
+          <Route key={'/dashboard'} path="/dashboard" element={<Adm />} />
         </Routes>
       </AnimatePresence>
     </>
