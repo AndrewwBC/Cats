@@ -1,4 +1,4 @@
-import Axios, { AxiosError } from 'axios';
+import Axios, { AxiosError } from "axios";
 
 // Create, Read, Update, Delete
 
@@ -20,7 +20,7 @@ const Services = {
     password,
   }: Register) => {
     try {
-      Axios.post('http://localhost:3001/register', {
+      Axios.post("http://localhost:3001/register", {
         username: username,
         name: name,
         lastname: lastname,
@@ -37,14 +37,14 @@ const Services = {
     email: string,
     password: string,
     setResponse: any,
-    setLoad: any,
+    setLoad: any
   ) => {
     try {
       setLoad(true);
-      await Axios.get('http://localhost:3001/login', {
+      await Axios.get("http://localhost:3001/login", {
         params: { email: email, password: password },
       }).then((response) =>
-        response ? setResponse(response.data[0]) : setResponse(false),
+        response ? setResponse(response.data[0]) : setResponse(false)
       );
     } catch (err) {
       console.log(err);
@@ -54,19 +54,19 @@ const Services = {
   },
   UpdateUser: async () => {
     try {
-      Axios.put('http://localhost:3001/update').then((response) =>
-        console.log(response),
+      Axios.put("http://localhost:3001/update").then((response) =>
+        console.log(response)
       );
     } catch (err) {
       console.log(err);
     }
   },
-  DeleteUser: async () => { },
+  DeleteUser: async () => {},
   S3GetAllFiles: async (setFiles: any, setLoad: any, setTeste: any) => {
     try {
       setLoad(true);
-      await Axios.get('http://localhost:3001/s3getallfiles').then((response) =>
-        setFiles(response.data),
+      await Axios.get("http://localhost:3001/s3getallfiles").then((response) =>
+        setFiles(response.data)
       );
     } catch (err) {
       console.log(err);
@@ -77,8 +77,8 @@ const Services = {
   },
   GetPosts: async (setPost: any) => {
     try {
-      await Axios.get('http://localhost:3001/getposts').then((response) =>
-        setPost(response.data),
+      await Axios.get("http://localhost:3001/getposts").then((response) =>
+        setPost(response.data)
       );
     } catch (err) {
       console.log(err);
@@ -87,29 +87,33 @@ const Services = {
   },
   GetComments: async (setComments: any, postCod: number) => {
     try {
-      await Axios.get('http://localhost:3001/getcomments', {
+      await Axios.get("http://localhost:3001/getcomments", {
         params: {
           postCod: postCod,
         },
       }).then((response) =>
         response.data.length >= 1
           ? setComments(response.data)
-          : setComments(false),
+          : setComments(false)
       );
     } catch (err) {
       console.log(err);
       setComments(false);
     }
   },
-  GetLikes: async (setLikes: any, postCod: number, userCod: number | boolean) => {
+  GetLikes: async (
+    setLikes: any,
+    postCod: number,
+    userCod: number | boolean
+  ) => {
     try {
-      await Axios.get('http://localhost:3001/getlikes', {
+      await Axios.get("http://localhost:3001/getlikes", {
         params: {
           postCod: postCod,
-          userCod: userCod
+          userCod: userCod,
         },
       }).then((response) =>
-        response.data.length >= 1 ? setLikes(response) : setLikes(false),
+        response.data.length >= 1 ? setLikes(response) : setLikes(false)
       );
     } catch (err) {
       console.log(err);
@@ -118,25 +122,25 @@ const Services = {
   },
   GetUser: async (setData: any, userCod: any) => {
     try {
-      await Axios.get('http://localhost:3001/getuser', {
+      await Axios.get("http://localhost:3001/getuser", {
         params: {
           userCod: userCod,
         },
       }).then((response) =>
-        response ? setData(response.data[0]) : setData(false),
+        response ? setData(response.data[0]) : setData(false)
       );
     } catch (err) {
       console.log(err);
       setData(false);
     }
-  }
+  },
 };
 
 export const UserRequirements = {
   PostFeedPhoto: async (photoData: any) => {
     try {
       await Axios.post(`http://localhost:3001/upload`, photoData, {
-        headers: { 'Content-Type': 'undefined' },
+        headers: { "Content-Type": "undefined" },
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
@@ -153,7 +157,7 @@ export const UserRequirements = {
   },
   getURL: async (id: number, setURL: any) => {
     try {
-      Axios.get('http://localhost:3001/getURL', {
+      Axios.get("http://localhost:3001/getURL", {
         params: { id: id },
       }).then((response) => setURL(response.data[0].Link));
     } catch (err) {
@@ -162,10 +166,10 @@ export const UserRequirements = {
   },
   CheckUserName: async (username: string, setCheckUser: any) => {
     try {
-      Axios.get('http://localhost:3001/checkusername', {
+      Axios.get("http://localhost:3001/checkusername", {
         params: { username: username },
       }).then((response) =>
-        response.data.length === 1 ? setCheckUser(true) : setCheckUser(false),
+        response.data.length === 1 ? setCheckUser(true) : setCheckUser(false)
       );
     } catch (err) {
       console.log(err);
@@ -173,19 +177,23 @@ export const UserRequirements = {
   },
   GetUserName: async (cod: any, setGetUser: any) => {
     try {
-      Axios.get('http://localhost:3001/checkusername', {
+      Axios.get("http://localhost:3001/checkusername", {
         params: { cod: cod },
       }).then((response) => setGetUser(response.data));
     } catch (err) {
       console.log(err);
     }
   },
-  CheckEmail: async (email: string | undefined, setResponse: any, setLoad: any) => {
+  CheckEmail: async (
+    email: string | undefined,
+    setResponse: any,
+    setLoad: any
+  ) => {
     try {
-      await Axios.get('http://localhost:3001/checkemail', {
+      await Axios.get("http://localhost:3001/checkemail", {
         params: { email: email },
       }).then((response) =>
-        response.data.length === 1 ? setResponse(true) : setResponse(false),
+        response.data.length === 1 ? setResponse(true) : setResponse(false)
       );
     } catch (err) {
       console.log(err);
@@ -193,7 +201,7 @@ export const UserRequirements = {
   },
   CheckHashEmail: async (emailHash: string, setReload: any) => {
     try {
-      Axios.get('http://localhost:3001/checkhashemail', {
+      Axios.get("http://localhost:3001/checkhashemail", {
         params: { email: emailHash },
       }).then((response) => console.log(response));
       setReload(false);
@@ -205,21 +213,26 @@ export const UserRequirements = {
   },
   PostPhoto: async (formData: any) => {
     try {
-      await Axios.post('http://localhost:3001/postphoto', formData, {
-        headers: { 'Content-Type': 'undefined' },
+      await Axios.post("http://localhost:3001/postphoto", formData, {
+        headers: { "Content-Type": "undefined" },
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
     } finally {
     }
   },
-  PutComment: async (comment: any, postCod: any, userCod: any, userName: 'string') => {
+  PutComment: async (
+    comment: any,
+    postCod: any,
+    userCod: any,
+    userName: "string"
+  ) => {
     try {
-      Axios.post('http://localhost:3001/putcomment', {
+      Axios.post("http://localhost:3001/putcomment", {
         comment: comment,
         postCod: postCod,
         userCod: userCod,
-        userName: userName
+        userName: userName,
       }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
@@ -227,7 +240,7 @@ export const UserRequirements = {
   },
   PutLikes: async (postCod: any, userCod: any, typeofChange: boolean) => {
     try {
-      Axios.post('http://localhost:3001/putlike', {
+      Axios.post("http://localhost:3001/putlike", {
         postCod: postCod,
         userCod: userCod,
         typeofchange: typeofChange,
@@ -254,29 +267,34 @@ export const PHP = {
 
   EmailFunctions: async (formData: any) => {
     try {
-      const request = await Axios.post('http://localhost/ReactPHP/Mailer/EmailsFunctions.php', formData)
-      return request
+      const request = await Axios.post(
+        "http://localhost/ReactPHP/Mailer/EmailsFunctions.php",
+        formData
+      );
+      return request;
     } catch (error) {
-      if(error instanceof AxiosError) 
-      return error
+      if (error instanceof AxiosError) return error;
     }
   },
   emailToChangePass: async (email: string) => {
     try {
-      const request = await Axios.get('http://localhost/ReactPHP/Mailer/ForgotPassword.php', {
-        params: { 
-          emailPassword: email,
-        },
-      })
-      return request
+      const request = await Axios.get(
+        "http://localhost/ReactPHP/Mailer/ForgotPassword.php",
+        {
+          params: {
+            emailPassword: email,
+          },
+        }
+      );
+      return { data: request.data, status: request.status };
     } catch (error) {
-      if(error instanceof AxiosError) 
-      return error.response?.status
+      if (error instanceof AxiosError)
+        return { data: error.response?.data, status: error.response?.status };
     }
   },
   ValidaEmail: async (setResponse: any, setLoad: any, token: any) => {
     try {
-      await Axios.get('http://localhost/ReactPHP/validaEmail.php', {
+      await Axios.get("http://localhost/ReactPHP/validaEmail.php", {
         params: {
           token: token,
         },
@@ -289,15 +307,13 @@ export const PHP = {
   },
   GetLikes: async (postCod: number, userCod: number | boolean, fk: number) => {
     try {
-      await Axios.get('http://localhost/ReactPHP/Funções/PostsData.php', {
+      await Axios.get("http://localhost/ReactPHP/Funções/PostsData.php", {
         params: {
           postCod: postCod,
           userCod: userCod,
-          functionKey: fk
+          functionKey: fk,
         },
-      }).then((response) =>
-        console.log(response),
-      );
+      }).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
       return false;
@@ -320,14 +336,19 @@ export const PHP = {
   // },
   PutDeleteLikes: async (formData: any) => {
     try {
-      Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData).then((response) => console.log(response));
+      Axios.post(
+        "http://localhost/ReactPHP/Funções/UserActions.php",
+        formData
+      ).then((response) => console.log(response));
     } catch (err) {
       console.log(err);
     }
   },
   PutDeleteComment: async (formData: any) => {
     try {
-      Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData
+      Axios.post(
+        "http://localhost/ReactPHP/Funções/UserActions.php",
+        formData
       ).then((response) => console.log(response.data));
     } catch (err) {
       console.log(err);
@@ -335,22 +356,27 @@ export const PHP = {
   },
   UserActions: async (formData: any) => {
     try {
-      const request =  await Axios.post('http://localhost/ReactPHP/Funções/UserActions.php', formData
+      const request = await Axios.post(
+        "http://localhost/ReactPHP/Funções/UserActions.php",
+        formData
       ).then((response) => response.data);
       const response = await request;
-      console.log(response)
-      return response
+      console.log(response);
+      return response;
     } catch (err) {
       console.log(err);
-      return err
+      return err;
     }
   },
   GetPostDatas: async (setComments: any, formData: any) => {
     try {
-      await Axios.post('http://localhost/ReactPHP/Funções/PostsData.php', formData).then((response) =>
+      await Axios.post(
+        "http://localhost/ReactPHP/Funções/PostsData.php",
+        formData
+      ).then((response) =>
         response.data.length >= 1
           ? setComments(response.data)
-          : setComments(false),
+          : setComments(false)
       );
     } catch (err) {
       console.log(err);
@@ -358,7 +384,6 @@ export const PHP = {
       return err;
     }
   },
-
 };
 
 export default Services;

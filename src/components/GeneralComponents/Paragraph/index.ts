@@ -1,10 +1,11 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Paragraph = styled.p`
   font-size: ${(props) => props.itemProp};
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-weight: 400;
   letter-spacing: 0.2px;
+  padding-bottom: 2px;
   color: ${({ theme }) => theme.text};
   @media (max-width: 768px) {
     font-size: 1rem;
@@ -12,4 +13,4 @@ export const Paragraph = styled.p`
   @media (max-width: 535px) {
     font-size: 0.8rem;
   }
-`
+`;

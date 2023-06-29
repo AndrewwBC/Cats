@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react'
+import { memo, useState, useEffect } from "react";
 import {
   Container,
   Content,
@@ -12,21 +12,22 @@ import {
   UserName,
   UserNamePhoto,
   UserPhoto,
-} from './styles'
-import Spinner from '../../GeneralComponents/Spinner/Spinner'
-import { useParams } from 'react-router-dom'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import FollowButton from '../../GeneralComponents/FollowButton/FollowButton'
-import FollowersModal from '../../GeneralComponents/FollowersModal/FollowersModal'
-import FollowingModal from '../../GeneralComponents/FollowingModal/FollowingModal'
+} from "./styles";
+import Spinner from "../../GeneralComponents/Spinner/Spinner";
+import { useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import FollowButton from "../../GeneralComponents/FollowButton/FollowButton";
+import FollowersModal from "../../GeneralComponents/FollowersModal/FollowersModal";
+import FollowingModal from "../../GeneralComponents/FollowingModal/FollowingModal";
 
 const OtherUserPage = () => {
-  const [modal, setModal] = useState<boolean | string>(false)
-  const { username } = useParams()
-  const [query, setQuery] = useState(false)
+  const [modal, setModal] = useState<boolean | string>(false);
+  const { username } = useParams();
+  const [query, setQuery] = useState(false);
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
+  const admAuth = localStorage.getItem("admAuth");
 
   const {
     data: userProfileData,
@@ -34,24 +35,24 @@ const OtherUserPage = () => {
     isSuccess,
     refetch,
   } = useQuery({
-    queryKey: ['user'],
+    queryKey: ["user"],
     queryFn: () => {
       return axios
         .get(`http://localhost/ReactPHP/getOneUser.php?userName=${username}`)
-        .then((res) => res)
+        .then((res) => res);
     },
-  })
+  });
   useEffect(() => {
-    refetch()
-  }, [])
+    refetch();
+  }, []);
 
   useEffect(() => {
-    refetch()
-  }, [query])
+    refetch();
+  }, [query]);
 
-  document.title = `${username}`
+  document.title = `${username}`;
 
-  if (isLoading) return <Spinner />
+  if (isLoading) return <Spinner />;
   else if (isSuccess) {
     return (
       <Container>
@@ -65,7 +66,7 @@ const OtherUserPage = () => {
                 alt=""
               />
               <UserName>{userProfileData.data.userName}</UserName>
-              {token && (
+              {!admAuth && token && (
                 <FollowButton
                   fakeMutate={setQuery}
                   otherUsercod={userProfileData.data.userCod}
@@ -80,12 +81,12 @@ const OtherUserPage = () => {
                     <NumbersButton
                       id={item[0]}
                       onClick={({ target }: any) => setModal(target.id)}
-                      style={{ cursor: 'pointer' }}
+                      style={{ cursor: "pointer" }}
                     >
                       {item[0]}
                     </NumbersButton>
                   </NumbersContainer>
-                ),
+                )
               )}
             </UserInfo>
           </UserData>
@@ -95,16 +96,16 @@ const OtherUserPage = () => {
                 <div key={index}>
                   <FeedImg src={`http://localhost:3001/images/${item.Img}`} />
                 </div>
-              ),
+              )
             )}
           </UserFeed>
-          {modal === 'Seguidores' && (
+          {modal === "Seguidores" && (
             <FollowersModal
               username={userProfileData.data.userName}
               setModal={setModal}
             />
           )}
-          {modal === 'Seguindo' && (
+          {modal === "Seguindo" && (
             <FollowingModal
               username={userProfileData.data.userName}
               setModal={setModal}
@@ -112,8 +113,8 @@ const OtherUserPage = () => {
           )}
         </Content>
       </Container>
-    )
-  } else return <></>
-}
+    );
+  } else return <></>;
+};
 
-export default OtherUserPage
+export default OtherUserPage;

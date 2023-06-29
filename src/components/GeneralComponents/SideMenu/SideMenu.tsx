@@ -1,4 +1,4 @@
-import React, { memo, useContext, useState, useEffect } from 'react'
+import React, { memo, useContext, useState, useEffect } from "react";
 import {
   IconAndTitle,
   IconTitle,
@@ -6,79 +6,92 @@ import {
   Modal,
   SideContent,
   TitleButton,
-} from './styles'
-import { Catgram } from '../Titles'
-import { CiSettings } from 'react-icons/ci'
-import { SlHome } from 'react-icons/sl'
-import { BsChatDots } from 'react-icons/bs'
-import { IoMdLogOut } from 'react-icons/io'
-import { CgProfile } from 'react-icons/cg'
-import { RiUserSettingsLine } from 'react-icons/ri'
-import { BiPlusCircle } from 'react-icons/bi'
-import { NavLink, useNavigate } from 'react-router-dom'
-import PostPhoto from '../PostPhoto/PostPhoto'
-import ThemeButton from '../ThemeButton/ThemeButton'
-import useUser from '../../../hooks/useUser'
-import { useMutationUserData } from '../../../hooks/useMutationUserData'
-import UtilitiesModal from '../UtilitiesModal/UtilitiesModal'
-import './styles.css'
-import useUserData from '../../../hooks/useUserData'
+} from "./styles";
+import { Catgram } from "../Titles";
+import { CiSettings } from "react-icons/ci";
+import { SlHome } from "react-icons/sl";
+import { BsChatDots } from "react-icons/bs";
+import { IoMdLogOut } from "react-icons/io";
+import { CgProfile } from "react-icons/cg";
+import { RiUserSettingsLine, RiAdminFill } from "react-icons/ri";
+import { BiPlusCircle } from "react-icons/bi";
+import { NavLink, useNavigate } from "react-router-dom";
+import PostPhoto from "../PostPhoto/PostPhoto";
+import ThemeButton from "../ThemeButton/ThemeButton";
+import useUser from "../../../hooks/useUser";
+import { useMutationUserData } from "../../../hooks/useMutationUserData";
+import UtilitiesModal from "../UtilitiesModal/UtilitiesModal";
+import "./styles.css";
+import useUserData from "../../../hooks/useUserData";
 
 const SideMenu = () => {
-  const navigate = useNavigate()
-  const [modal, setModal] = useState(false)
-  const [utilities, setUtilities] = useState(false)
-  const { setUserData } = useUserData()
-  let token = localStorage.getItem('token')
+  const navigate = useNavigate();
+  const [modal, setModal] = useState(false);
+  const [utilities, setUtilities] = useState(false);
+  const { setUserData } = useUserData();
+  let token = localStorage.getItem("token");
 
   const {
     mutate,
     data: userData,
     isLoading: isLoadUser,
     isSuccess,
-  } = useMutationUserData()
+  } = useMutationUserData();
 
   useEffect(() => {
-    mutate()
-  }, [token])
+    mutate();
+  }, [token]);
 
   function logOut() {
-    localStorage.clear()
-    setUserData(false)
-    navigate('')
+    localStorage.clear();
+    setUserData(false);
+    navigate("");
   }
-  if (isLoadUser) return <div></div>
+  if (isLoadUser) return <div></div>;
   else if (isSuccess)
     return (
       <>
         <SideContent>
           <TitleButton>
-            <Catgram style={{ fontSize: '18px' }}>{userData.userName}</Catgram>
+            <Catgram style={{ fontSize: "18px" }}>{userData.userName}</Catgram>
           </TitleButton>
 
           <IconsContainer>
             <li>
-              <IconAndTitle style={{ border: 'none' }}>
+              <IconAndTitle style={{ border: "none" }}>
                 <ThemeButton />
               </IconAndTitle>
             </li>
             <li>
-              <NavLink to={'/generalfeed'}>
+              <NavLink to={"/generalfeed"}>
                 <IconAndTitle>
                   <SlHome color="orange" size={24} />
                   <IconTitle>Homepage</IconTitle>
                 </IconAndTitle>
               </NavLink>
             </li>
+            {localStorage.getItem("admAuth") && (
+              <li>
+                <NavLink to={"/dashboard"}>
+                  <IconAndTitle>
+                    <RiAdminFill color="orange" size={24} />
+                    <IconTitle>ADM</IconTitle>
+                  </IconAndTitle>
+                </NavLink>
+              </li>
+            )}
 
-            <li>
-              <NavLink to={'/userpage'}>
-                <IconAndTitle>
-                  <CgProfile color="orange" size={24} />
-                  <IconTitle>Perfil</IconTitle>
-                </IconAndTitle>
-              </NavLink>
-            </li>
+            {!localStorage.getItem("admAuth") && (
+              <li>
+                <NavLink to={"/userpage"}>
+                  <IconAndTitle>
+                    <CgProfile color="orange" size={24} />
+                    <IconTitle>Perfil</IconTitle>
+                  </IconAndTitle>
+                </NavLink>
+              </li>
+            )}
+
             <Modal>
               <RiUserSettingsLine
                 color="orange"
@@ -88,7 +101,7 @@ const SideMenu = () => {
             </Modal>
 
             <li className="list">
-              <NavLink to={'/generalfeed'}>
+              <NavLink to={"/generalfeed"}>
                 <IconAndTitle>
                   <BsChatDots color="orange" size={24} />
                   <IconTitle>Mensagens</IconTitle>
@@ -97,7 +110,7 @@ const SideMenu = () => {
             </li>
 
             <li className="list">
-              <NavLink to={'/usersettings'}>
+              <NavLink to={"/usersettings"}>
                 <IconAndTitle>
                   <CiSettings color="orange" size={26} />
                   <IconTitle>Configurações</IconTitle>
@@ -105,7 +118,7 @@ const SideMenu = () => {
               </NavLink>
             </li>
             <li className="list">
-              <NavLink to={'/'}>
+              <NavLink to={"/"}>
                 <IconAndTitle color="orange" onClick={logOut}>
                   <IoMdLogOut color="orange" size={24} />
                   <IconTitle>Sair</IconTitle>
@@ -124,8 +137,8 @@ const SideMenu = () => {
         </SideContent>
         {utilities && <UtilitiesModal setModal={setUtilities} />}
       </>
-    )
-  else return null
-}
+    );
+  else return null;
+};
 
-export default memo(SideMenu)
+export default memo(SideMenu);

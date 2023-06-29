@@ -1,14 +1,14 @@
-import { Container, EachComment } from './styles'
-import { useQueryCommentsData } from '../../../../hooks/useMutationCommentsData'
+import { Container, EachComment } from "./styles";
+import { useQueryCommentsData } from "../../../../hooks/useMutationCommentsData";
 
 const Comments = ({ postCod }: any) => {
   const {
     data: comments,
     isSuccess,
     isLoading,
-  } = useQueryCommentsData(postCod, '1')
-  if (isLoading) return <div></div>
-  if (!comments.data) return <div></div>
+  } = useQueryCommentsData(postCod, "1");
+  if (isLoading) return <div></div>;
+  if (!comments.data) return <div></div>;
   if (comments && isSuccess)
     return (
       <Container>
@@ -21,11 +21,11 @@ const Comments = ({ postCod }: any) => {
                 </div>
                 <p>{item.Comment}</p>
               </EachComment>
-            )
+            );
         })}
       </Container>
-    )
-  else return <></>
-}
+    );
+  else return <></>;
+};
 
-export default Comments
+export default Comments;

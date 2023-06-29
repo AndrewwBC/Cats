@@ -1,37 +1,37 @@
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import React, { useState } from 'react'
-import { Container, Content, EachUser, Filter, UserList } from './styles'
-import SearchUser from '../SearchUser/SearchUser'
-import { useGetDatas } from '../../../hooks/useMutationUserData'
-import { Paragraph } from '../Paragraph'
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useState } from "react";
+import { Container, Content, EachUser, Filter, UserList } from "./styles";
+import SearchUser from "../SearchUser/SearchUser";
+import { useGetDatas } from "../../../hooks/useMutationUserData";
+import { Paragraph } from "../Paragraph";
 
 const AllUsers = () => {
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState("");
 
-  const { data: userLoggedIn, isLoading: loadUser } = useGetDatas()
+  const { data: userLoggedIn, isLoading: loadUser } = useGetDatas();
 
-  !loadUser && localStorage.setItem('username', userLoggedIn.userName)
+  !loadUser && localStorage.setItem("username", userLoggedIn.userName);
 
   const {
     data: users,
     isLoading,
     isSuccess,
   } = useQuery({
-    queryKey: ['users', filter],
+    queryKey: ["users", filter],
     queryFn: () => {
       return axios
         .get(`http://localhost/ReactPHP/getAllUsers.php?userFilter=${filter}`)
-        .then((res) => res)
+        .then((res) => res);
     },
-  })
+  });
 
-  if (loadUser) return <></>
+  if (loadUser) return <></>;
 
   return (
     <>
       <Container>
-        <Paragraph style={{ marginBottom: '1rem' }}>
+        <Paragraph style={{ marginBottom: "1rem" }}>
           Procure usuários!
         </Paragraph>
         <Filter
@@ -53,7 +53,7 @@ const AllUsers = () => {
         </Content>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default AllUsers
+export default AllUsers;
