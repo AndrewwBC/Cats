@@ -1,19 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useTheme from '../../../hooks/useTheme'
 import { BsSun, BsMoon } from 'react-icons/bs'
 
 const ThemeButton = () => {
   const { theme, setTheme } = useTheme()
-
-  localStorage.setItem('theme', theme)
+  theme && localStorage.setItem('theme', theme)
+  const localTheme = localStorage.getItem('theme')
 
   return (
     <div>
-      <button
-        style={{ background: 'none', cursor: 'pointer' }}
-        onClick={() => setTheme(!theme)}
-      >
-        {theme ? <BsMoon size={28} /> : <BsSun size={28} color="orange" />}
+      <button style={{ background: 'none', cursor: 'pointer' }}>
+        {localTheme === 'light' ? (
+          <BsMoon onClick={() => setTheme('dark')} size={28} />
+        ) : (
+          <BsSun onClick={() => setTheme('light')} size={28} color="orange" />
+        )}
       </button>
     </div>
   )

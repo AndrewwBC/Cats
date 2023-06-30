@@ -1,4 +1,4 @@
-import { Paragraph } from "../Paragraph";
+import { Paragraph } from '../Paragraph'
 import {
   Buttons,
   Container,
@@ -9,38 +9,38 @@ import {
   MobileMenuList,
   MobileMenuNav,
   MobileMenuOptions,
-} from "./styles";
-import { NavLink } from "react-router-dom";
-import ThemeButton from "../ThemeButton/ThemeButton";
-import { useState } from "react";
+} from './styles'
+import { NavLink } from 'react-router-dom'
+import ThemeButton from '../ThemeButton/ThemeButton'
+import { useState } from 'react'
 const Header = () => {
-  const [burg, setBurg] = useState<boolean>(false);
+  const [burg, setBurg] = useState<boolean>(false)
 
   const linkTitles = [
     {
-      title: "Sobre",
-      path: "/about",
+      title: 'Sobre',
+      path: '/about',
     },
     {
-      title: "Contato",
-      path: "/contact",
+      title: 'Contato',
+      path: '/contact',
     },
     {
-      title: "FeedBack",
-      path: "/feedback",
+      title: 'FeedBack',
+      path: '/feedback',
     },
     {
-      title: "Acessar",
-      path: "/login",
+      title: 'Acessar',
+      path: '/login',
     },
-  ];
+  ]
 
   function handleClick(target: HTMLButtonElement) {
-    const allP = Array.from(document.getElementsByClassName("anchor"));
+    const allP = Array.from(document.getElementsByClassName('anchor'))
     allP.map((item: any) => {
-      item.style.borderBottom = "";
-    });
-    target.style.borderBottom = "2px solid orange";
+      item.style.borderBottom = ''
+    })
+    target.style.borderBottom = '2px solid orange'
   }
 
   return (
@@ -97,7 +97,7 @@ const Header = () => {
         </Content>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
